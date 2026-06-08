@@ -1,0 +1,146 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Footer from '../components/Footer.astro';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts.sort(
+  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+
+// Derive a URL-safe slug from category name
+const toSlug = (s: string) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+const categories = [
+  { label: 'All',               slug: 'all' },
+  { label: 'Business x Design', slug: 'business-x-design' },
+  { label: 'Field Notes',       slug: 'field-notes' },
+  { label: 'Process',           slug: 'process' },
+];
+---
+
+<Layout
+  title="Thinking Out Loud — Herru Adi"
+  description="Design, business, and the conversations worth having."
+>
+  <Nav />
+
+  <main>
+
+    <!-- ─── Page Hero ──────────────────────────────────────────────── -->
+    <div class="mx-auto max-w-6xl px-6 pb-12 pt-36 md:pb-14 md:pt-44">
+      <p class="mb-5 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
+        Blog
+      </p>
+      <h1 class="mb-4 text-[2.6rem] font-bold leading-[1.07] tracking-tight text-fg sm:text-5xl md:text-6xl">
+        Thinking Out Loud
+      </h1>
+      <p class="max-w-xl text-lg leading-relaxed text-muted">
+        Design, business, and the conversations worth having.
+      </p>
+    </div>
+
+    <!-- ─── Category filters ───────────────────────────────────────── -->
+    <div class="mx-auto max-w-6xl px-6 pb-10">
+      <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filter articles by category">
+        {categories.map((cat, i) => (
+          <button
+            data-filter={cat.slug}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            class={[
+              'filter-btn cursor-pointer rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200',
+              i === 0
+                ? 'border-fg bg-fg text-bg'
+                : 'border-border text-muted hover:border-fg hover:text-fg',
+            ].join(' ')}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- ─── Articles grid ──────────────────────────────────────────── -->
+    <div class="mx-auto max-w-6xl px-6 pb-0">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+
+        {posts.map(post => (
+          <a
+            href={`/blog/${post.id}`}
+            data-category={toSlug(post.data.category)}
+            class="group flex flex-col gap-4 rounded-2xl border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20"
+          >
+            <span class="w-fit font-mono text-xs font-semibold uppercase tracking-wider text-accent">
+              {post.data.category}
+            </span>
+            <h2 class="text-base font-semibold leading-snug text-fg transition-colors duration-200 group-hover:text-accent sm:text-[1.05rem]">
+              {post.data.title}
+            </h2>
+            <p class="flex-1 text-sm leading-relaxed text-muted">
+              {post.data.description}
+            </p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-all duration-200 group-hover:gap-2 group-hover:text-accent">
+              Read article
+              <span aria-hidden="true">→</span>
+            </span>
+          </a>
+        ))}
+
+        <!-- Empty state -->
+        <div
+          id="empty-state"
+          class="col-span-full hidden py-24 text-center"
+          aria-live="polite"
+        >
+          <p class="text-base text-muted">No articles in this category yet.</p>
+          <p class="mt-1 text-sm text-muted opacity-60">Check back soon.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <ContactCTA />
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const articleCards = document.querySelectorAll<HTMLElement>('[data-category]');
+  const emptyState = document.getElementById('empty-state');
+
+  const activeClasses   = ['border-fg', 'bg-fg', 'text-bg'];
+  const inactiveClasses = ['border-border', 'text-muted', 'hover:border-fg', 'hover:text-fg'];
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+
+      filterBtns.forEach(b => {
+        const isActive = b === btn;
+        b.setAttribute('aria-selected', String(isActive));
+        if (isActive) {
+          b.classList.remove(...inactiveClasses);
+          b.classList.add(...activeClasses);
+        } else {
+          b.classList.remove(...activeClasses);
+          b.classList.add(...inactiveClasses);
+        }
+      });
+
+      let visible = 0;
+      articleCards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        (card as HTMLElement).style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+
+      if (emptyState) emptyState.classList.toggle('hidden', visible > 0);
+    });
+  });
+</script>

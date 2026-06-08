@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const expectations = [
+  "I'll respond within 1–2 business days",
+  "First call is always a conversation, never a pitch",
+  "If I'm not the right fit, I'll tell you honestly",
+];
+
+const socialLinks = [
+  {
+    name: 'LinkedIn',
+    href: '#',
+    icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
+  },
+  {
+    name: 'Twitter / X',
+    href: '#',
+    icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+  },
+  {
+    name: 'Instagram',
+    href: '#',
+    icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`,
+  },
+  {
+    name: 'Dribbble',
+    href: '#',
+    icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"/><path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"/><path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"/></svg>`,
+  },
+];
+---
+
+<Layout
+  title="Let's Talk — Herru Adi"
+  description="I take on a limited number of projects at a time. Tell me what you're working on — even if the timing isn't right, I'll always make time for a good conversation."
+>
+  <Nav />
+
+  <main>
+    <div class="mx-auto max-w-6xl px-6 pb-20 pt-36 md:pb-28 md:pt-44">
+      <div class="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:items-start lg:gap-20">
+
+        <!-- ─── Left column ─────────────────────────────────────────── -->
+        <div>
+
+          <!-- Eyebrow + Title + Sub -->
+          <p class="mb-5 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
+            Contact
+          </p>
+          <h1 class="mb-5 text-[2.4rem] font-bold leading-[1.08] tracking-tight text-fg sm:text-5xl">
+            Let's Talk About<br class="hidden sm:block" />
+            Your Product
+          </h1>
+          <p class="mb-12 max-w-md text-lg leading-[1.8] text-muted">
+            I take on a limited number of projects at a time — so if you're reading
+            this, there's a good chance I have room for one more.
+          </p>
+
+          <!-- What to Expect -->
+          <div class="mb-10">
+            <p class="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted">
+              What to Expect
+            </p>
+            <ul class="flex flex-col gap-4">
+              {expectations.map(item => (
+                <li class="flex items-start gap-3">
+                  <span
+                    class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/10"
+                    aria-hidden="true"
+                  >
+                    <svg
+                      width="9" height="9"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-accent"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  <p class="text-base leading-[1.75] text-fg">{item}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Find Me Online -->
+          <div>
+            <p class="mb-4 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted">
+              Find Me Online
+            </p>
+            <div class="flex flex-wrap gap-2">
+              {socialLinks.map(link => (
+                <a
+                  href={link.href}
+                  class="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-muted transition-all duration-200 hover:border-fg hover:text-fg"
+                  rel="noopener noreferrer"
+                >
+                  <Fragment set:html={link.icon} />
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ─── Right column: Form ──────────────────────────────────── -->
+        <div>
+          <form
+            action="#"
+            method="post"
+            class="rounded-3xl border border-border bg-surface p-6 md:p-8"
+          >
+
+            <!-- Name -->
+            <div class="mb-5">
+              <label for="name" class="mb-2 block text-sm font-medium text-fg">
+                Name <span class="text-accent" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                autocomplete="name"
+                placeholder="Your full name"
+                class="w-full rounded-xl border border-border bg-bg px-4 py-3 text-base text-fg transition-colors placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              />
+            </div>
+
+            <!-- Email -->
+            <div class="mb-5">
+              <label for="email" class="mb-2 block text-sm font-medium text-fg">
+                Email <span class="text-accent" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+                placeholder="you@company.com"
+                class="w-full rounded-xl border border-border bg-bg px-4 py-3 text-base text-fg transition-colors placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              />
+            </div>
+
+            <!-- What are you working on? -->
+            <div class="mb-5">
+              <label for="project" class="mb-2 block text-sm font-medium text-fg">
+                What are you working on?
+                <span class="text-accent" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="project"
+                name="project"
+                required
+                rows="4"
+                placeholder="Tell me about your product, team, and where you're at right now..."
+                class="w-full resize-none rounded-xl border border-border bg-bg px-4 py-3 text-base text-fg transition-colors placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              ></textarea>
+            </div>
+
+            <!-- What does success look like? -->
+            <div class="mb-7">
+              <label for="success" class="mb-2 flex items-baseline gap-2 text-sm font-medium text-fg">
+                What does success look like for you?
+                <span class="font-normal text-muted">(optional)</span>
+              </label>
+              <textarea
+                id="success"
+                name="success"
+                rows="3"
+                placeholder="What's the outcome you're hoping for?"
+                class="w-full resize-none rounded-xl border border-border bg-bg px-4 py-3 text-base text-fg transition-colors placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+              ></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="group w-full rounded-xl bg-accent px-6 py-4 text-base font-semibold text-white transition-all duration-200 hover:opacity-90"
+            >
+              <span class="inline-flex items-center justify-center gap-2">
+                Send message
+                <span
+                  aria-hidden="true"
+                  class="transition-transform duration-200 group-hover:translate-x-0.5"
+                >→</span>
+              </span>
+            </button>
+
+            <p class="mt-4 text-center font-mono text-xs text-muted">
+              Powered by Web3Forms
+            </p>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

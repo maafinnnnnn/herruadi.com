@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
+import ContactCTA from '../components/ContactCTA.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -13,7 +14,7 @@ import Footer from '../components/Footer.astro';
   <main>
 
     <!-- ─── Page Hero ──────────────────────────────────────────────── -->
-    <div class="mx-auto max-w-6xl px-6 pb-20 pt-40 md:pb-28 md:pt-52">
+    <div class="mx-auto max-w-6xl px-6 pb-20 pt-36 md:pb-24 md:pt-44">
       <p class="mb-5 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
         About
       </p>
@@ -21,31 +22,31 @@ import Footer from '../components/Footer.astro';
         I'm not here to<br />
         execute your brief.
       </h1>
-      <p class="max-w-xl text-lg leading-relaxed text-muted">
+      <p class="max-w-xl text-lg leading-[1.8] text-muted">
         A strategic design partner who believes the best design decisions
         happen before any screen is made.
       </p>
     </div>
 
     <!-- ─── Who I Am ───────────────────────────────────────────────── -->
-    <section class="border-t border-border py-16 md:py-24" aria-labelledby="who-i-am">
+    <section class="py-16 md:py-24" aria-labelledby="who-i-am">
       <div class="mx-auto max-w-6xl px-6">
-        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-14 lg:grid-cols-[360px_1fr] lg:gap-20">
+        <div class="flex flex-col md:flex-row md:items-start md:gap-14 lg:gap-20">
 
-          <!-- Left: photo placeholder -->
-          <div>
+          <!-- Left: photo placeholder, max 400px tall -->
+          <div class="mb-24 w-full shrink-0 md:mb-0 md:w-[360px]">
             <div
               class="relative w-full overflow-hidden rounded-3xl border border-border bg-surface"
-              style="aspect-ratio: 4/5; max-width: 360px;"
+              style="aspect-ratio: 4/5; max-height: 400px;"
               aria-hidden="true"
             >
-              <!-- Ghost initials as background watermark -->
+              <!-- Ghost initials watermark -->
               <span
                 class="pointer-events-none absolute inset-0 flex select-none items-center justify-center font-bold text-fg"
-                style="font-size: 11rem; line-height: 1; opacity: 0.045;"
+                style="font-size: 10rem; line-height: 1; opacity: 0.045;"
               >HA</span>
 
-              <!-- Frosted name card at bottom -->
+              <!-- Frosted name card -->
               <div class="absolute bottom-4 left-4 right-4">
                 <div class="rounded-2xl border border-border/60 bg-bg/75 px-4 py-3 backdrop-blur-sm">
                   <p class="text-sm font-semibold text-fg">Herru Adi</p>
@@ -56,8 +57,8 @@ import Footer from '../components/Footer.astro';
           </div>
 
           <!-- Right: label + prose -->
-          <div class="flex flex-col justify-center">
-            <div class="mb-7 inline-flex items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
+          <div class="flex min-w-0 flex-1 flex-col items-start justify-center">
+            <div class="mb-7 inline-flex w-fit items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
               <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
               <span
                 id="who-i-am"
@@ -65,28 +66,28 @@ import Footer from '../components/Footer.astro';
               >Who I Am</span>
             </div>
 
-            <div class="space-y-6 text-[17px] leading-relaxed text-muted sm:text-lg">
-              <p>
+            <div class="text-[17px] sm:text-lg">
+              <p class="mb-6 leading-[1.8] text-muted">
                 I started as a frontend developer — close enough to design to fall in love
                 with it, far enough to understand how things get built.
               </p>
-              <p>
+              <p class="mb-6 leading-[1.8] text-muted">
                 The switch wasn't planned. But once I crossed over, I never looked back.
               </p>
-              <p>
+              <p class="mb-6 leading-[1.8] text-muted">
                 Nine years later, what keeps me here isn't the craft — it's the impact.
                 A product I designed helping a kitchen run smoother. An app that actually
                 solves someone's real problem. An agency that lands a client because the
                 work looked and felt right. Small ripples, maybe. But ripples matter.
               </p>
-              <p>
+              <p class="mb-6 leading-[1.8] text-muted">
                 I live by one principle:{' '}
                 <span class="font-semibold text-fg">hidup harus berguna bagi sesama</span>
                 {' '}— life should be useful to others. It's why I design, why I'm honest
                 with clients even when it's uncomfortable, and why I named my son Gunaka
                 Sasama — Sundanese for "useful to others."
               </p>
-              <p class="font-semibold text-fg">
+              <p class="leading-[1.8] font-bold text-fg">
                 That's not a tagline. That's just who I am.
               </p>
             </div>
@@ -97,10 +98,10 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- ─── How I Work ─────────────────────────────────────────────── -->
-    <section class="border-t border-border py-16 md:py-24" aria-labelledby="how-i-work">
+    <section class="py-16 md:py-24" aria-labelledby="how-i-work">
       <div class="mx-auto max-w-6xl px-6">
 
-        <div class="mb-8 inline-flex items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
+        <div class="mb-8 inline-flex w-fit items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
           <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
           <span
             id="how-i-work"
@@ -108,44 +109,39 @@ import Footer from '../components/Footer.astro';
           >How I Work</span>
         </div>
 
-        <div class="max-w-[65ch] space-y-6 text-[17px] leading-relaxed sm:text-lg">
-
-          <p class="font-bold text-fg">
+        <div class="max-w-[65ch] text-[17px] sm:text-lg">
+          <p class="mb-6 leading-[1.8] font-bold text-fg">
             My process starts with one question: is this actually the problem?
           </p>
-
-          <p class="text-muted">
+          <p class="mb-6 leading-[1.8] text-muted">
             Before I open Figma, I want to understand what we're really solving.
             I break down the problem, challenge the assumptions, and make sure we're
             building the right thing — not just building things right. If something
             doesn't make sense, we talk it through. Designing the wrong solution is
             just expensive guesswork.
           </p>
-
-          <p class="font-bold text-fg">
+          <p class="mb-6 leading-[1.8] font-bold text-fg">
             That said — I know when to lead and when to follow.
           </p>
-
-          <p class="text-muted">
+          <p class="mb-6 leading-[1.8] text-muted">
             When there's a PM or PO with a solid PRD on the table, I'm heads down
             and executing with precision. I respect process, I respect structure,
             and I know how to work within a system without losing the quality of
             the output.
           </p>
-
-          <p class="font-bold text-fg">
+          <p class="leading-[1.8] font-bold text-fg">
             Two modes. One standard: make it count.
           </p>
-
         </div>
+
       </div>
     </section>
 
     <!-- ─── The Human Side ─────────────────────────────────────────── -->
-    <section class="border-t border-border py-16 md:py-24" aria-labelledby="human-side">
+    <section class="py-16 md:py-24" aria-labelledby="human-side">
       <div class="mx-auto max-w-6xl px-6">
 
-        <div class="mb-8 inline-flex items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
+        <div class="mb-8 inline-flex w-fit items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
           <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
           <span
             id="human-side"
@@ -153,17 +149,17 @@ import Footer from '../components/Footer.astro';
           >The Human Side</span>
         </div>
 
-        <div class="max-w-[65ch] space-y-6 text-[17px] leading-relaxed text-muted sm:text-lg">
-          <p>
+        <div class="max-w-[65ch] text-[17px] sm:text-lg">
+          <p class="mb-6 leading-[1.8] text-muted">
             Outside of work, I'm a dad who does the school run every morning for
             my 4-year-old — which, honestly, is the best part of my day.
           </p>
-          <p>
+          <p class="mb-6 leading-[1.8] text-muted">
             I decompress on two wheels, exploring Bandung's streets or finding
             roads I've never taken before. I keep telling myself I'll pick up
             music again soon.
           </p>
-          <p>
+          <p class="leading-[1.8] text-muted">
             The bigger dream? A design studio and a free learning space for people
             who want to build in tech but can't afford the privilege of education.
             Not someday — just not today yet.
@@ -173,26 +169,7 @@ import Footer from '../components/Footer.astro';
       </div>
     </section>
 
-    <!-- ─── CTA ────────────────────────────────────────────────────── -->
-    <section class="border-t border-border py-16 md:py-24">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="mx-auto max-w-2xl text-center">
-          <h2 class="mb-7 text-3xl font-bold tracking-tight text-fg sm:text-4xl">
-            Want to work together?
-          </h2>
-          <a
-            href="/contact"
-            class="group inline-flex items-center gap-2 rounded-xl bg-accent px-7 py-4 text-sm font-semibold text-white transition-all duration-200 hover:opacity-90"
-          >
-            Let's talk
-            <span
-              aria-hidden="true"
-              class="transition-transform duration-200 group-hover:translate-x-0.5"
-            >→</span>
-          </a>
-        </div>
-      </div>
-    </section>
+    <ContactCTA />
 
   </main>
 
