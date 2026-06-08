@@ -1,17 +1,13 @@
 ---
-import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <div class="flex min-h-screen flex-col items-center justify-center gap-4">
+    <p class="font-mono text-sm text-muted">Design system check</p>
+    <h1 class="text-4xl font-bold text-fg">Herru Adi</h1>
+    <p class="text-muted">Strategic Design Partner · 9 Years Experience</p>
+    <ThemeToggle />
+  </div>
+</Layout>

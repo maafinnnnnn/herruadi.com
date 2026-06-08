@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+/* Class-based dark mode — toggles via class="dark" on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Typography tokens */
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, monospace;
+}
+
+/* Semantic color variables — light mode */
+:root {
+  --c-bg: #FBFBFD;
+  --c-fg: #1D1D1F;
+  --c-accent: #0071E3;
+  --c-surface: #FFFFFF;
+  --c-muted: #6E6E73;
+  --c-border: #D2D2D7;
+}
+
+/* Dark mode overrides */
+:root.dark {
+  --c-bg: #0A0A0C;
+  --c-fg: #F5F5F7;
+  --c-surface: #161619;
+  --c-muted: #A1A1A6;
+  --c-border: #2D2D30;
+}
+
+/* Map to Tailwind color utilities (bg-bg, text-fg, bg-accent, etc.) */
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-fg: var(--c-fg);
+  --color-accent: var(--c-accent);
+  --color-surface: var(--c-surface);
+  --color-muted: var(--c-muted);
+  --color-border: var(--c-border);
+}
