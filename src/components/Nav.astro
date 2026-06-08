@@ -1,0 +1,32 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-bg/80 backdrop-blur-xl">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a
+      href="/"
+      class="text-[15px] font-semibold tracking-tight text-fg transition-colors hover:text-accent"
+    >
+      Herru Adi
+    </a>
+
+    <div class="flex items-center gap-1">
+      <nav class="hidden items-center gap-0.5 sm:flex" aria-label="Main navigation">
+        <a href="/work"    class="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-fg">Work</a>
+        <a href="/about"   class="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-fg">About</a>
+        <a href="/blog"    class="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-fg">Blog</a>
+        <span class="mx-2 h-4 w-px bg-border" aria-hidden="true"></span>
+        <a
+          href="/contact"
+          class="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+        >
+          Let's talk
+        </a>
+      </nav>
+      <div class="ml-1">
+        <ThemeToggle />
+      </div>
+    </div>
+  </div>
+</header>

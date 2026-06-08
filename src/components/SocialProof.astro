@@ -1,0 +1,28 @@
+---
+const clients = [
+  'Kompas Gramedia Group',
+  'Pigeonhole Live',
+  'InnoArk',
+  'Vantagelab',
+  'AYCE',
+  'MobilKamu.com',
+  'Glovory',
+  'Sribu.com',
+  'PT Sarana Pembayaran Syariah',
+];
+---
+
+<section class="border-y border-border py-16">
+  <div class="mx-auto max-w-6xl px-6">
+    <p class="mb-10 text-center font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
+      Trusted by teams across Indonesia, Southeast Asia, and beyond.
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      {clients.map((name) => (
+        <div class="rounded-lg border border-border px-4 py-2.5 text-xs font-medium text-muted transition-colors duration-200 hover:border-accent/30 hover:text-fg sm:text-sm">
+          {name}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

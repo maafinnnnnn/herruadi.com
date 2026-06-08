@@ -1,0 +1,200 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="About — Herru Adi"
+  description="I'm Herru Adi — a strategic design partner with 9+ years working across fintech, AI, SaaS, and enterprise products. I bring the kind of thinking that shapes what gets built — not just how it looks."
+>
+  <Nav />
+
+  <main>
+
+    <!-- ─── Page Hero ──────────────────────────────────────────────── -->
+    <div class="mx-auto max-w-6xl px-6 pb-20 pt-40 md:pb-28 md:pt-52">
+      <p class="mb-5 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
+        About
+      </p>
+      <h1 class="mb-5 max-w-3xl text-[2.6rem] font-bold leading-[1.07] tracking-tight text-fg sm:text-5xl md:text-6xl">
+        I'm not here to<br />
+        execute your brief.
+      </h1>
+      <p class="max-w-xl text-lg leading-relaxed text-muted">
+        A strategic design partner who believes the best design decisions
+        happen before any screen is made.
+      </p>
+    </div>
+
+    <!-- ─── Who I Am ───────────────────────────────────────────────── -->
+    <section class="border-t border-border py-16 md:py-24" aria-labelledby="who-i-am">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-14 lg:grid-cols-[360px_1fr] lg:gap-20">
+
+          <!-- Left: photo placeholder -->
+          <div>
+            <div
+              class="relative w-full overflow-hidden rounded-3xl border border-border bg-surface"
+              style="aspect-ratio: 4/5; max-width: 360px;"
+              aria-hidden="true"
+            >
+              <!-- Ghost initials as background watermark -->
+              <span
+                class="pointer-events-none absolute inset-0 flex select-none items-center justify-center font-bold text-fg"
+                style="font-size: 11rem; line-height: 1; opacity: 0.045;"
+              >HA</span>
+
+              <!-- Frosted name card at bottom -->
+              <div class="absolute bottom-4 left-4 right-4">
+                <div class="rounded-2xl border border-border/60 bg-bg/75 px-4 py-3 backdrop-blur-sm">
+                  <p class="text-sm font-semibold text-fg">Herru Adi</p>
+                  <p class="mt-0.5 font-mono text-[11px] text-muted">Strategic Design Partner</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: label + prose -->
+          <div class="flex flex-col justify-center">
+            <div class="mb-7 inline-flex items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
+              <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+              <span
+                id="who-i-am"
+                class="font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted"
+              >Who I Am</span>
+            </div>
+
+            <div class="space-y-6 text-[17px] leading-relaxed text-muted sm:text-lg">
+              <p>
+                I started as a frontend developer — close enough to design to fall in love
+                with it, far enough to understand how things get built.
+              </p>
+              <p>
+                The switch wasn't planned. But once I crossed over, I never looked back.
+              </p>
+              <p>
+                Nine years later, what keeps me here isn't the craft — it's the impact.
+                A product I designed helping a kitchen run smoother. An app that actually
+                solves someone's real problem. An agency that lands a client because the
+                work looked and felt right. Small ripples, maybe. But ripples matter.
+              </p>
+              <p>
+                I live by one principle:{' '}
+                <span class="font-semibold text-fg">hidup harus berguna bagi sesama</span>
+                {' '}— life should be useful to others. It's why I design, why I'm honest
+                with clients even when it's uncomfortable, and why I named my son Gunaka
+                Sasama — Sundanese for "useful to others."
+              </p>
+              <p class="font-semibold text-fg">
+                That's not a tagline. That's just who I am.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── How I Work ─────────────────────────────────────────────── -->
+    <section class="border-t border-border py-16 md:py-24" aria-labelledby="how-i-work">
+      <div class="mx-auto max-w-6xl px-6">
+
+        <div class="mb-8 inline-flex items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+          <span
+            id="how-i-work"
+            class="font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted"
+          >How I Work</span>
+        </div>
+
+        <div class="max-w-[65ch] space-y-6 text-[17px] leading-relaxed sm:text-lg">
+
+          <p class="font-bold text-fg">
+            My process starts with one question: is this actually the problem?
+          </p>
+
+          <p class="text-muted">
+            Before I open Figma, I want to understand what we're really solving.
+            I break down the problem, challenge the assumptions, and make sure we're
+            building the right thing — not just building things right. If something
+            doesn't make sense, we talk it through. Designing the wrong solution is
+            just expensive guesswork.
+          </p>
+
+          <p class="font-bold text-fg">
+            That said — I know when to lead and when to follow.
+          </p>
+
+          <p class="text-muted">
+            When there's a PM or PO with a solid PRD on the table, I'm heads down
+            and executing with precision. I respect process, I respect structure,
+            and I know how to work within a system without losing the quality of
+            the output.
+          </p>
+
+          <p class="font-bold text-fg">
+            Two modes. One standard: make it count.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── The Human Side ─────────────────────────────────────────── -->
+    <section class="border-t border-border py-16 md:py-24" aria-labelledby="human-side">
+      <div class="mx-auto max-w-6xl px-6">
+
+        <div class="mb-8 inline-flex items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+          <span
+            id="human-side"
+            class="font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted"
+          >The Human Side</span>
+        </div>
+
+        <div class="max-w-[65ch] space-y-6 text-[17px] leading-relaxed text-muted sm:text-lg">
+          <p>
+            Outside of work, I'm a dad who does the school run every morning for
+            my 4-year-old — which, honestly, is the best part of my day.
+          </p>
+          <p>
+            I decompress on two wheels, exploring Bandung's streets or finding
+            roads I've never taken before. I keep telling myself I'll pick up
+            music again soon.
+          </p>
+          <p>
+            The bigger dream? A design studio and a free learning space for people
+            who want to build in tech but can't afford the privilege of education.
+            Not someday — just not today yet.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── CTA ────────────────────────────────────────────────────── -->
+    <section class="border-t border-border py-16 md:py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="mb-7 text-3xl font-bold tracking-tight text-fg sm:text-4xl">
+            Want to work together?
+          </h2>
+          <a
+            href="/contact"
+            class="group inline-flex items-center gap-2 rounded-xl bg-accent px-7 py-4 text-sm font-semibold text-white transition-all duration-200 hover:opacity-90"
+          >
+            Let's talk
+            <span
+              aria-hidden="true"
+              class="transition-transform duration-200 group-hover:translate-x-0.5"
+            >→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>

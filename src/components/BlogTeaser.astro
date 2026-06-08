@@ -1,0 +1,65 @@
+---
+const articles = [
+  {
+    category: 'Business x Design',
+    title: "The most expensive design mistake isn't bad UI — it's building the wrong thing",
+    href: '/blog/most-expensive-design-mistake',
+  },
+  {
+    category: 'Field Notes',
+    title: 'Designing for crypto when you know nothing about crypto',
+    href: '/blog/designing-for-crypto',
+  },
+  {
+    category: 'Field Notes',
+    title: 'What a kitchen chaos taught me about SaaS product design',
+    href: '/blog/kitchen-chaos-saas',
+  },
+];
+---
+
+<section id="blog" class="border-t border-border py-24 md:py-32">
+  <div class="mx-auto max-w-6xl px-6">
+
+    <!-- Section header -->
+    <div class="mb-14 md:mb-16">
+      <p class="mb-3 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
+        Writing
+      </p>
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <h2 class="text-3xl font-bold tracking-tight text-fg sm:text-4xl">
+          Thinking Out Loud
+        </h2>
+        <a
+          href="/blog"
+          class="group inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-accent transition-all duration-200"
+        >
+          Read all articles
+          <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Article cards -->
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+      {articles.map((article) => (
+        <a
+          href={article.href}
+          class="group flex flex-col gap-4 rounded-2xl border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20"
+        >
+          <span class="font-mono text-xs font-semibold uppercase tracking-wider text-accent">
+            {article.category}
+          </span>
+          <h3 class="flex-1 text-base font-semibold leading-snug text-fg transition-colors duration-200 group-hover:text-accent sm:text-[1.05rem]">
+            {article.title}
+          </h3>
+          <span class="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-all duration-200 group-hover:gap-2 group-hover:text-accent">
+            Read article
+            <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>
