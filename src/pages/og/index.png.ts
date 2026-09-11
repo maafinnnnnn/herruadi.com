@@ -66,7 +66,7 @@ export async function GET() {
               {
                 type: 'span',
                 props: {
-                  style: { fontFamily: OG.body, fontSize: 26, color: OG.inkSoft, lineHeight: 1.4, maxWidth: 560 },
+                  style: { fontFamily: OG.body, fontSize: 30, color: OG.inkSoft, lineHeight: 1.4, maxWidth: 560 },
                   children: "Great design won't save a broken business.",
                 },
               },

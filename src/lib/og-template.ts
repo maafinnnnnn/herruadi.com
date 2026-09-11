@@ -28,16 +28,16 @@ export function ogAvatarRow(photoDataUri: string | null) {
   return {
     type: 'div',
     props: {
-      style: { display: 'flex', alignItems: 'center', gap: 14 },
+      style: { display: 'flex', alignItems: 'center', gap: 20 },
       children: [
         {
           type: 'div',
           props: {
             style: {
               display: 'flex',
-              width: 48,
-              height: 48,
-              border: `2px solid ${OG.ink}`,
+              width: 72,
+              height: 72,
+              border: `3px solid ${OG.ink}`,
               overflow: 'hidden',
               alignItems: 'center',
               justifyContent: 'center',
@@ -46,12 +46,12 @@ export function ogAvatarRow(photoDataUri: string | null) {
             children: photoDataUri
               ? {
                   type: 'img',
-                  props: { src: photoDataUri, width: 48, height: 48, style: { objectFit: 'cover' } },
+                  props: { src: photoDataUri, width: 72, height: 72, style: { objectFit: 'cover' } },
                 }
               : {
                   type: 'span',
                   props: {
-                    style: { fontFamily: OG.display, fontWeight: 800, fontSize: 18, color: OG.ink },
+                    style: { fontFamily: OG.display, fontWeight: 800, fontSize: 26, color: OG.ink },
                     children: 'HA',
                   },
                 },
@@ -60,7 +60,7 @@ export function ogAvatarRow(photoDataUri: string | null) {
         {
           type: 'span',
           props: {
-            style: { fontFamily: OG.display, fontWeight: 700, fontSize: 22, color: OG.ink },
+            style: { fontFamily: OG.display, fontWeight: 700, fontSize: 32, color: OG.ink },
             children: 'Herru Adi',
           },
         },
@@ -75,9 +75,11 @@ export function ogDomain() {
     props: {
       style: {
         fontFamily: OG.mono,
-        fontSize: 16,
+        fontSize: 24,
         letterSpacing: 1,
-        color: OG.inkFaint,
+        // inkFaint fails WCAG AA (~3.3:1) at this size on paper-dark;
+        // inkSoft clears AA comfortably (~7.4:1) while staying muted.
+        color: OG.inkSoft,
       },
       children: 'herruadi.com',
     },
@@ -88,7 +90,7 @@ export function ogAccentBar() {
   return {
     type: 'div',
     props: {
-      style: { display: 'flex', position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, background: OG.redline },
+      style: { display: 'flex', position: 'absolute', left: 0, right: 0, bottom: 0, height: 8, background: OG.redline },
     },
   };
 }
@@ -99,8 +101,8 @@ export function ogEyebrow(text: string) {
     props: {
       style: {
         fontFamily: OG.mono,
-        fontSize: 20,
-        letterSpacing: 3,
+        fontSize: 30,
+        letterSpacing: 4,
         textTransform: 'uppercase',
         color: OG.redline,
       },
@@ -123,14 +125,16 @@ export async function renderOgPng(tree: unknown, fonts: unknown): Promise<Respon
 
 export async function getOgFonts() {
   const { getGoogleFont } = await import('./og-fonts');
-  const [displayBold, displayBlack, mono] = await Promise.all([
+  const [displayBold, displayBlack, mono, body] = await Promise.all([
     getGoogleFont('Big Shoulders Display', 700),
     getGoogleFont('Big Shoulders Display', 900),
     getGoogleFont('IBM Plex Mono', 500),
+    getGoogleFont('IBM Plex Sans', 500),
   ]);
   return [
     { name: 'Big Shoulders Display', data: displayBold, weight: 700 as const, style: 'normal' as const },
     { name: 'Big Shoulders Display', data: displayBlack, weight: 900 as const, style: 'normal' as const },
     { name: 'IBM Plex Mono', data: mono, weight: 500 as const, style: 'normal' as const },
+    { name: 'IBM Plex Sans', data: body, weight: 500 as const, style: 'normal' as const },
   ];
 }

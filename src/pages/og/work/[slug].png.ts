@@ -42,7 +42,7 @@ export async function GET({ props }: { props: { project: Awaited<ReturnType<type
               {
                 type: 'span',
                 props: {
-                  style: { fontFamily: OG.body, fontSize: 26, color: OG.inkSoft, maxWidth: 900 },
+                  style: { fontFamily: OG.body, fontSize: 34, color: OG.inkSoft, maxWidth: 900 },
                   children: project.data.label,
                 },
               },

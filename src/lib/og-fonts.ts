@@ -21,7 +21,11 @@ async function fetchGoogleFont(family: string, weight: number): Promise<ArrayBuf
 export function getGoogleFont(family: string, weight: number): Promise<ArrayBuffer> {
   const key = `${family}-${weight}`;
   if (!cache.has(key)) {
-    cache.set(key, fetchGoogleFont(family, weight));
+    const promise = fetchGoogleFont(family, weight);
+    // Don't let a transient network blip poison the cache forever —
+    // drop the failed entry so the next call actually retries.
+    promise.catch(() => cache.delete(key));
+    cache.set(key, promise);
   }
   return cache.get(key)!;
 }
