@@ -1,176 +1,208 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import ContactCTA from '../components/ContactCTA.astro';
-import Footer from '../components/Footer.astro';
+import RedlineLayout from '../layouts/RedlineLayout.astro';
+import RedlineCTA from '../components/redline/RedlineCTA.astro';
 ---
 
-<Layout
-  title="About — Herru Adi"
-  description="I'm Herru Adi — a strategic design partner with 9+ years working across fintech, AI, SaaS, and enterprise products. I bring the kind of thinking that shapes what gets built — not just how it looks."
+<RedlineLayout
+  title="About · Herru Adi"
+  description="I'm Herru Adi, a strategic design partner with 9+ years working across fintech, AI, SaaS, and enterprise products. I bring the kind of thinking that shapes what gets built, not just how it looks."
+  active="about"
 >
-  <Nav />
+  <style>
+    .about-body {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 48px;
+      padding: 56px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    @media (max-width: 860px) {
+      .about-body {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+    .about-photo {
+      border: 1.5px solid var(--line-strong);
+      aspect-ratio: 4 / 5;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      background: var(--paper-deep);
+    }
+    .about-photo .initials {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 9rem;
+      color: var(--ink);
+      opacity: 0.05;
+    }
+    .about-photo .card {
+      position: relative;
+      margin: 14px;
+      border: 1px solid var(--line-strong);
+      background: var(--paper);
+      padding: 10px 12px;
+      width: calc(100% - 28px);
+    }
+    .about-photo .card .name {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 15px;
+    }
+    .about-photo .card .role {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--ink-faint);
+      margin-top: 2px;
+    }
+    .about-prose {
+      font-family: var(--body);
+      font-size: 16.5px;
+      line-height: 1.85;
+      color: var(--ink-soft);
+      max-width: 66ch;
+    }
+    .about-prose p {
+      margin-bottom: 22px;
+    }
+    .about-prose p.emphasis {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    .about-prose .principle {
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .about-section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .human-fields {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 32px;
+      margin-top: 8px;
+    }
+    @media (max-width: 700px) {
+      .human-fields {
+        grid-template-columns: 1fr;
+      }
+    }
+    .human-fields dt {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .human-fields dd {
+      margin: 0;
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+  </style>
 
-  <main>
+  <!-- ============ PAGE HERO ============ -->
+  <section class="page-hero">
+    <p class="eyebrow">Personnel File</p>
+    <h1 class="page-title">I'm not here to execute your brief.</h1>
+    <p class="page-lead">I ask the uncomfortable questions first. Then I design.</p>
+  </section>
 
-    <!-- ─── Page Hero ──────────────────────────────────────────────── -->
-    <div class="mx-auto max-w-6xl px-6 pb-20 pt-36 md:pb-24 md:pt-44">
-      <p class="mb-5 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
-        About
-      </p>
-      <h1 class="mb-5 max-w-3xl text-[2.6rem] font-bold leading-[1.07] tracking-tight text-fg sm:text-5xl md:text-6xl">
-        I'm not here to<br />
-        execute your brief.
-      </h1>
-      <p class="max-w-xl text-lg leading-[1.8] text-muted">
-        I ask the uncomfortable questions first. Then I design.
-      </p>
+  <!-- ============ WHO I AM ============ -->
+  <section class="about-body">
+    <div class="about-photo" aria-hidden="true">
+      <span class="initials">HA</span>
+      <div class="card">
+        <p class="name">Herru Adi</p>
+        <p class="role">Strategic Design Partner</p>
+      </div>
     </div>
-
-    <!-- ─── Who I Am ───────────────────────────────────────────────── -->
-    <section class="py-16 md:py-24" aria-labelledby="who-i-am">
-      <div class="mx-auto max-w-6xl px-6">
-        <div class="flex flex-col md:flex-row md:items-start md:gap-14 lg:gap-20">
-
-          <!-- Left: photo placeholder, max 400px tall -->
-          <div class="mb-24 w-full shrink-0 md:mb-0 md:w-[360px]">
-            <div
-              class="relative w-full overflow-hidden rounded-3xl border border-border bg-surface"
-              style="aspect-ratio: 4/5; max-height: 400px;"
-              aria-hidden="true"
-            >
-              <!-- Ghost initials watermark -->
-              <span
-                class="pointer-events-none absolute inset-0 flex select-none items-center justify-center font-bold text-fg"
-                style="font-size: 10rem; line-height: 1; opacity: 0.045;"
-              >HA</span>
-
-              <!-- Frosted name card -->
-              <div class="absolute bottom-4 left-4 right-4">
-                <div class="rounded-2xl border border-border/60 bg-bg/75 px-4 py-3 backdrop-blur-sm">
-                  <p class="text-sm font-semibold text-fg">Herru Adi</p>
-                  <p class="mt-0.5 font-mono text-[11px] text-muted">Strategic Design Partner</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: label + prose -->
-          <div class="flex min-w-0 flex-1 flex-col items-start justify-center">
-            <div class="mb-7 inline-flex w-fit items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
-              <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
-              <span
-                id="who-i-am"
-                class="font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted"
-              >Who I Am</span>
-            </div>
-
-            <div class="text-[17px] sm:text-lg">
-              <p class="mb-6 leading-[1.8] text-muted">
-                I started as a frontend developer — close enough to design to fall in love
-                with it, far enough to understand how things get built.
-              </p>
-              <p class="mb-6 leading-[1.8] text-muted">
-                The switch wasn't planned. But once I crossed over, I never looked back.
-              </p>
-              <p class="mb-6 leading-[1.8] text-muted">
-                Nine years later, what keeps me here isn't the craft — it's the impact.
-                A product I designed helping a kitchen run smoother. An app that actually
-                solves someone's real problem. An agency that lands a client because the
-                work looked and felt right. Small ripples, maybe. But ripples matter.
-              </p>
-              <p class="mb-6 leading-[1.8] text-muted">
-                I live by one principle:{' '}
-                <span class="font-semibold text-fg">hidup harus berguna bagi sesama</span>
-                {' '}— life should be useful to others. It's why I design, why I'm honest
-                with clients even when it's uncomfortable, and why I named my son Gunaka
-                Sasama — Sundanese for "useful to others."
-              </p>
-              <p class="leading-[1.8] font-bold text-fg">
-                That's not a tagline. That's just who I am.
-              </p>
-            </div>
-          </div>
-
-        </div>
+    <div>
+      <p class="about-section-label">Who I Am</p>
+      <div class="about-prose">
+        <p>
+          I started as a frontend developer, close enough to design to fall in love with it, far
+          enough to understand how things get built.
+        </p>
+        <p>The switch wasn't planned. But once I crossed over, I never looked back.</p>
+        <p>
+          Nine years later, what keeps me here isn't the craft, it's the impact. A product I
+          designed helping a kitchen run smoother. An app that actually solves someone's real
+          problem. An agency that lands a client because the work looked and felt right. Small
+          ripples, maybe. But ripples matter.
+        </p>
+        <p>
+          I live by one principle: <span class="principle">hidup harus berguna bagi sesama</span>.
+          Life should be useful to others. It's why I design, why I'm honest with clients even
+          when it's uncomfortable, and why I named my son Gunaka Sasama, Sundanese for "useful to
+          others."
+        </p>
+        <p class="emphasis">That's not a tagline. That's just who I am.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ─── How I Work ─────────────────────────────────────────────── -->
-    <section class="py-16 md:py-24" aria-labelledby="how-i-work">
-      <div class="mx-auto max-w-6xl px-6">
-
-        <div class="mb-8 inline-flex w-fit items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
-          <span
-            id="how-i-work"
-            class="font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted"
-          >How I Work</span>
-        </div>
-
-        <div class="max-w-[65ch] text-[17px] sm:text-lg">
-          <p class="mb-6 leading-[1.8] font-bold text-fg">
-            My process starts with one question: is this actually the problem?
-          </p>
-          <p class="mb-6 leading-[1.8] text-muted">
-            Before I open Figma, I want to understand what we're really solving.
-            I break down the problem, challenge the assumptions, and make sure we're
-            building the right thing — not just building things right. If something
-            doesn't make sense, we talk it through. Designing the wrong solution is
-            just expensive guesswork.
-          </p>
-          <p class="mb-6 leading-[1.8] font-bold text-fg">
-            That said — I know when to lead and when to follow.
-          </p>
-          <p class="mb-6 leading-[1.8] text-muted">
-            When there's a PM or PO with a solid PRD on the table, I'm heads down
-            and executing with precision. I respect process, I respect structure,
-            and I know how to work within a system without losing the quality of
-            the output.
-          </p>
-          <p class="leading-[1.8] font-bold text-fg">
-            Two modes. One standard: make it count.
-          </p>
-        </div>
-
+  <!-- ============ HOW I WORK ============ -->
+  <section class="about-body" style="grid-template-columns: 1fr;">
+    <div>
+      <p class="about-section-label">How I Work</p>
+      <div class="about-prose">
+        <p class="emphasis">My process starts with one question: is this actually the problem?</p>
+        <p>
+          Before I open Figma, I want to understand what we're really solving. I break down the
+          problem, challenge the assumptions, and make sure we're building the right thing, not
+          just building things right. If something doesn't make sense, we talk it through.
+          Designing the wrong solution is just expensive guesswork.
+        </p>
+        <p class="emphasis">That said, I know when to lead and when to follow.</p>
+        <p>
+          When there's a PM or PO with a solid PRD on the table, I'm heads down and executing with
+          precision. I respect process, I respect structure, and I know how to work within a
+          system without losing the quality of the output.
+        </p>
+        <p class="emphasis">Two modes. One standard: make it count.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ─── The Human Side ─────────────────────────────────────────── -->
-    <section class="py-16 md:py-24" aria-labelledby="human-side">
-      <div class="mx-auto max-w-6xl px-6">
-
-        <div class="mb-8 inline-flex w-fit items-center gap-2.5 rounded-full border border-border bg-surface px-4 py-1.5">
-          <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
-          <span
-            id="human-side"
-            class="font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted"
-          >The Human Side</span>
+  <!-- ============ THE HUMAN SIDE ============ -->
+  <section class="about-body" style="grid-template-columns: 1fr; border-bottom: 1.5px solid var(--line-strong);">
+    <div>
+      <p class="about-section-label">The Human Side</p>
+      <dl class="human-fields">
+        <div>
+          <dt>Family</dt>
+          <dd>A dad who does the school run every morning for my 4-year-old. Honestly, the best part of my day.</dd>
         </div>
-
-        <div class="max-w-[65ch] text-[17px] sm:text-lg">
-          <p class="mb-6 leading-[1.8] text-muted">
-            Outside of work, I'm a dad who does the school run every morning for
-            my 4-year-old — which, honestly, is the best part of my day.
-          </p>
-          <p class="mb-6 leading-[1.8] text-muted">
-            I decompress on two wheels, exploring Bandung's streets or finding
-            roads I've never taken before. I keep telling myself I'll pick up
-            music again soon.
-          </p>
-          <p class="leading-[1.8] text-muted">
-            The bigger dream? A design studio and a free learning space for people
-            who want to build in tech but can't afford the privilege of education.
-            Not someday — just not today yet.
-          </p>
+        <div>
+          <dt>Off the clock</dt>
+          <dd>Two wheels, Bandung's streets, roads I've never taken before. I keep telling myself I'll pick up music again soon.</dd>
         </div>
+        <div>
+          <dt>The bigger dream</dt>
+          <dd>A design studio, and a free learning space for people who want to build in tech but can't afford the privilege of education. Not someday. Just not today yet.</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd>Reviewing new engagements for Q4 2026.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
 
-      </div>
-    </section>
-
-    <ContactCTA />
-
-  </main>
-
-  <Footer />
-</Layout>
+  <RedlineCTA />
+</RedlineLayout>

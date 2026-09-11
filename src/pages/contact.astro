@@ -1,11 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import RedlineLayout from '../layouts/RedlineLayout.astro';
 
 const expectations = [
-  "I'll respond within 1–2 business days",
-  "First call is always a conversation, never a pitch",
+  "I'll respond within 1-2 business days",
+  'First call is always a conversation, never a pitch',
   "If I'm not the right fit, I'll tell you honestly",
 ];
 
@@ -33,179 +31,102 @@ const socialLinks = [
 ];
 ---
 
-<Layout
-  title="Let's Talk — Herru Adi"
-  description="I take on a limited number of projects at a time. Tell me what you're working on — even if the timing isn't right, I'll always make time for a good conversation."
+<RedlineLayout
+  title="Let's Talk · Herru Adi"
+  description="I take on a limited number of projects at a time. Tell me what you're working on."
+  active="contact"
 >
-  <Nav />
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      padding: 56px 0 60px;
+    }
+    @media (max-width: 900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    .contact-block {
+      margin-bottom: 34px;
+    }
+  </style>
 
-  <main>
-    <div class="mx-auto max-w-6xl px-6 pb-20 pt-36 md:pb-28 md:pt-44">
-      <div class="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:items-start lg:gap-20">
+  <section class="page-hero" style="border-bottom:none;">
+    <p class="eyebrow">Contact / Sign-Off</p>
+    <h1 class="page-title">Tell me what you're building.</h1>
+    <p class="page-lead">
+      I take on a limited number of projects at a time, so if you're reading this, there's a good
+      chance I have room for one more.
+    </p>
+  </section>
 
-        <!-- ─── Left column ─────────────────────────────────────────── -->
-        <div>
+  <div class="contact-grid" style="border-top:1.5px solid var(--line-strong);">
+    <!-- ─── Left column ─────────────────────────────────────────── -->
+    <div>
+      <div class="contact-block">
+        <p class="eyebrow" style="margin-bottom:16px;">What to Expect</p>
+        <ul class="check-list">
+          {expectations.map((item) => (
+            <li class="check-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-          <!-- Eyebrow + Title + Sub -->
-          <p class="mb-5 font-mono text-xs font-medium uppercase tracking-[0.2em] text-muted">
-            Contact
-          </p>
-          <h1 class="mb-5 text-[2.4rem] font-bold leading-[1.08] tracking-tight text-fg sm:text-5xl">
-            Tell me what<br class="hidden sm:block" />
-            you're building.
-          </h1>
-          <p class="mb-12 max-w-md text-lg leading-[1.8] text-muted">
-            I take on a limited number of projects at a time — so if you're reading
-            this, there's a good chance I have room for one more.
-          </p>
-
-          <!-- What to Expect -->
-          <div class="mb-10">
-            <p class="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted">
-              What to Expect
-            </p>
-            <ul class="flex flex-col gap-4">
-              {expectations.map(item => (
-                <li class="flex items-start gap-3">
-                  <span
-                    class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent/10"
-                    aria-hidden="true"
-                  >
-                    <svg
-                      width="9" height="9"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="3.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="text-accent"
-                    >
-                      <path d="M20 6L9 17l-5-5" />
-                    </svg>
-                  </span>
-                  <p class="text-base leading-[1.75] text-fg">{item}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <!-- Find Me Online -->
-          <div>
-            <p class="mb-4 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-muted">
-              Find Me Online
-            </p>
-            <div class="flex flex-wrap gap-2">
-              {socialLinks.map(link => (
-                <a
-                  href={link.href}
-                  class="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-muted transition-all duration-200 hover:border-fg hover:text-fg"
-                  rel="noopener noreferrer"
-                >
-                  <Fragment set:html={link.icon} />
-                  {link.name}
-                </a>
-              ))}
-            </div>
-          </div>
-
+      <div class="contact-block">
+        <p class="eyebrow" style="margin-bottom:16px;">Find Me Online</p>
+        <div class="social-row">
+          {socialLinks.map((link) => (
+            <a href={link.href} class="social-chip" rel="noopener noreferrer">
+              <Fragment set:html={link.icon} />
+              {link.name}
+            </a>
+          ))}
         </div>
-
-        <!-- ─── Right column: Form ──────────────────────────────────── -->
-        <div>
-          <form
-            action="#"
-            method="post"
-            class="rounded-3xl border border-border bg-surface p-6 md:p-8"
-          >
-
-            <!-- Name -->
-            <div class="mb-5">
-              <label for="name" class="mb-2 block text-sm font-medium text-fg">
-                Name <span class="text-accent" aria-hidden="true">*</span>
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                autocomplete="name"
-                placeholder="Your full name"
-                class="w-full rounded-xl border border-border bg-bg px-4 py-3 text-base text-fg transition-colors placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-              />
-            </div>
-
-            <!-- Email -->
-            <div class="mb-5">
-              <label for="email" class="mb-2 block text-sm font-medium text-fg">
-                Email <span class="text-accent" aria-hidden="true">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autocomplete="email"
-                placeholder="you@company.com"
-                class="w-full rounded-xl border border-border bg-bg px-4 py-3 text-base text-fg transition-colors placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-              />
-            </div>
-
-            <!-- What are you working on? -->
-            <div class="mb-5">
-              <label for="project" class="mb-2 block text-sm font-medium text-fg">
-                What are you working on?
-                <span class="text-accent" aria-hidden="true">*</span>
-              </label>
-              <textarea
-                id="project"
-                name="project"
-                required
-                rows="4"
-                placeholder="Tell me about your product, team, and where you're at right now..."
-                class="w-full resize-none rounded-xl border border-border bg-bg px-4 py-3 text-base text-fg transition-colors placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-              ></textarea>
-            </div>
-
-            <!-- What does success look like? -->
-            <div class="mb-7">
-              <label for="success" class="mb-2 flex items-baseline gap-2 text-sm font-medium text-fg">
-                What does success look like for you?
-                <span class="font-normal text-muted">(optional)</span>
-              </label>
-              <textarea
-                id="success"
-                name="success"
-                rows="3"
-                placeholder="What's the outcome you're hoping for?"
-                class="w-full resize-none rounded-xl border border-border bg-bg px-4 py-3 text-base text-fg transition-colors placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
-              ></textarea>
-            </div>
-
-            <!-- Submit -->
-            <button
-              type="submit"
-              class="group w-full rounded-xl bg-accent px-6 py-4 text-base font-semibold text-white transition-all duration-200 hover:opacity-90"
-            >
-              <span class="inline-flex items-center justify-center gap-2">
-                Send message
-                <span
-                  aria-hidden="true"
-                  class="transition-transform duration-200 group-hover:translate-x-0.5"
-                >→</span>
-              </span>
-            </button>
-
-            <p class="mt-4 text-center font-mono text-xs text-muted">
-              Powered by Web3Forms
-            </p>
-
-          </form>
-        </div>
-
       </div>
     </div>
-  </main>
 
-  <Footer />
-</Layout>
+    <!-- ─── Right column: form ──────────────────────────────────── -->
+    <div>
+      <form action="#" method="post">
+        <div class="form-field">
+          <label for="name">Name <span class="required" aria-hidden="true">*</span></label>
+          <input id="name" name="name" type="text" required autocomplete="name" placeholder="Your full name" />
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" />
+        </div>
+
+        <div class="form-field">
+          <label for="project">What are you working on? <span class="required" aria-hidden="true">*</span></label>
+          <textarea
+            id="project"
+            name="project"
+            required
+            rows="4"
+            placeholder="Tell me about your product, team, and where you're at right now..."
+          ></textarea>
+        </div>
+
+        <div class="form-field">
+          <label for="success">What does success look like for you? <span style="text-transform:none; letter-spacing:0; color:var(--ink-faint);">(optional)</span></label>
+          <textarea id="success" name="success" rows="3" placeholder="What's the outcome you're hoping for?"></textarea>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="sig-link">Send message →</button>
+          <p class="form-footnote">Powered by Web3Forms</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</RedlineLayout>

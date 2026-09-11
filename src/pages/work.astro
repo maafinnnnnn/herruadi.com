@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import RedlineLayout from '../layouts/RedlineLayout.astro';
+import RedlineCTA from '../components/redline/RedlineCTA.astro';
+
+const allWork = await getCollection('work');
+const sorted = allWork.sort((a, b) => a.data.order - b.data.order);
+---
+
+<RedlineLayout
+  title="Work · Herru Adi"
+  description="A small collection of projects where design met real business challenges."
+  active="work"
+>
+  <!-- ============ PAGE HERO ============ -->
+  <section class="page-hero">
+    <p class="eyebrow">Case Log</p>
+    <h1 class="page-title">A small collection of problems, diagnosed and rebuilt.</h1>
+  </section>
+
+  <!-- ============ CASE LOG ============ -->
+  <section>
+    {sorted.map((project, i) => (
+      <article class="case">
+        <div class="case-rev mono">REV<b>{String(i + 1).padStart(2, '0')}</b></div>
+        <div>
+          <p class="case-meta">{project.data.label}</p>
+          <h2 class="case-title">{project.data.title}</h2>
+          <p style="font-size:15px; color:var(--ink-soft); line-height:1.7; max-width:56ch; margin-bottom:16px;">
+            {project.data.oneliner}
+          </p>
+          <p class="tags">
+            {project.data.tags.map((tag) => <span>{tag}</span>)}
+          </p>
+          <a class="case-link" href={`/work/${project.id}`}>Read the case study →</a>
+        </div>
+        <div class="case-status">
+          <span class="status-pill">Shipped</span>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <RedlineCTA />
+</RedlineLayout>

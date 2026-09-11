@@ -1,0 +1,97 @@
+---
+import ThemeToggle from '../ThemeToggle.astro';
+
+interface Props {
+  active?: 'work' | 'about' | 'blog' | 'contact' | '';
+}
+const { active = '' } = Astro.props;
+---
+
+<header class="titleblock">
+  <div class="tb-row">
+    <div class="tb-top">
+      <div class="tb-name">
+        <span class="tb-label">Practitioner / Location</span>
+        <a href="/"><span class="tb-value">Herru Adi <span class="dim">· Bandung, ID</span></span></a>
+      </div>
+      <button
+        id="tb-hamburger"
+        class="tb-hamburger"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="tb-collapse"
+      >
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="tb-collapse" id="tb-collapse" data-open="false">
+      <div class="tb-cell">
+        <span class="tb-label">Discipline</span>
+        <span class="tb-value small">Strategic Design</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-label">Rev.</span>
+        <span class="tb-value small">09 YRS · 2026</span>
+      </div>
+      <nav class="tb-nav">
+        <a href="/work" aria-current={active === 'work' ? 'page' : undefined}>Work</a>
+        <a href="/about" aria-current={active === 'about' ? 'page' : undefined}>About</a>
+        <a href="/blog" aria-current={active === 'blog' ? 'page' : undefined}>Blog</a>
+        <a href="/contact" class="cta" aria-current={active === 'contact' ? 'page' : undefined}>Contact</a>
+      </nav>
+      <div class="tb-toggle">
+        <ThemeToggle />
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  (function () {
+    const btn = document.getElementById('tb-hamburger');
+    const panel = document.getElementById('tb-collapse');
+    if (!btn || !panel) return;
+
+    function open() {
+      panel.dataset.open = 'true';
+      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Close menu');
+    }
+    function close() {
+      panel.dataset.open = 'false';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
+    }
+
+    btn.addEventListener('click', () => {
+      panel.dataset.open === 'true' ? close() : open();
+    });
+
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', close);
+    });
+
+    document.addEventListener('click', (e) => {
+      const target = e.target as Node;
+      if (!panel.contains(target) && !btn.contains(target) && panel.dataset.open === 'true') {
+        close();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel.dataset.open === 'true') {
+        close();
+        btn.focus();
+      }
+    });
+  })();
+</script>

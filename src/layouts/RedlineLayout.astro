@@ -1,18 +1,19 @@
 ---
-import '@fontsource-variable/plus-jakarta-sans';
-import '@fontsource/geist-mono/400.css';
 import '../styles/global.css';
+import '../styles/redline.css';
+import RedlineHeader from '../components/redline/RedlineHeader.astro';
+import RedlineFoot from '../components/redline/RedlineFoot.astro';
 
 interface Props {
   title?: string;
   description?: string;
-  ogImage?: string;
+  active?: 'work' | 'about' | 'blog' | 'contact' | '';
 }
 
 const {
-  title = 'Herru Adi — Strategic Design Partner',
-  description = 'I help startups and growing teams figure out what to build, how to build it, and why it matters — then I make it beautiful.',
-  ogImage = '/og-default.jpg',
+  title = 'Herru Adi · Strategic Design Partner',
+  description = "I help startups and growing teams figure out what to build, how to build it, and why it matters. Then I make it real.",
+  active = '',
 } = Astro.props;
 
 const canonicalURL = Astro.site
@@ -27,31 +28,31 @@ const canonicalURL = Astro.site
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="Herru Adi" />
     <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-    <!-- Prevent FOUC: apply dark class before first paint -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <script is:inline>
       (function () {
         try {
@@ -64,7 +65,11 @@ const canonicalURL = Astro.site
       })();
     </script>
   </head>
-  <body class="bg-bg text-fg font-sans antialiased transition-colors duration-200">
-    <slot />
+  <body>
+    <RedlineHeader active={active} />
+    <main class="wrap">
+      <slot />
+    </main>
+    <RedlineFoot />
   </body>
 </html>

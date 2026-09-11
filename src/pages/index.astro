@@ -1,22 +1,248 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import SocialProof from '../components/SocialProof.astro';
-import SelectedWork from '../components/SelectedWork.astro';
-import BlogTeaser from '../components/BlogTeaser.astro';
-import ContactCTA from '../components/ContactCTA.astro';
-import Footer from '../components/Footer.astro';
+import RedlineLayout from '../layouts/RedlineLayout.astro';
+import RedlineCTA from '../components/redline/RedlineCTA.astro';
 ---
 
-<Layout>
-  <Nav />
-  <main>
-    <Hero />
-    <SocialProof />
-    <SelectedWork />
-    <BlogTeaser />
-    <ContactCTA />
-  </main>
-  <Footer />
-</Layout>
+<RedlineLayout
+  title="Herru Adi · Strategic Design Partner"
+  description="I help startups and growing teams figure out what to build, how to build it, and why it matters. Then I make it real."
+  active=""
+>
+  <style>
+    .hero {
+      padding: 72px 0 60px;
+      border-bottom: 1.5px solid var(--line-strong);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .brief-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink-faint);
+      margin-bottom: 18px;
+    }
+    .brief {
+      font-family: var(--mono);
+      font-size: 17px;
+      line-height: 1.85;
+      max-width: 62ch;
+      color: var(--ink-soft);
+    }
+    .brief p {
+      margin-bottom: 14px;
+    }
+    .strike {
+      position: relative;
+      color: var(--ink-faint);
+      white-space: normal;
+    }
+    .strike::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 50%;
+      height: 2px;
+      background: var(--redline);
+      transform: translateY(-50%) scaleX(0);
+      transform-origin: left;
+      animation: strikeIn 500ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation-delay: var(--d, 0ms);
+    }
+    @keyframes strikeIn {
+      to {
+        transform: translateY(-50%) scaleX(1);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .strike::after {
+        animation: none;
+        transform: translateY(-50%) scaleX(1);
+      }
+    }
+    .margin-note {
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--redline);
+      border-left: 2px solid var(--redline);
+      padding-left: 12px;
+      margin: 16px 0;
+    }
+    .verdict {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: clamp(2.1rem, 5vw, 3.6rem);
+      line-height: 1.02;
+      letter-spacing: 0.005em;
+      margin-top: 30px;
+      max-width: 15ch;
+    }
+    .verdict .rl {
+      color: var(--redline);
+    }
+    .hero-side {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-soft);
+      border-left: 1px solid var(--line);
+      padding-left: 24px;
+    }
+    .hero-side .tb-label {
+      margin-bottom: 6px;
+    }
+    .hero-side .block {
+      margin-bottom: 26px;
+    }
+    .hero-side .block:last-child {
+      margin-bottom: 0;
+    }
+    .manifesto {
+      padding: 70px 0 80px;
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="brief-label mono upper">Client Brief, As Received</p>
+        <div class="brief">
+          <p><span class="strike" style="--d:150ms">"We need a landing page that looks premium and converts."</span></p>
+          <p>
+            <span class="strike" style="--d:400ms">"Something like Stripe, or Linear. Modern. Clean."</span>
+            <span class="strike" style="--d:650ms">"Maybe a gradient hero."</span>
+          </p>
+          <p><span class="strike" style="--d:900ms">"Can you also make the logo bigger?"</span></p>
+        </div>
+
+        <div class="margin-note">
+          → none of this is the brief. it's a mood board.<br />
+          → what are you actually asking people to believe?
+        </div>
+
+        <h1 class="verdict">Great design won't save <span class="rl">a broken business.</span></h1>
+      </div>
+
+      <aside class="hero-side">
+        <div class="block">
+          <p class="tb-label">Standing Question</p>
+          <p>"Is this actually the problem?" Asked before Figma opens, on every engagement.</p>
+        </div>
+        <div class="block">
+          <p class="tb-label">Method</p>
+          <p>Two modes: interrogate the brief, or execute it with precision once it holds up. One standard either way, make it count.</p>
+        </div>
+        <div class="block">
+          <span class="stamp-mini mono">9 YRS PRACTICE</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ CASE LOG ============ -->
+  <section id="work">
+    <div class="section-head">
+      <div>
+        <p class="tag mono upper">Case Log</p>
+        <h2>Three problems, diagnosed and rebuilt.</h2>
+      </div>
+      <a href="/work">Full case log →</a>
+    </div>
+
+    <article class="case">
+      <div class="case-rev mono">REV<b>01</b></div>
+      <div>
+        <p class="case-meta">F&amp;B SaaS · UI/UX Lead · 0-to-1</p>
+        <h3 class="case-title">AYCE</h3>
+        <dl class="fields">
+          <div class="field"><dt>Symptom</dt><dd>Kitchen operations running on memory and panic.</dd></div>
+          <div class="field"><dt>Build</dt><dd>A system so simple, it runs itself.</dd></div>
+        </dl>
+        <p class="tags"><span>SaaS</span><span>Operations Design</span><span>0-to-1</span></p>
+        <a class="case-link" href="/work/ayce">Read the case study →</a>
+      </div>
+      <div class="case-status"><span class="status-pill">Shipped</span></div>
+    </article>
+
+    <article class="case">
+      <div class="case-rev mono">REV<b>02</b></div>
+      <div>
+        <p class="case-meta">Property Management System · Product Design Lead · Middle East</p>
+        <h3 class="case-title">Hoteely</h3>
+        <dl class="fields">
+          <div class="field"><dt>Symptom</dt><dd>Hotel management scattered across too many screens.</dd></div>
+          <div class="field"><dt>Build</dt><dd>One clean, intuitive screen that replaced the chaos.</dd></div>
+        </dl>
+        <p class="tags"><span>Enterprise</span><span>Dashboard Design</span></p>
+        <a class="case-link" href="/work/hoteely">Read the case study →</a>
+      </div>
+      <div class="case-status"><span class="status-pill">Shipped</span></div>
+    </article>
+
+    <article class="case">
+      <div class="case-rev mono">REV<b>03</b></div>
+      <div>
+        <p class="case-meta">AI Crypto Dashboard · Solo Designer · UK Client</p>
+        <h3 class="case-title">Vantagelab</h3>
+        <dl class="fields">
+          <div class="field"><dt>Symptom</dt><dd>Market noise, and a first-time crypto founder losing to complexity.</dd></div>
+          <div class="field"><dt>Build</dt><dd>Clarity, without dumbing the data down.</dd></div>
+        </dl>
+        <p class="tags"><span>AI</span><span>Data Visualization</span></p>
+        <a class="case-link" href="/work/vantagelab">Read the case study →</a>
+      </div>
+      <div class="case-status"><span class="status-pill">Shipped</span></div>
+    </article>
+  </section>
+
+  <!-- ============ MANIFESTO STAMP ============ -->
+  <section class="manifesto">
+    <div class="stamp">
+      <p class="sund">"Hidup harus berguna bagi sesama."</p>
+      <p class="eng mono">Life should be useful to others.</p>
+      <p class="seal mono">Not a tagline, the operating principle. Also my son's name: Gunaka Sasama.</p>
+    </div>
+  </section>
+
+  <!-- ============ FIELD NOTES ============ -->
+  <section id="blog">
+    <div class="section-head">
+      <div>
+        <p class="tag mono upper">Field Notes</p>
+        <h2>Thinking out loud, in writing.</h2>
+      </div>
+      <a href="/blog">All notes →</a>
+    </div>
+
+    <a class="note" href="/blog/the-most-expensive-design-mistake">
+      <span class="note-cat">Business × Design</span>
+      <span class="note-title">The most expensive design mistake isn't bad UI, it's building the wrong thing</span>
+      <span class="note-arrow">read →</span>
+    </a>
+    <a class="note" href="/blog/designing-for-crypto">
+      <span class="note-cat">Field Notes</span>
+      <span class="note-title">Designing for crypto when you know nothing about crypto</span>
+      <span class="note-arrow">read →</span>
+    </a>
+    <a class="note" href="/blog/kitchen-chaos-saas">
+      <span class="note-cat">Field Notes</span>
+      <span class="note-title">What kitchen chaos taught me about SaaS product design</span>
+      <span class="note-arrow">read →</span>
+    </a>
+  </section>
+
+  <RedlineCTA />
+</RedlineLayout>

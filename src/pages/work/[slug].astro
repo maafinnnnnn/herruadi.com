@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import RedlineLayout from '../../layouts/RedlineLayout.astro';
+import RedlineCTA from '../../components/redline/RedlineCTA.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('work');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { data } = project;
+
+const allWork = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const currentIndex = allWork.findIndex((p) => p.id === project.id);
+const next = allWork[(currentIndex + 1) % allWork.length];
+
+const galleryPlaceholders = Array.from({ length: data.galleryCount });
+---
+
+<RedlineLayout title={`${data.title} · Herru Adi`} description={data.oneliner} active="work">
+  <!-- ============ CASE HERO ============ -->
+  <section class="page-hero">
+    <div class="back-crumb">
+      <a href="/work">← Work</a>
+      <span class="sep">·</span>
+      <span class="meta">{data.label}</span>
+    </div>
+    <h1 class="page-title">{data.title}</h1>
+    <p class="page-lead">{data.oneliner}</p>
+    <p class="tags" style="margin-top:20px;">
+      {data.tags.map((tag) => <span>{tag}</span>)}
+    </p>
+  </section>
+
+  <div style="padding:40px 0;">
+    <div class="gallery-hero">Add mockup image here</div>
+  </div>
+
+  <!-- ============ THE CHALLENGE ============ -->
+  <section style="padding:40px 0; border-top:1px solid var(--line);">
+    <p class="eyebrow" style="margin-bottom:20px;">Symptom</p>
+    <p style="font-size:17px; line-height:1.8; color:var(--ink-soft); max-width:65ch;">{data.challenge}</p>
+  </section>
+
+  <!-- ============ MY APPROACH ============ -->
+  <section style="padding:40px 0; border-top:1px solid var(--line);">
+    <p class="eyebrow" style="margin-bottom:20px;">Diagnosis &amp; Build</p>
+    <p style="font-size:17px; line-height:1.8; color:var(--ink-soft); max-width:65ch;">{data.approach}</p>
+  </section>
+
+  <!-- ============ THE WORK ============ -->
+  <section style="padding:40px 0; border-top:1px solid var(--line);">
+    <p class="eyebrow" style="margin-bottom:20px;">The Work</p>
+    <div class="gallery-grid">
+      {galleryPlaceholders.map(() => (
+        <div class="gallery-box">Add mockup image here</div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ============ THE OUTCOME ============ -->
+  <section style="padding:40px 0; border-top:1px solid var(--line); border-bottom:1.5px solid var(--line-strong); padding-bottom:56px;">
+    <p class="eyebrow" style="margin-bottom:20px;">Result</p>
+    <div class="callout">
+      <p>{data.outcome}</p>
+    </div>
+  </section>
+
+  <!-- ============ NEXT PROJECT ============ -->
+  <section>
+    <div class="section-head" style="padding-top:36px;">
+      <div>
+        <p class="tag mono upper">Next</p>
+        <h2>Keep reading the log.</h2>
+      </div>
+    </div>
+    <a class="note" href={`/work/${next.id}`}>
+      <span class="note-cat">{next.data.label}</span>
+      <span class="note-title">{next.data.title}</span>
+      <span class="note-arrow">view case →</span>
+    </a>
+  </section>
+
+  <RedlineCTA />
+</RedlineLayout>
