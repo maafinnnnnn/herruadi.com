@@ -31,17 +31,12 @@ import RedlineCTA from '../components/redline/RedlineCTA.astro';
       overflow: hidden;
       background: var(--paper-deep);
     }
-    .about-photo .initials {
+    .about-photo img {
       position: absolute;
       inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--display);
-      font-weight: 900;
-      font-size: 9rem;
-      color: var(--ink);
-      opacity: 0.05;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .about-photo .card {
       position: relative;
@@ -124,8 +119,8 @@ import RedlineCTA from '../components/redline/RedlineCTA.astro';
 
   <!-- ============ WHO I AM ============ -->
   <section class="about-body">
-    <div class="about-photo" aria-hidden="true">
-      <span class="initials">HA</span>
+    <div class="about-photo">
+      <img src="/images/about.jpg" alt="Herru Adi" width="1200" height="1500" />
       <div class="card">
         <p class="name">Herru Adi</p>
         <p class="role">Strategic Design Partner</p>
