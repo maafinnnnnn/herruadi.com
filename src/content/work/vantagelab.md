@@ -7,6 +7,14 @@ featured: false
 order: 3
 gradient: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)"
 liveUrl: https://vantagelab.app/
+thumb: /images/projects/vantagelab/Assets/Thumb.png
+gallery:
+  - src: "/images/projects/vantagelab/Assets/Vantage - AI-Powered Crypto Dashboard.svg"
+    label: Overview
+  - src: "/images/projects/vantagelab/Assets/Coin Prices — Vantage.svg"
+    label: Coin Prices
+  - src: "/images/projects/vantagelab/Assets/What's Coming Up — Vantage.svg"
+    label: What's Coming Up
 challenge: >
   This was my first time working in crypto and blockchain. The domain was
   complex, the data was dense and fast-moving, and the client was based in the
