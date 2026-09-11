@@ -4,7 +4,7 @@ description: "What happens when you have to design for a domain you don't unders
 pubDate: 2025-02-03
 category: Field Notes
 tags: [field-notes, crypto, research, vantagelab]
-heroImage: /images/blog/designing-for-crypto.jpg
+heroImage: /images/blog/designing-for-crypto/hero.png
 ---
 
 When Vantagelab reached out, I was honest about one thing upfront: I knew very little about crypto.
@@ -18,6 +18,8 @@ I took the project anyway. And it taught me more about design than most "standar
 Vantagelab was building an AI-powered crypto analytics dashboard for traders in the UK. The goal was to make complex market data faster to understand and act on. The brief I received was clear on the surface: cleaner, more intuitive, better visual hierarchy, smarter information architecture. Standard design language for what would turn out to be a very non-standard design problem.
 
 The real challenge wasn't making something look better. It was understanding what "better" actually meant to someone who lives and breathes on-chain data for a living. That's someone whose relationship with information is fundamentally different from a typical SaaS user.
+
+![Two weeks before a single frame](/images/blog/designing-for-crypto/image-1.png)
 
 ## Two Weeks Before a Single Frame
 
@@ -41,6 +43,8 @@ The original brief was to make the interface cleaner. After sitting with real us
 
 That shift, from a visual design outcome to a functional clarity goal, changed everything about how I approached the information architecture. We weren't just organizing data; we were building a decision support tool. That's a fundamentally different design problem. It changes how you think about hierarchy, how you think about primary versus secondary information, how you think about the cognitive load of each screen state.
 
+![Hierarchy in a data-dense interface](/images/blog/designing-for-crypto/image-2.png)
+
 ## What Hierarchy Actually Means in a Data-Dense Interface
 
 When information density is high, hierarchy isn't about visual balance. It's about urgency and relevance at the specific moment the user is looking at the screen.
@@ -50,6 +54,8 @@ A trading dashboard in the morning is a different use case from the same dashboa
 For Vantagelab, we shifted to thinking about moments of use: what state is the user in, what decision are they making, and what is the single most important piece of information for that state? Everything else becomes secondary, still accessible, but not competing for attention.
 
 We cut anything that required the user to interpret rather than read. Every abbreviation was either eliminated or made expandable. Labels became precise. The default view was rebuilt around the one question every trader asks first thing in the morning.
+
+![Lessons from designing outside your domain](/images/blog/designing-for-crypto/image-3.png)
 
 ## What Designing Outside Your Domain Teaches You
 

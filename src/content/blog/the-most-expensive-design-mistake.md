@@ -4,7 +4,7 @@ description: "Why shipping the wrong product costs more than any design bug, and
 pubDate: 2025-01-15
 category: Business x Design
 tags: [strategy, product, design-thinking]
-heroImage: /images/blog/most-expensive-design-mistake.jpg
+heroImage: /images/blog/the-most-expensive-design-mistake/hero.png
 ---
 
 Most design conversations start in the wrong place.
@@ -25,6 +25,8 @@ The direct cost, like salaries, design tools, development sprints, infrastructur
 
 Opportunity cost doesn't show up in a post-mortem. But it's always there, compounding quietly.
 
+![Warning signs checklist](/images/blog/the-most-expensive-design-mistake/image-1.png)
+
 ## The Warning Signs You're Off Track
 
 I've developed a few questions I ask before any design work begins. They're not clever or proprietary. They're just honest questions that most teams skip in the excitement of building.
@@ -37,6 +39,8 @@ I've developed a few questions I ask before any design work begins. They're not 
 
 > The most expensive line of code ever written is the one that solves the wrong problem. It doesn't matter how clean it is or how elegantly it was tested. Wrong is wrong.
 
+![The validation trap](/images/blog/the-most-expensive-design-mistake/image-2.png)
+
 ## The Validation Trap
 
 Here's where it gets nuanced: most teams think they're validating. They run surveys. They conduct user interviews. They build prototypes and watch people click through them. They ship an MVP and collect feedback. And still, somehow, they build the wrong thing.
@@ -44,6 +48,8 @@ Here's where it gets nuanced: most teams think they're validating. They run surv
 The issue isn't that they skip validation, but that they validate the wrong questions. They ask "do you like this?" instead of "do you need this?" They ask "would you use this?" instead of "what would you stop using if this existed?" They ask "does this feel intuitive?" without first asking whether it solves a real problem.
 
 Confirmation bias is powerful and insidious. When you've already decided what to build, every user interview can be shaped to support that decision. You hear what you're listening for. Users are polite. They'll tell you what you seem to want to hear. Real validation requires asking questions that could genuinely make you abandon the direction entirely, and being willing to act on what you learn.
+
+![Design's role in early detection](/images/blog/the-most-expensive-design-mistake/image-3.png)
 
 ## What Good Design Can Actually Do Here
 

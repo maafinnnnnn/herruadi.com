@@ -1,4 +1,6 @@
 ---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import { getCollection, render } from 'astro:content';
 import RedlineLayout from '../../layouts/RedlineLayout.astro';
 import RedlineCTA from '../../components/redline/RedlineCTA.astro';
@@ -26,6 +28,8 @@ const pubDateFormatted = new Date(post.data.pubDate).toLocaleDateString('en-US',
   year: 'numeric',
 });
 
+const heroExists = Boolean(post.data.heroImage) && existsSync(join(process.cwd(), 'public', post.data.heroImage ?? ''));
+
 const pageUrl = Astro.url.href;
 const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(post.data.title)}`;
 const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
@@ -48,6 +52,18 @@ const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
       </p>
     )}
   </section>
+
+  <!-- ============ HERO IMAGE ============ -->
+  <div style="padding:32px 0 0;">
+    {heroExists ? (
+      <img class="post-hero-img" src={post.data.heroImage} alt={post.data.title} width="1600" height="900" />
+    ) : (
+      <div class="post-hero">
+        <span class="post-hero-cat mono upper">{post.data.category}</span>
+        <span class="post-hero-path mono">{post.data.heroImage ?? `/images/blog/${post.id}/hero.png`}</span>
+      </div>
+    )}
+  </div>
 
   <!-- ============ ARTICLE BODY ============ -->
   <div style="padding:44px 0;">
@@ -91,6 +107,26 @@ const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
 </RedlineLayout>
 
 <script>
+  document.querySelectorAll<HTMLImageElement>('.doc-prose img').forEach((img) => {
+    const showPlaceholder = () => {
+      const src = img.getAttribute('src') ?? '';
+      const placeholder = document.createElement('div');
+      placeholder.className = 'inline-image-placeholder';
+      placeholder.innerHTML = `
+        <span class="mono upper">${img.getAttribute('alt') || 'Add image here'}</span>
+        <span class="mono">${src}</span>
+      `;
+      img.replaceWith(placeholder);
+    };
+    // Local 404s can resolve before this script runs, so check the
+    // already-settled state first instead of only listening forward.
+    if (img.complete) {
+      if (img.naturalWidth === 0) showPlaceholder();
+    } else {
+      img.addEventListener('error', showPlaceholder, { once: true });
+    }
+  });
+
   const copyBtn = document.getElementById('copy-link-btn');
   const copyLabel = document.getElementById('copy-label');
 

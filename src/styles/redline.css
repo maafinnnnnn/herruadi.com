@@ -1112,6 +1112,57 @@ button.sig-link:disabled {
   margin: 2rem 0;
   border: 1px solid var(--line-strong);
 }
+.inline-image-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 2rem 0;
+  border: 1.5px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  padding: 20px;
+}
+.inline-image-placeholder span {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+.inline-image-placeholder span.upper {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* ============ ARTICLE HERO IMAGE ============ */
+.post-hero-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1.5px solid var(--line-strong);
+  display: block;
+}
+.post-hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1.5px dashed var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.post-hero-cat {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.post-hero-path {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
 .doc-prose hr {
   border: none;
   border-top: 1px solid var(--line-strong);
