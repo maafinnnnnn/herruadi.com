@@ -28,16 +28,16 @@ export function ogAvatarRow(photoDataUri: string | null) {
   return {
     type: 'div',
     props: {
-      style: { display: 'flex', alignItems: 'center', gap: 20 },
+      style: { display: 'flex', alignItems: 'center', gap: 28 },
       children: [
         {
           type: 'div',
           props: {
             style: {
               display: 'flex',
-              width: 72,
-              height: 72,
-              border: `3px solid ${OG.ink}`,
+              width: 132,
+              height: 132,
+              border: `4px solid ${OG.ink}`,
               overflow: 'hidden',
               alignItems: 'center',
               justifyContent: 'center',
@@ -46,12 +46,12 @@ export function ogAvatarRow(photoDataUri: string | null) {
             children: photoDataUri
               ? {
                   type: 'img',
-                  props: { src: photoDataUri, width: 72, height: 72, style: { objectFit: 'cover' } },
+                  props: { src: photoDataUri, width: 132, height: 132, style: { objectFit: 'cover' } },
                 }
               : {
                   type: 'span',
                   props: {
-                    style: { fontFamily: OG.display, fontWeight: 800, fontSize: 26, color: OG.ink },
+                    style: { fontFamily: OG.display, fontWeight: 800, fontSize: 48, color: OG.ink },
                     children: 'HA',
                   },
                 },
@@ -60,7 +60,7 @@ export function ogAvatarRow(photoDataUri: string | null) {
         {
           type: 'span',
           props: {
-            style: { fontFamily: OG.display, fontWeight: 700, fontSize: 32, color: OG.ink },
+            style: { fontFamily: OG.display, fontWeight: 700, fontSize: 60, color: OG.ink },
             children: 'Herru Adi',
           },
         },
@@ -75,7 +75,7 @@ export function ogDomain() {
     props: {
       style: {
         fontFamily: OG.mono,
-        fontSize: 24,
+        fontSize: 48,
         letterSpacing: 1,
         // inkFaint fails WCAG AA (~3.3:1) at this size on paper-dark;
         // inkSoft clears AA comfortably (~7.4:1) while staying muted.
@@ -101,7 +101,7 @@ export function ogEyebrow(text: string) {
     props: {
       style: {
         fontFamily: OG.mono,
-        fontSize: 30,
+        fontSize: 60,
         letterSpacing: 4,
         textTransform: 'uppercase',
         color: OG.redline,

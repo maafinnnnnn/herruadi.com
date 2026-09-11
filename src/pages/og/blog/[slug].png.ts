@@ -41,7 +41,7 @@ export async function GET({ props }: { props: { post: Awaited<ReturnType<typeof 
                 style: {
                   fontFamily: OG.display,
                   fontWeight: 800,
-                  fontSize: 62,
+                  fontSize: 81,
                   lineHeight: 1.08,
                   color: OG.ink,
                   maxWidth: 1000,

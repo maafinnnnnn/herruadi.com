@@ -35,14 +35,14 @@ export async function GET({ props }: { props: { project: Awaited<ReturnType<type
               {
                 type: 'span',
                 props: {
-                  style: { fontFamily: OG.display, fontWeight: 900, fontSize: 104, color: OG.ink, lineHeight: 1 },
+                  style: { fontFamily: OG.display, fontWeight: 900, fontSize: 135, color: OG.ink, lineHeight: 1 },
                   children: project.data.title,
                 },
               },
               {
                 type: 'span',
                 props: {
-                  style: { fontFamily: OG.body, fontSize: 34, color: OG.inkSoft, maxWidth: 900 },
+                  style: { fontFamily: OG.body, fontSize: 46, color: OG.inkSoft, maxWidth: 1000 },
                   children: project.data.label,
                 },
               },
