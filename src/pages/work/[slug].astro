@@ -19,6 +19,7 @@ const currentIndex = allWork.findIndex((p) => p.id === project.id);
 const next = allWork[(currentIndex + 1) % allWork.length];
 
 const galleryPlaceholders = Array.from({ length: data.galleryCount });
+const [galleryW, galleryH] = data.galleryRatio.split('/');
 ---
 
 <RedlineLayout title={`${data.title} · Herru Adi`} description={data.oneliner} active="work">
@@ -77,7 +78,14 @@ const galleryPlaceholders = Array.from({ length: data.galleryCount });
                   data-lightbox-caption={caption}
                   aria-label={`Expand ${shot.label ?? 'image'}`}
                 >
-                  <img src={encodeURI(shot.src)} alt={shot.label ?? `${data.title} screen ${i + 1}`} width="1440" height="1024" loading="lazy" />
+                  <img
+                    src={encodeURI(shot.src)}
+                    alt={shot.label ?? `${data.title} screen ${i + 1}`}
+                    width={galleryW}
+                    height={galleryH}
+                    loading="lazy"
+                    style={`aspect-ratio: ${data.galleryRatio};`}
+                  />
                   <span class="gallery-expand mono">Expand ⤢</span>
                 </button>
                 {caption && <figcaption>{caption}</figcaption>}

@@ -29,6 +29,7 @@ const work = defineCollection({
     approach: z.string(),
     outcome: z.string(),
     galleryCount: z.number().optional().default(3),
+    galleryRatio: z.string().optional().default('1440/1024'),
     gallery: z
       .array(z.object({ src: z.string(), label: z.string().optional() }))
       .optional()

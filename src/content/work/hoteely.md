@@ -6,6 +6,19 @@ tags: [Enterprise, Dashboard Design, Middle East]
 featured: false
 order: 2
 gradient: "linear-gradient(135deg, #0EA5E9 0%, #0369A1 100%)"
+thumb: /images/projects/hoteely/Assets/Thumb.png
+galleryRatio: "752/490"
+gallery:
+  - src: /images/projects/hoteely/Assets/Calendar.webp
+    label: Calendar
+  - src: /images/projects/hoteely/Assets/Reservation.webp
+    label: Reservation
+  - src: /images/projects/hoteely/Assets/Availability.webp
+    label: Availability
+  - src: /images/projects/hoteely/Assets/Housekeeping.webp
+    label: Housekeeping
+  - src: /images/projects/hoteely/Assets/Report.webp
+    label: Report
 challenge: >
   Hotel management is chaotic by nature: guests, rooms, reservations, and
   finances all tangled together across shifts and departments. The brief from
