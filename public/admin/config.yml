@@ -1,0 +1,91 @@
+backend:
+  name: github
+  repo: maafinnnnnn/herruadi.com
+  branch: main
+  # After deploying the sveltia-cms-auth Worker, replace this with its URL
+  # (e.g. https://sveltia-cms-auth.your-subdomain.workers.dev)
+  base_url: https://REPLACE-WITH-YOUR-AUTH-WORKER.workers.dev
+
+site_url: https://herruadi.com
+logo_url: /favicon.png
+
+collections:
+  - name: blog
+    label: "Field Notes (Blog)"
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: pubDate, label: "Publish Date", widget: date, format: "YYYY-MM-DD" }
+      - name: category
+        label: Category
+        widget: select
+        options: ["Business x Design", "Field Notes", "Process"]
+        default: "Field Notes"
+      - { name: tags, label: Tags, widget: list, default: [] }
+      - name: heroImage
+        label: "Hero Image"
+        widget: image
+        required: false
+        media_folder: "/public/images/blog"
+        public_folder: "/images/blog"
+        hint: "16:9. Export at 2400x1350 for a crisp full-width hero."
+      - name: heroImageAlt
+        label: "Hero Image Alt Text"
+        widget: string
+        required: false
+        hint: "Describe what's actually in the photo, for SEO and screen readers."
+      - { name: body, label: "Article Content", widget: markdown }
+
+  - name: work
+    label: "Work (Case Studies)"
+    folder: src/content/work
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: title, label: "Project Name", widget: string }
+      - { name: label, label: "Role / Label", widget: string, hint: 'e.g. "F&B SaaS · UI/UX Lead"' }
+      - { name: oneliner, label: "One-liner", widget: text }
+      - { name: tags, label: Tags, widget: list, default: [] }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: order, label: Order, widget: number, value_type: int, default: 0, hint: "Lower numbers show first in the case log." }
+      - name: gradient
+        label: "Gradient (legacy, unused by the current design)"
+        widget: string
+        default: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)"
+        required: false
+      - name: thumb
+        label: "Cover Image"
+        widget: image
+        required: false
+        media_folder: "/public/images/work"
+        public_folder: "/images/work"
+        hint: "Match your working canvas size (e.g. 1440x1024) for a sharp fit."
+      - { name: liveUrl, label: "Live Site URL", widget: string, required: false }
+      - { name: challenge, label: "Symptom (the challenge)", widget: text }
+      - { name: approach, label: "Diagnosis & Build (the approach)", widget: text }
+      - { name: outcome, label: "Result (the outcome)", widget: text }
+      - name: galleryRatio
+        label: "Gallery Image Ratio (width/height)"
+        widget: string
+        default: "1440/1024"
+        required: false
+        hint: "e.g. 1440/1024. Match the real dimensions of your gallery shots."
+      - name: gallery
+        label: Gallery
+        widget: list
+        required: false
+        default: []
+        fields:
+          - name: src
+            label: Image
+            widget: image
+            media_folder: "/public/images/work"
+            public_folder: "/images/work"
+          - { name: label, label: Caption, widget: string }
