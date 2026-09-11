@@ -23,10 +23,16 @@ const work = defineCollection({
     featured: z.boolean().optional().default(false),
     order: z.number().optional().default(0),
     gradient: z.string(),
+    thumb: z.string().optional(),
+    liveUrl: z.string().url().optional(),
     challenge: z.string(),
     approach: z.string(),
     outcome: z.string(),
     galleryCount: z.number().optional().default(3),
+    gallery: z
+      .array(z.object({ src: z.string(), label: z.string().optional() }))
+      .optional()
+      .default([]),
   }),
 });
 

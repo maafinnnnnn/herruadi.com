@@ -10,23 +10,18 @@ const expectations = [
 const socialLinks = [
   {
     name: 'LinkedIn',
-    href: '#',
+    href: 'https://www.linkedin.com/in/herruadivian/',
     icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
   },
   {
-    name: 'Twitter / X',
-    href: '#',
-    icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+    name: 'Dribbble',
+    href: 'https://dribbble.com/herruadi',
+    icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"/><path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"/><path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"/></svg>`,
   },
   {
     name: 'Instagram',
-    href: '#',
+    href: 'https://www.instagram.com/maafinnnn/',
     icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`,
-  },
-  {
-    name: 'Dribbble',
-    href: '#',
-    icon: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"/><path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"/><path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"/></svg>`,
   },
 ];
 ---
@@ -84,7 +79,7 @@ const socialLinks = [
         <p class="eyebrow" style="margin-bottom:16px;">Find Me Online</p>
         <div class="social-row">
           {socialLinks.map((link) => (
-            <a href={link.href} class="social-chip" rel="noopener noreferrer">
+            <a href={link.href} class="social-chip" target="_blank" rel="noopener noreferrer">
               <Fragment set:html={link.icon} />
               {link.name}
             </a>
@@ -95,7 +90,17 @@ const socialLinks = [
 
     <!-- ─── Right column: form ──────────────────────────────────── -->
     <div>
-      <form action="#" method="post">
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <!--
+          Get a free Access Key at https://web3forms.com (just an email, no card).
+          Paste it below in place of YOUR_WEB3FORMS_ACCESS_KEY, that's the only
+          step left to make this form actually send.
+        -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+        <input type="hidden" name="subject" value="New inquiry from herruadi.com" />
+        <input type="hidden" name="from_name" value="herruadi.com contact form" />
+        <input type="checkbox" name="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
         <div class="form-field">
           <label for="name">Name <span class="required" aria-hidden="true">*</span></label>
           <input id="name" name="name" type="text" required autocomplete="name" placeholder="Your full name" />
@@ -123,10 +128,63 @@ const socialLinks = [
         </div>
 
         <div class="submit-row">
-          <button type="submit" class="sig-link">Send message →</button>
+          <button type="submit" class="sig-link" id="contact-submit">Send message →</button>
           <p class="form-footnote">Powered by Web3Forms</p>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
         </div>
       </form>
+
+      <div id="form-success" class="stamp" style="max-width:100%; margin-top:8px;" hidden>
+        <p class="sund" style="font-size:1.5rem;">Message Received.</p>
+        <p class="eng mono">Thanks, I'll get back to you within 2 business days.</p>
+      </div>
     </div>
   </div>
 </RedlineLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement | null;
+  const errorBox = document.getElementById('form-error');
+  const successBox = document.getElementById('form-success');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn || !errorBox) return;
+
+    const formData = new FormData(form);
+    const accessKey = String(formData.get('access_key') ?? '');
+
+    errorBox.hidden = true;
+
+    if (!accessKey || accessKey.startsWith('YOUR_')) {
+      errorBox.textContent = "This form isn't connected yet, add a Web3Forms access key to finish setup.";
+      errorBox.hidden = false;
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      });
+      const json = await res.json();
+
+      if (json.success) {
+        form.hidden = true;
+        if (successBox) successBox.hidden = false;
+      } else {
+        throw new Error(json.message || 'Something went wrong.');
+      }
+    } catch (err) {
+      errorBox.textContent = "Couldn't send, sorry. Try again, or email me directly.";
+      errorBox.hidden = false;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message →';
+    }
+  });
+</script>

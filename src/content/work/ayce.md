@@ -6,6 +6,15 @@ tags: [SaaS, Operations Design, 0-to-1]
 featured: true
 order: 1
 gradient: "linear-gradient(135deg, #FF6B35 0%, #F7931E 100%)"
+thumb: /images/projects/ayce/Assets/Thumb.png
+liveUrl: https://home.ayce.app/
+gallery:
+  - src: "/images/projects/ayce/Assets/1. Overview.svg"
+    label: Overview
+  - src: "/images/projects/ayce/Assets/2. Menu performance.svg"
+    label: Menu Performance
+  - src: "/images/projects/ayce/Assets/3. Inventory & Waste.svg"
+    label: Inventory & Waste
 challenge: >
   Kitchen operations run on data most software never accounts for: menu items,
   ingredients, purchase options, prep items, batch stock, and purchase stock,

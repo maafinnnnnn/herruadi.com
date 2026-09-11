@@ -34,10 +34,19 @@ const galleryPlaceholders = Array.from({ length: data.galleryCount });
     <p class="tags" style="margin-top:20px;">
       {data.tags.map((tag) => <span>{tag}</span>)}
     </p>
+    {data.liveUrl && (
+      <a class="case-link" href={data.liveUrl} target="_blank" rel="noopener noreferrer">
+        Visit live site ↗
+      </a>
+    )}
   </section>
 
   <div style="padding:40px 0;">
-    <div class="gallery-hero">Add mockup image here</div>
+    {data.thumb ? (
+      <img class="gallery-hero-img" src={data.thumb} alt={`${data.title} product overview`} width="1440" height="1024" />
+    ) : (
+      <div class="gallery-hero">Add mockup image here</div>
+    )}
   </div>
 
   <!-- ============ THE CHALLENGE ============ -->
@@ -56,11 +65,42 @@ const galleryPlaceholders = Array.from({ length: data.galleryCount });
   <section style="padding:40px 0; border-top:1px solid var(--line);">
     <p class="eyebrow" style="margin-bottom:20px;">The Work</p>
     <div class="gallery-grid">
-      {galleryPlaceholders.map(() => (
-        <div class="gallery-box">Add mockup image here</div>
-      ))}
+      {data.gallery.length > 0
+        ? data.gallery.map((shot, i) => {
+            const caption = shot.label ? `EXHIBIT ${String(i + 1).padStart(2, '0')} · ${shot.label}` : '';
+            return (
+              <figure class="gallery-figure">
+                <button
+                  type="button"
+                  class="gallery-trigger"
+                  data-lightbox-src={encodeURI(shot.src)}
+                  data-lightbox-caption={caption}
+                  aria-label={`Expand ${shot.label ?? 'image'}`}
+                >
+                  <img src={encodeURI(shot.src)} alt={shot.label ?? `${data.title} screen ${i + 1}`} width="1440" height="1024" loading="lazy" />
+                  <span class="gallery-expand mono">Expand ⤢</span>
+                </button>
+                {caption && <figcaption>{caption}</figcaption>}
+              </figure>
+            );
+          })
+        : galleryPlaceholders.map(() => <div class="gallery-box">Add mockup image here</div>)}
     </div>
   </section>
+
+  {data.gallery.length > 0 && (
+    <div class="lightbox" id="lightbox" data-open="false" aria-hidden="true">
+      <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close preview">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+      <button type="button" class="lightbox-nav prev" id="lightbox-prev" aria-label="Previous image">←</button>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+      <button type="button" class="lightbox-nav next" id="lightbox-next" aria-label="Next image">→</button>
+      <p class="lightbox-caption mono" id="lightbox-caption"></p>
+    </div>
+  )}
 
   <!-- ============ THE OUTCOME ============ -->
   <section style="padding:40px 0; border-top:1px solid var(--line); border-bottom:1.5px solid var(--line-strong); padding-bottom:56px;">
@@ -87,3 +127,62 @@ const galleryPlaceholders = Array.from({ length: data.galleryCount });
 
   <RedlineCTA />
 </RedlineLayout>
+
+<script>
+  (function () {
+    const triggers = Array.from(document.querySelectorAll<HTMLButtonElement>('.gallery-trigger'));
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img') as HTMLImageElement | null;
+    const caption = document.getElementById('lightbox-caption');
+    const closeBtn = document.getElementById('lightbox-close');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+    if (!triggers.length || !lightbox || !img || !caption) return;
+
+    let activeIndex = 0;
+    let lastFocused: HTMLElement | null = null;
+
+    function show(index: number) {
+      activeIndex = (index + triggers.length) % triggers.length;
+      const t = triggers[activeIndex];
+      img.src = t.dataset.lightboxSrc ?? '';
+      img.alt = t.getAttribute('aria-label') ?? '';
+      caption.textContent = t.dataset.lightboxCaption ?? '';
+    }
+
+    function open(index: number) {
+      lastFocused = document.activeElement as HTMLElement;
+      show(index);
+      lightbox.dataset.open = 'true';
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeBtn?.focus();
+    }
+
+    function close() {
+      lightbox.dataset.open = 'false';
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      lastFocused?.focus();
+    }
+
+    triggers.forEach((t, i) => {
+      t.addEventListener('click', () => open(i));
+    });
+
+    closeBtn?.addEventListener('click', close);
+    prevBtn?.addEventListener('click', () => show(activeIndex - 1));
+    nextBtn?.addEventListener('click', () => show(activeIndex + 1));
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.dataset.open !== 'true') return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(activeIndex - 1);
+      if (e.key === 'ArrowRight') show(activeIndex + 1);
+    });
+  })();
+</script>
