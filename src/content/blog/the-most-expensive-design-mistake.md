@@ -4,7 +4,8 @@ description: "Why shipping the wrong product costs more than any design bug, and
 pubDate: 2025-01-15
 category: Business x Design
 tags: [strategy, product, design-thinking]
-heroImage: /images/blog/the-most-expensive-design-mistake/hero.png
+heroImage: /images/blog/the-most-expensive-design-mistake/wrong-way-design-mistake.jpg
+heroImageAlt: "A red 'Wrong Way' road sign, a reminder for what happens when a team builds in the wrong direction"
 ---
 
 Most design conversations start in the wrong place.
@@ -25,7 +26,7 @@ The direct cost, like salaries, design tools, development sprints, infrastructur
 
 Opportunity cost doesn't show up in a post-mortem. But it's always there, compounding quietly.
 
-![Warning signs checklist](/images/blog/the-most-expensive-design-mistake/image-1.png)
+![Hand-drawn checklist on a whiteboard, standing in for the warning signs worth checking before you build](/images/blog/the-most-expensive-design-mistake/warning-signs-checklist.jpg)
 
 ## The Warning Signs You're Off Track
 
@@ -39,7 +40,7 @@ I've developed a few questions I ask before any design work begins. They're not 
 
 > The most expensive line of code ever written is the one that solves the wrong problem. It doesn't matter how clean it is or how elegantly it was tested. Wrong is wrong.
 
-![The validation trap](/images/blog/the-most-expensive-design-mistake/image-2.png)
+![Sticky note reading "Maybe not, but that's okay," a reminder that honest validation beats comfortable answers](/images/blog/the-most-expensive-design-mistake/validation-trap-sticky-note.jpg)
 
 ## The Validation Trap
 
@@ -49,7 +50,7 @@ The issue isn't that they skip validation, but that they validate the wrong ques
 
 Confirmation bias is powerful and insidious. When you've already decided what to build, every user interview can be shaped to support that decision. You hear what you're listening for. Users are polite. They'll tell you what you seem to want to hear. Real validation requires asking questions that could genuinely make you abandon the direction entirely, and being willing to act on what you learn.
 
-![Design's role in early detection](/images/blog/the-most-expensive-design-mistake/image-3.png)
+![A wooden door covered in warning signs, standing in for design's real job: catching every wrong direction early](/images/blog/the-most-expensive-design-mistake/early-detection-warning-sign.jpg)
 
 ## What Good Design Can Actually Do Here
 

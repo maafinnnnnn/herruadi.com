@@ -62,7 +62,13 @@ const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
   <!-- ============ HERO IMAGE ============ -->
   <div style="padding:32px 0 0;">
     {heroExists ? (
-      <img class="post-hero-img" src={post.data.heroImage} alt={post.data.title} width="1600" height="900" />
+      <img
+        class="post-hero-img"
+        src={post.data.heroImage}
+        alt={post.data.heroImageAlt ?? post.data.title}
+        width="1600"
+        height="900"
+      />
     ) : (
       <div class="post-hero">
         <span class="post-hero-cat mono upper">{post.data.category}</span>
