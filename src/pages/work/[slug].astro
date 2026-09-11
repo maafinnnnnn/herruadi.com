@@ -22,7 +22,13 @@ const galleryPlaceholders = Array.from({ length: data.galleryCount });
 const [galleryW, galleryH] = data.galleryRatio.split('/');
 ---
 
-<RedlineLayout title={`${data.title} · Herru Adi`} description={data.oneliner} active="work">
+<RedlineLayout
+  title={`${data.title} · Herru Adi`}
+  description={data.oneliner}
+  active="work"
+  image={`/og/work/${project.id}.png`}
+  type="article"
+>
   <!-- ============ CASE HERO ============ -->
   <section class="page-hero">
     <div class="back-crumb">

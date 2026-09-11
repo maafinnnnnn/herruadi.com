@@ -35,7 +35,13 @@ const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pa
 const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
 ---
 
-<RedlineLayout title={`${post.data.title} · Herru Adi`} description={post.data.description} active="blog">
+<RedlineLayout
+  title={`${post.data.title} · Herru Adi`}
+  description={post.data.description}
+  active="blog"
+  image={`/og/blog/${post.id}.png`}
+  type="article"
+>
   <!-- ============ ARTICLE HERO ============ -->
   <section class="page-hero">
     <div class="back-crumb">
