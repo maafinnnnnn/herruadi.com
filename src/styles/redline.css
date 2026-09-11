@@ -590,6 +590,14 @@ nav.tb-nav a.cta {
   border-left: none;
   border-top: none;
 }
+.stamp.stamp-plain {
+  border: none;
+  background: none;
+}
+.stamp.stamp-plain::before,
+.stamp.stamp-plain::after {
+  display: none;
+}
 .stamp .sund {
   font-family: var(--display);
   font-weight: 900;
