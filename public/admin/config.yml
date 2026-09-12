@@ -4,7 +4,7 @@ backend:
   branch: main
   # After deploying the sveltia-cms-auth Worker, replace this with its URL
   # (e.g. https://sveltia-cms-auth.your-subdomain.workers.dev)
-  base_url: https://REPLACE-WITH-YOUR-AUTH-WORKER.workers.dev
+  base_url: https://sveltia-cms-auth.work-adivian.workers.dev
 
 site_url: https://herruadi.com
 logo_url: /favicon.png
