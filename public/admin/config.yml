@@ -34,8 +34,6 @@ collections:
         label: "Hero Image"
         widget: image
         required: false
-        media_folder: "public/images/blog"
-        public_folder: "/images/blog"
         hint: "16:9. Export at 2400x1350 for a crisp full-width hero."
       - name: heroImageAlt
         label: "Hero Image Alt Text"
@@ -67,8 +65,6 @@ collections:
         label: "Cover Image"
         widget: image
         required: false
-        media_folder: "public/images/work"
-        public_folder: "/images/work"
         hint: "Match your working canvas size (e.g. 1440x1024) for a sharp fit."
       - { name: liveUrl, label: "Live Site URL", widget: string, required: false }
       - { name: challenge, label: "Symptom (the challenge)", widget: text }
@@ -89,6 +85,4 @@ collections:
           - name: src
             label: Image
             widget: image
-            media_folder: "public/images/work"
-            public_folder: "/images/work"
           - { name: label, label: Caption, widget: string }
