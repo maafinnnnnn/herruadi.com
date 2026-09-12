@@ -1,7 +1,7 @@
 ---
 title: What a kitchen chaos taught me about SaaS product design
 description: Designing AYCE's kitchen operations system taught me something no design course could. A behind-the-scenes look at operational software design.
-pubDate: 2025-02-20
+pubDate: 2026-09-13
 category: Field Notes
 tags:
   - field-notes
