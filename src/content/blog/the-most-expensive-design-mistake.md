@@ -1,16 +1,19 @@
 ---
-title: "The most expensive design mistake isn't bad UI, but it's building the wrong thing"
-description: "Why shipping the wrong product costs more than any design bug, and how to spot the warning signs before it's too late."
-pubDate: 2025-01-15
+title: The most expensive design mistake isn't bad UI, but it's building the wrong thing
+description: Why shipping the wrong product costs more than any design bug, and how to spot the warning signs before it's too late.
+pubDate: 2026-09-12
 category: Business x Design
-tags: [strategy, product, design-thinking]
+tags:
+  - strategy
+  - product
+  - design-thinking
 heroImage: /images/blog/the-most-expensive-design-mistake/wrong-way-design-mistake.jpg
-heroImageAlt: "A red 'Wrong Way' road sign, a reminder for what happens when a team builds in the wrong direction"
+heroImageAlt: A red 'Wrong Way' road sign, a reminder for what happens when a team builds in the wrong direction
 ---
 
 Most design conversations start in the wrong place.
 
-They start with: *How should this look?* Or *What's the best UI pattern for this flow?* Those are real questions worth asking. But only after you've answered a more fundamental one: are we actually building the right thing?
+They start with: _How should this look?_ Or _What's the best UI pattern for this flow?_ Those are real questions worth asking. But only after you've answered a more fundamental one: are we actually building the right thing?
 
 I've seen it too many times. A product team spends six months executing beautifully, with solid process, regular reviews, clean user flows, and launches something nobody needs. Perfectly crafted. Completely wrong.
 
@@ -62,6 +65,6 @@ Before opening Figma, a good designer should be in the room asking uncomfortable
 
 This is what I mean when I say I operate as a strategic design partner. The work starts before the first wireframe. The most important design decisions happen before anyone picks up a stylus.
 
-If you're already in Figma before you've answered *why*, not just what and how, but *why this, why now, why for these people*, you're already behind. A product that solves the right problem with average UI will almost always win over a product that solves the wrong problem with beautiful UI.
+If you're already in Figma before you've answered _why_, not just what and how, but _why this, why now, why for these people_, you're already behind. A product that solves the right problem with average UI will almost always win over a product that solves the wrong problem with beautiful UI.
 
 Build less. Validate the right questions. Design for what actually matters.
