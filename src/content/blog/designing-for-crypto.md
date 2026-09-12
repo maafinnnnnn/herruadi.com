@@ -1,10 +1,15 @@
 ---
 title: Designing for crypto when you know nothing about crypto
-description: "What happens when you have to design for a domain you don't understand. A story about learning fast, asking better questions, and not faking expertise."
+description: What happens when you have to design for a domain you don't understand. A story about learning fast, asking better questions, and not faking expertise.
 pubDate: 2025-02-03
 category: Field Notes
-tags: [field-notes, crypto, research, vantagelab]
-heroImage: /images/blog/designing-for-crypto/hero.png
+tags:
+  - field-notes
+  - crypto
+  - research
+  - vantagelab
+heroImage: images/blog/Hero.png
+heroImageAlt: ''
 ---
 
 When Vantagelab reached out, I was honest about one thing upfront: I knew very little about crypto.
@@ -15,11 +20,11 @@ I took the project anyway. And it taught me more about design than most "standar
 
 ## The Setup
 
-Vantagelab was building an AI-powered crypto analytics dashboard for traders in the UK. The goal was to make complex market data faster to understand and act on. The brief I received was clear on the surface: cleaner, more intuitive, better visual hierarchy, smarter information architecture. Standard design language for what would turn out to be a very non-standard design problem.
+Vantagelab was building an AI-powered crypto analytics dashboard for traders in the UK & Australia. The goal was to make complex market data faster to understand and act on. The brief I received was clear on the surface: cleaner, more intuitive, better visual hierarchy, smarter information architecture. Standard design language for what would turn out to be a very non-standard design problem.
 
 The real challenge wasn't making something look better. It was understanding what "better" actually meant to someone who lives and breathes on-chain data for a living. That's someone whose relationship with information is fundamentally different from a typical SaaS user.
 
-![Two weeks before a single frame](/images/blog/designing-for-crypto/image-1.png)
+![Two weeks before a single frame](/images/uploads/unsplash_4UGmm3WRUoQ.png)
 
 ## Two Weeks Before a Single Frame
 
@@ -31,7 +36,7 @@ Most designers would be embarrassed to admit they don't know the domain. I leane
 
 There's a real superpower in being the least informed person in the room: you ask the questions that everyone else stopped asking years ago. When you're a domain expert, you stop noticing the things that are confusing. You've internalized them. But a new user, or a designer who approaches a problem with genuine curiosity and no assumptions, sees things that insiders have become blind to.
 
-Questions like *"why does this specific number matter and not that one?"* or *"if you only had ten seconds to look at a screen, what would need to be on it?"* These sound basic. They often unlock the most important design decisions in the entire project.
+Questions like _"why does this specific number matter and not that one?"_ or _"if you only had ten seconds to look at a screen, what would need to be on it?"_ These sound basic. They often unlock the most important design decisions in the entire project.
 
 > Not knowing the domain forces you to design for clarity. You can't fall back on assumed understanding. Every label, every data point, every interaction has to justify its existence.
 
@@ -39,11 +44,11 @@ Questions like *"why does this specific number matter and not that one?"* or *"i
 
 Crypto dashboards have a specific and consistent problem: they show everything because they can. Every metric, every chart, every indicator running simultaneously. For a certain type of power user, someone who has spent years building mental models of what all this data means, that density can be comfortable. For anyone else, or even for that expert in a high-pressure moment, it becomes noise.
 
-The original brief was to make the interface cleaner. After sitting with real users and watching how they actually worked, the brief evolved into something more specific: *make it faster to understand what matters right now.*
+The original brief was to make the interface cleaner. After sitting with real users and watching how they actually worked, the brief evolved into something more specific: _make it faster to understand what matters right now._
 
 That shift, from a visual design outcome to a functional clarity goal, changed everything about how I approached the information architecture. We weren't just organizing data; we were building a decision support tool. That's a fundamentally different design problem. It changes how you think about hierarchy, how you think about primary versus secondary information, how you think about the cognitive load of each screen state.
 
-![Hierarchy in a data-dense interface](/images/blog/designing-for-crypto/image-2.png)
+![Hierarchy in a data-dense interface](/images/uploads/unsplash_0tSiofevpUs.png)
 
 ## What Hierarchy Actually Means in a Data-Dense Interface
 
@@ -55,7 +60,7 @@ For Vantagelab, we shifted to thinking about moments of use: what state is the u
 
 We cut anything that required the user to interpret rather than read. Every abbreviation was either eliminated or made expandable. Labels became precise. The default view was rebuilt around the one question every trader asks first thing in the morning.
 
-![Lessons from designing outside your domain](/images/blog/designing-for-crypto/image-3.png)
+![Lessons from designing outside your domain](/images/uploads/Vantage%20-%20AI-Powered%20Crypto%20Dashboard.svg)
 
 ## What Designing Outside Your Domain Teaches You
 
