@@ -7,7 +7,7 @@ tags:
   - strategy
   - product
   - design-thinking
-heroImage: /images/blog/the-most-expensive-design-mistake/wrong-way-design-mistake.jpg
+heroImage: /images/uploads/Business x Design.png
 heroImageAlt: A red 'Wrong Way' road sign, a reminder for what happens when a team builds in the wrong direction
 ---
 
