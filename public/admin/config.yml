@@ -9,6 +9,9 @@ backend:
 site_url: https://herruadi.com
 logo_url: /favicon.png
 
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
 collections:
   - name: blog
     label: "Field Notes (Blog)"
@@ -20,7 +23,7 @@ collections:
     fields:
       - { name: title, label: Title, widget: string }
       - { name: description, label: Description, widget: text }
-      - { name: pubDate, label: "Publish Date", widget: date, format: "YYYY-MM-DD" }
+      - { name: pubDate, label: "Publish Date", widget: datetime, type: date, format: "YYYY-MM-DD" }
       - name: category
         label: Category
         widget: select
@@ -31,7 +34,7 @@ collections:
         label: "Hero Image"
         widget: image
         required: false
-        media_folder: "/public/images/blog"
+        media_folder: "public/images/blog"
         public_folder: "/images/blog"
         hint: "16:9. Export at 2400x1350 for a crisp full-width hero."
       - name: heroImageAlt
@@ -64,7 +67,7 @@ collections:
         label: "Cover Image"
         widget: image
         required: false
-        media_folder: "/public/images/work"
+        media_folder: "public/images/work"
         public_folder: "/images/work"
         hint: "Match your working canvas size (e.g. 1440x1024) for a sharp fit."
       - { name: liveUrl, label: "Live Site URL", widget: string, required: false }
@@ -86,6 +89,6 @@ collections:
           - name: src
             label: Image
             widget: image
-            media_folder: "/public/images/work"
+            media_folder: "public/images/work"
             public_folder: "/images/work"
           - { name: label, label: Caption, widget: string }
