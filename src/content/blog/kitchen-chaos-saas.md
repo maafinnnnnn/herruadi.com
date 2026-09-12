@@ -1,10 +1,15 @@
 ---
 title: What a kitchen chaos taught me about SaaS product design
-description: "Designing AYCE's kitchen operations system taught me something no design course could. A behind-the-scenes look at operational software design."
+description: Designing AYCE's kitchen operations system taught me something no design course could. A behind-the-scenes look at operational software design.
 pubDate: 2025-02-20
 category: Field Notes
-tags: [field-notes, saas, operations, ayce]
-heroImage: /images/blog/kitchen-chaos-saas/hero.png
+tags:
+  - field-notes
+  - saas
+  - operations
+  - ayce
+heroImage: /images/uploads/Hero.png
+heroImageAlt: in the busy kitchen
 ---
 
 Before I designed a single screen for AYCE, I spent a day standing in a working restaurant kitchen during the lunch service rush.
@@ -27,21 +32,21 @@ What I found wasn't what I expected. The interface wasn't especially ugly. It wa
 
 The software was asking staff to make micro-decisions at exactly the moments when they had the least mental bandwidth available to make them.
 
-![Decision fatigue in operations](/images/blog/kitchen-chaos-saas/image-1.png)
+![Decision fatigue in operations](/images/uploads/unsplash_JCHlsKSgbSk.png)
 
 ## The Anatomy of Decision Fatigue in Operations
 
-Every screen had three options where one definitive action would have done. Every flow required a confirmation before another confirmation. It was a design pattern that exists to prevent errors but in practice just added friction to every single interaction. The dashboard showed fourteen pieces of information when, in the middle of service, you needed exactly one: *is there a problem right now, and if so, where?*
+Every screen had three options where one definitive action would have done. Every flow required a confirmation before another confirmation. It was a design pattern that exists to prevent errors but in practice just added friction to every single interaction. The dashboard showed fourteen pieces of information when, in the middle of service, you needed exactly one: _is there a problem right now, and if so, where?_
 
 The system wasn't broken in the traditional sense. It was designed for the wrong moment. It was designed for a calm user sitting at a desk with time to think, time to read, time to navigate. But the actual users were kitchen staff managing controlled chaos. Those are two completely different people in completely different cognitive states. They need completely different interfaces.
 
 > Operational software doesn't fail because it's hard to learn. It fails because it's hard to use when you're under maximum pressure. Those are completely different design problems, and they require completely different solutions.
 
-![The redesign principle](/images/blog/kitchen-chaos-saas/image-2.png)
+![The redesign principle](/images/uploads/unsplash_plxIS_ANlCI.png)
 
 ## The Redesign Principle That Changed Everything
 
-Once I understood the real problem, the redesign became clear. The question wasn't "how do we organize this information better?" It wasn't even "how do we simplify the visual design?" The actual question was: *which decisions need to happen here, by this person, at this precise moment, and which ones can we eliminate, automate, or safely defer?*
+Once I understood the real problem, the redesign became clear. The question wasn't "how do we organize this information better?" It wasn't even "how do we simplify the visual design?" The actual question was: _which decisions need to happen here, by this person, at this precise moment, and which ones can we eliminate, automate, or safely defer?_
 
 Most of them could be eliminated. The software was making staff manually manage things the system could track automatically. Status updates that should have been automatic required manual input. Confirmation dialogs that protected against errors that never actually occurred added three seconds to every action. Default states were wrong, which meant every interaction started from a position that required correction before anything useful could happen.
 
@@ -49,7 +54,7 @@ We fixed every default to reflect the most common correct state. We automated st
 
 The result was a system that kitchen staff described as "finally making sense", which, from an operational software user, is one of the highest compliments a designer can receive. It means the software stopped getting in the way of the actual work.
 
-![Operational design in practice](/images/blog/kitchen-chaos-saas/image-3.png)
+![Operational design in practice](/images/uploads/AYCE%20-%20Overview.svg)
 
 ## What Operational Design Actually Means in Practice
 
