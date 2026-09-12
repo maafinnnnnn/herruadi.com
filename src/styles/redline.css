@@ -1186,19 +1186,64 @@ button.sig-link:disabled {
 /* ============ FOOTER ============ */
 footer.page-foot {
   border-top: 1.5px solid var(--line-strong);
-  padding: 22px 0;
+  padding: 28px 0 20px;
 }
-.foot-row {
+.foot-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
+}
+.foot-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.foot-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--ink);
+}
+.foot-meta {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--ink-faint);
   letter-spacing: 0.04em;
+  color: var(--ink-faint);
 }
-.foot-row a:hover {
+.foot-nav {
+  display: flex;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+.foot-nav a {
+  color: var(--ink-faint);
+}
+.foot-nav a:hover {
   color: var(--redline);
+}
+.foot-nav .sep {
+  color: var(--line);
+}
+.foot-bottom {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .foot-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
 }

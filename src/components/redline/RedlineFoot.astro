@@ -4,14 +4,23 @@ const year = new Date().getFullYear();
 
 <footer class="page-foot">
   <div class="wrap">
-    <div class="foot-row">
-      <span>© {year} Herru Adi. Strategic Design Partner.</span>
-      <nav aria-label="Footer navigation" style="display:flex; gap:16px;">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="foot-name">Herru Adi</span>
+        <span class="foot-meta">Bandung, Indonesia · Available for Q4 2026</span>
+      </div>
+      <nav aria-label="Footer navigation" class="foot-nav">
         <a href="/work">Work</a>
+        <span class="sep">·</span>
         <a href="/about">About</a>
+        <span class="sep">·</span>
         <a href="/blog">Blog</a>
+        <span class="sep">·</span>
         <a href="/contact">Contact</a>
       </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© {year} Herru Adi · Built with intention, not just Figma.</span>
     </div>
   </div>
 </footer>
