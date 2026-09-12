@@ -1,7 +1,7 @@
 ---
 title: Designing for crypto when you know nothing about crypto
 description: What happens when you have to design for a domain you don't understand. A story about learning fast, asking better questions, and not faking expertise.
-pubDate: 2025-02-03
+pubDate: 2026-09-12
 category: Field Notes
 tags:
   - field-notes
