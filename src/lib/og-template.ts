@@ -95,13 +95,13 @@ export function ogAccentBar() {
   };
 }
 
-export function ogEyebrow(text: string) {
+export function ogEyebrow(text: string, fontSize = 60) {
   return {
     type: 'span',
     props: {
       style: {
         fontFamily: OG.mono,
-        fontSize: 60,
+        fontSize,
         letterSpacing: 4,
         textTransform: 'uppercase',
         color: OG.redline,

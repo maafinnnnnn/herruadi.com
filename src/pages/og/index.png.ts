@@ -55,7 +55,7 @@ export async function GET() {
               gap: 28,
             },
             children: [
-              ogEyebrow('Strategic Design Partner'),
+              ogEyebrow('Strategic Design Partner', 34),
               {
                 type: 'span',
                 props: {
