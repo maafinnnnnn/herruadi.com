@@ -8,7 +8,7 @@ tags:
   - crypto
   - research
   - vantagelab
-heroImage: /images/uploads/Hero.png
+heroImage: /images/uploads/Crypto-hero.png
 heroImageAlt: ''
 ---
 
