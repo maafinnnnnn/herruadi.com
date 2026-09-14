@@ -57,7 +57,7 @@ Treating Design Thinking or Double Diamond as a checklist to complete, rather th
 
 ## Where I've seen this go wrong
 
-_[This is the spot for a real story: a project or a mentee conversation where the wrong method got picked, what actually happened as a result, and what you'd do differently now. One specific, honest example will do more for this section than any amount of general advice above it.]_
+_`This is the spot for a real story: a project or a mentee conversation where the wrong method got picked, what actually happened as a result, and what you'd do differently now. One specific, honest example will do more for this section than any amount of general advice above it.`_
 
 ## The short version
 
