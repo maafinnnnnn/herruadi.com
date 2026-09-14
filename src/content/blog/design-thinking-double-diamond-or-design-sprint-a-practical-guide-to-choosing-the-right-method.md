@@ -33,7 +33,6 @@ Here's a more accurate way to hold them:
 
 **Design Sprint** sits a level below, as a specific tactic. It's a compressed, time-boxed technique (typically five days) for validating a direction fast, before committing serious budget or engineering time. It's not a replacement for Design Thinking or Double Diamond. It's a way to run a fast lap through similar thinking when the situation demands speed over depth.
 
-
 ![design thinking & double diamond](/images/uploads/Desing%20thinking%20%26%20Double%20diamond.png)
 
 ## The actual decision guide
@@ -57,7 +56,6 @@ Running a Design Sprint on a problem that actually needs deep research produces 
 Running a full Double Diamond cycle on a decision that needed to happen this week burns the one resource a fast-moving team can't get back: momentum. By the time "Deliver" arrives, the market question may have already changed.
 
 Treating Design Thinking or Double Diamond as a checklist to complete, rather than a lens to think through, produces the worst outcome of all: a process that looks rigorous in a case study and never actually centers the user.
-
 
 ![Regret](/images/uploads/unsplash_IqSaG9zv2e0.png)
 
