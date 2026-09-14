@@ -67,7 +67,6 @@ That worked fine until a feature built exactly to spec went live, and users simp
 
 The lesson wasn't "next time use Double Diamond" or "next time run a Sprint." It was simpler and less comfortable than that: a document that reads as complete isn't the same as a problem that's been validated, and skipping that check doesn't save time, it just moves the cost of finding out to after launch, where it's more expensive to fix.
 
-
 ![cry-baby](/images/uploads/cry-baby.png)
 
 ## The short version
