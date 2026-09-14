@@ -61,7 +61,14 @@ Treating Design Thinking or Double Diamond as a checklist to complete, rather th
 
 ## Where I've seen this go wrong
 
-_`This is the spot for a real story: a project or a mentee conversation where the wrong method got picked, what actually happened as a result, and what you'd do differently now. One specific, honest example will do more for this section than any amount of general advice above it.`_
+Most of the time, the honest version of this story isn't "I picked the wrong method." It's that no method got picked at all. A PRD lands on the desk, already written, already detailed, and the job becomes executing it as-is. No Discover phase to re-check the assumptions inside it, no fast Sprint to pressure-test the riskiest part before building. The document itself quietly becomes the process.
+
+That worked fine until a feature built exactly to spec went live, and users simply didn't need it. It wasn't broken, it wasn't confusing, it just wasn't something anyone had asked for. A nice-to-have, built at full-have effort, landing on people who never asked for it. The PRD had looked complete on paper. What it hadn't done was pass through anything resembling validation before the build started, and the fallout from that gap wasn't small.
+
+The lesson wasn't "next time use Double Diamond" or "next time run a Sprint." It was simpler and less comfortable than that: a document that reads as complete isn't the same as a problem that's been validated, and skipping that check doesn't save time, it just moves the cost of finding out to after launch, where it's more expensive to fix.
+
+
+![cry-baby](/images/uploads/cry-baby.png)
 
 ## The short version
 
