@@ -1,5 +1,28 @@
 ---
 const year = new Date().getFullYear();
+
+const socialLinks = [
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/herruadivian/',
+    icon: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><line x1="7.5" y1="10" x2="7.5" y2="17"/><circle cx="7.5" cy="6.8" r="0.4" fill="currentColor" stroke="none"/><path d="M11.5 17v-4.2a2.3 2.3 0 0 1 4.5 0V17"/><line x1="11.5" y1="10" x2="11.5" y2="17"/></svg>`,
+  },
+  {
+    name: 'Dribbble',
+    href: 'https://dribbble.com/herruadi',
+    icon: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94"/><path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32"/><path d="M8.56 2.75c4.37 6 6 9.42 8 17.72"/></svg>`,
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/maafinnnn/',
+    icon: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`,
+  },
+  {
+    name: 'Medium',
+    href: 'https://medium.com/@herruadi',
+    icon: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="12" r="5"/><ellipse cx="15.5" cy="12" rx="2.5" ry="5"/><ellipse cx="20.5" cy="12" rx="1" ry="5"/></svg>`,
+  },
+];
 ---
 
 <footer class="page-foot">
@@ -8,6 +31,13 @@ const year = new Date().getFullYear();
       <div class="foot-brand">
         <span class="foot-name">Herru Adi</span>
         <span class="foot-meta">Bandung, Indonesia · Available for Q4 2026</span>
+        <div class="foot-social">
+          {socialLinks.map((link) => (
+            <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
+              <Fragment set:html={link.icon} />
+            </a>
+          ))}
+        </div>
       </div>
       <nav aria-label="Footer navigation" class="foot-nav">
         <a href="/work">Work</a>

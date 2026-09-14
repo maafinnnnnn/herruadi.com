@@ -1212,6 +1212,20 @@ footer.page-foot {
   letter-spacing: 0.04em;
   color: var(--ink-faint);
 }
+.foot-social {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+.foot-social a {
+  display: flex;
+  color: var(--ink-faint);
+  transition: color 150ms ease;
+}
+.foot-social a:hover {
+  color: var(--redline);
+}
 .foot-nav {
   display: flex;
   gap: 8px;
