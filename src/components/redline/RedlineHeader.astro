@@ -48,9 +48,10 @@ const { active = '' } = Astro.props;
         <a href="/blog" aria-current={active === 'blog' ? 'page' : undefined}>Blog</a>
         <a href="/contact" class="cta" aria-current={active === 'contact' ? 'page' : undefined}>Contact</a>
       </nav>
-      <div class="tb-toggle">
-        <ThemeToggle />
-      </div>
+    </div>
+
+    <div class="tb-toggle">
+      <ThemeToggle />
     </div>
   </div>
 </header>

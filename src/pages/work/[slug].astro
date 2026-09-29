@@ -48,7 +48,7 @@ const [galleryW, galleryH] = data.galleryRatio.split('/');
     )}
   </section>
 
-  <div style="padding:40px 0;">
+  <div style="padding:32px 0;">
     {data.thumb ? (
       <img class="gallery-hero-img" src={data.thumb} alt={`${data.title} product overview`} width="1440" height="1024" />
     ) : (
@@ -57,19 +57,19 @@ const [galleryW, galleryH] = data.galleryRatio.split('/');
   </div>
 
   <!-- ============ THE CHALLENGE ============ -->
-  <section style="padding:40px 0; border-top:1px solid var(--line);">
+  <section style="padding:32px 0; border-top:1px solid var(--rule-strong);">
     <p class="eyebrow" style="margin-bottom:20px;">Symptom</p>
-    <p style="font-size:17px; line-height:1.8; color:var(--ink-soft); max-width:65ch;">{data.challenge}</p>
+    <p style="font-size:17px; line-height:1.7; color:var(--ink2); max-width:65ch;">{data.challenge}</p>
   </section>
 
   <!-- ============ MY APPROACH ============ -->
-  <section style="padding:40px 0; border-top:1px solid var(--line);">
+  <section style="padding:32px 0; border-top:1px solid var(--rule-strong);">
     <p class="eyebrow" style="margin-bottom:20px;">Diagnosis &amp; Build</p>
-    <p style="font-size:17px; line-height:1.8; color:var(--ink-soft); max-width:65ch;">{data.approach}</p>
+    <p style="font-size:17px; line-height:1.7; color:var(--ink2); max-width:65ch;">{data.approach}</p>
   </section>
 
   <!-- ============ THE WORK ============ -->
-  <section style="padding:40px 0; border-top:1px solid var(--line);">
+  <section style="padding:32px 0 40px; border-top:1px solid var(--rule-strong);">
     <p class="eyebrow" style="margin-bottom:20px;">The Work</p>
     <div class="gallery-grid">
       {data.gallery.length > 0
@@ -117,16 +117,16 @@ const [galleryW, galleryH] = data.galleryRatio.split('/');
   )}
 
   <!-- ============ THE OUTCOME ============ -->
-  <section style="padding:40px 0; border-top:1px solid var(--line); border-bottom:1.5px solid var(--line-strong); padding-bottom:56px;">
-    <p class="eyebrow" style="margin-bottom:20px;">Result</p>
+  <section style="padding:32px 0 40px; border-top:1px solid var(--rule-strong);">
     <div class="callout">
+      <p class="callout-label mono upper">Result</p>
       <p>{data.outcome}</p>
     </div>
   </section>
 
   <!-- ============ NEXT PROJECT ============ -->
   <section>
-    <div class="section-head" style="padding-top:36px;">
+    <div class="section-head" style="padding:48px 0 18px;">
       <div>
         <p class="tag mono upper">Next</p>
         <h2>Keep reading the log.</h2>

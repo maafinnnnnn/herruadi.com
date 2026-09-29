@@ -1,0 +1,43 @@
+/* ============================================================
+   REDACTION RUN — homepage hero entrance (~2.9s, plays once/session)
+   Default (no [data-rr="play"]) = final state. No JS = final state.
+   Per-element timing comes from inline custom props:
+     --t  delay     --d  duration (type lines)     --i  word index
+   ============================================================ */
+
+@keyframes rr-type { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes rr-bar  { 0% { background-size: 0% 100%; } 55% { background-size: 100% 100%; } 100% { background-size: 100% 1.5px; } }
+@keyframes rr-note { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: none; } }
+@keyframes rr-word { from { opacity: .08; transform: translateY(.28em); } to { opacity: 1; transform: none; } }
+@keyframes rr-hl   { from { background-size: 0% 100%; } to { background-size: 100% 100%; } }
+
+/* final-state styling (always applied) */
+.rr-strike {
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-repeat: no-repeat;
+  background-position: 0 58%;
+  background-size: 100% 1.5px;           /* = the strike line */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.rr-hl {
+  background-image: linear-gradient(var(--acc), var(--acc));
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #0f1211;
+  padding: 0 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.rr-w { display: inline-block; }
+
+/* playback */
+[data-rr="play"] [data-rr-type] { animation: rr-type var(--d) steps(30, end) var(--t) both; }
+[data-rr="play"] [data-rr-bar]  { animation: rr-bar 420ms cubic-bezier(.65, 0, .25, 1) var(--t) both; }
+[data-rr="play"] [data-rr-note] { animation: rr-note 380ms ease-out var(--t) both; }
+[data-rr="play"] [data-rr-w]    { animation: rr-word 520ms cubic-bezier(.2, .7, .2, 1) calc(1450ms + var(--i) * 80ms) both; }
+[data-rr="play"] [data-rr-hl]   { animation: rr-hl 600ms linear 2300ms both; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rr] * { animation: none !important; }
+}

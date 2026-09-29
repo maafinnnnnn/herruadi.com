@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/redline.css';
+import '../styles/redaction-run.css';
 import RedlineHeader from '../components/redline/RedlineHeader.astro';
 import RedlineFoot from '../components/redline/RedlineFoot.astro';
 
@@ -59,7 +60,7 @@ const ogImageURL = Astro.site ? new URL(image, Astro.site).toString() : image;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Martian+Mono:wdth,wght@87.5,400..600&display=swap"
       rel="stylesheet"
     />
 
@@ -71,6 +72,17 @@ const ogImageURL = Astro.site ? new URL(image, Astro.site).toString() : image;
           if (stored === 'dark' || (!stored && prefersDark)) {
             document.documentElement.classList.add('dark');
           }
+        } catch (_) {}
+      })();
+    </script>
+    <script is:inline>
+      (function () {
+        try {
+          if (location.pathname !== '/') return;
+          if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          if (sessionStorage.getItem('signal-rr-played')) return;
+          sessionStorage.setItem('signal-rr-played', '1');
+          document.documentElement.dataset.rr = 'play';
         } catch (_) {}
       })();
     </script>

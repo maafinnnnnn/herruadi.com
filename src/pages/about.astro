@@ -14,7 +14,7 @@ import RedlineCTA from '../components/redline/RedlineCTA.astro';
       grid-template-columns: 260px 1fr;
       gap: 48px;
       padding: 56px 0;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--rule);
     }
     @media (max-width: 860px) {
       .about-body {
@@ -23,13 +23,14 @@ import RedlineCTA from '../components/redline/RedlineCTA.astro';
       }
     }
     .about-photo {
-      border: 1.5px solid var(--line-strong);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
       aspect-ratio: 4 / 5;
       display: flex;
       align-items: flex-end;
       position: relative;
       overflow: hidden;
-      background: var(--paper-deep);
+      background: var(--bg2);
     }
     .about-photo img {
       position: absolute;
@@ -41,27 +42,29 @@ import RedlineCTA from '../components/redline/RedlineCTA.astro';
     .about-photo .card {
       position: relative;
       margin: 14px;
-      border: 1px solid var(--line-strong);
-      background: var(--paper);
+      border: 1px solid var(--chrome-line);
+      border-radius: 4px;
+      background: var(--chrome);
       padding: 10px 12px;
       width: calc(100% - 28px);
     }
     .about-photo .card .name {
-      font-family: var(--display);
+      font-family: var(--sans);
+      font-stretch: 70%;
       font-weight: 800;
       font-size: 15px;
     }
     .about-photo .card .role {
       font-family: var(--mono);
       font-size: 10.5px;
-      color: var(--ink-faint);
+      color: var(--chrome-ink2);
       margin-top: 2px;
     }
     .about-prose {
-      font-family: var(--body);
-      font-size: 16.5px;
-      line-height: 1.85;
-      color: var(--ink-soft);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--ink2);
       max-width: 66ch;
     }
     .about-prose p {
@@ -77,9 +80,9 @@ import RedlineCTA from '../components/redline/RedlineCTA.astro';
     }
     .about-section-label {
       font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      color: var(--ink-faint);
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      color: var(--ink3);
       text-transform: uppercase;
       margin-bottom: 22px;
     }
@@ -96,16 +99,16 @@ import RedlineCTA from '../components/redline/RedlineCTA.astro';
     }
     .human-fields dt {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 9.5px;
       letter-spacing: 0.1em;
-      color: var(--ink-faint);
+      color: var(--ink3);
       text-transform: uppercase;
       margin-bottom: 6px;
     }
     .human-fields dd {
       margin: 0;
       font-size: 15px;
-      color: var(--ink-soft);
+      color: var(--ink2);
       line-height: 1.7;
     }
   </style>

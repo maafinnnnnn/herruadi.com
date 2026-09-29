@@ -5,27 +5,29 @@
 
 /* Typography tokens */
 @theme {
-  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-sans: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'Martian Mono', ui-monospace, monospace;
 }
 
-/* Semantic color variables — light mode */
+/* Semantic color variables — light mode
+   Mapped onto the Signal tokens (src/styles/redline.css) so Tailwind
+   utility classes (used by ThemeToggle) resolve to the same palette. */
 :root {
-  --c-bg: #FBFBFD;
-  --c-fg: #1D1D1F;
-  --c-accent: #0071E3;
-  --c-surface: #FFFFFF;
-  --c-muted: #6E6E73;
-  --c-border: #D2D2D7;
+  --c-bg: #f2f3f1;
+  --c-fg: #0f1211;
+  --c-accent: oklch(0.7 0.19 42);
+  --c-surface: #e8eae7;
+  --c-muted: #595f5c;
+  --c-border: #cdd2cd;
 }
 
 /* Dark mode overrides */
 :root.dark {
-  --c-bg: #0A0A0C;
-  --c-fg: #F5F5F7;
-  --c-surface: #161619;
-  --c-muted: #A1A1A6;
-  --c-border: #2D2D30;
+  --c-bg: #0c0e0d;
+  --c-fg: #e9ece8;
+  --c-surface: #1b1f1d;
+  --c-muted: #8c938f;
+  --c-border: #262b29;
 }
 
 /* Map to Tailwind color utilities (bg-bg, text-fg, bg-accent, etc.) */
