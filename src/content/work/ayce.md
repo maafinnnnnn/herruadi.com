@@ -9,7 +9,7 @@ tags:
 featured: true
 order: 1
 gradient: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 100%)'
-thumb: /images/uploads/Cover.png
+thumb: /images/uploads/Thumb-Cover.png
 liveUrl: https://home.ayce.app/
 challenge: 'Kitchen operations run on data most software never accounts for: menu items, ingredients, purchase options, prep items, batch stock, and purchase stock, all tangled together and constantly moving. Nothing about it was simple, and no off-the-shelf structure was going to fit.'
 approach: 'I took full end-to-end product design ownership, from the first sketch to the final pixel. Before touching Figma, I started by mapping every data touchpoint in the kitchen: how ingredients become prep items, how prep becomes stock, how stock gets purchased and tracked. The system had to be built on how kitchens actually work, not how software assumes they work.'
