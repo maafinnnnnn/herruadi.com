@@ -54,7 +54,7 @@ We fixed every default to reflect the most common correct state. We automated st
 
 The result was a system that kitchen staff described as "finally making sense", which, from an operational software user, is one of the highest compliments a designer can receive. It means the software stopped getting in the way of the actual work.
 
-![Operational design in practice](/images/uploads/AYCE%20-%20Overview.svg)
+![Operational design in practice](/images/uploads/1.1%20Data%20ready%20-%20After.png)
 
 ## What Operational Design Actually Means in Practice
 
