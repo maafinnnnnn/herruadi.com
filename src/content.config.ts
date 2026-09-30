@@ -28,6 +28,12 @@ const work = defineCollection({
     liveUrl: z.string().url().optional(),
     challenge: z.string(),
     approach: z.string(),
+    fieldResearch: z
+      .object({
+        body: z.string(),
+        postSlug: z.string(),
+      })
+      .optional(),
     outcome: z.string(),
     galleryCount: z.number().optional().default(3),
     galleryRatio: z.string().optional().default('1440/1024'),

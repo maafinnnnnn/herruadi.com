@@ -26,6 +26,13 @@ approach: >
   touchpoint in the kitchen: how ingredients become prep items, how prep
   becomes stock, how stock gets purchased and tracked. The system had to be
   built on how kitchens actually work, not how software assumes they work.
+fieldResearch:
+  body: >
+    Before designing anything, I spent time in a working kitchen during
+    service, watching staff, counting interactions, and mapping where
+    attention broke down. The brief said "make it cleaner." The real problem
+    was too many decisions at the worst possible moments.
+  postSlug: kitchen-chaos-saas
 outcome: >
   AYCE is currently in active piloting with real kitchen teams, with full
   design ownership carried from a blank page through to launch.

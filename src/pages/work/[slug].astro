@@ -68,6 +68,17 @@ const [galleryW, galleryH] = data.galleryRatio.split('/');
     <p style="font-size:17px; line-height:1.7; color:var(--ink2); max-width:65ch;">{data.approach}</p>
   </section>
 
+  <!-- ============ FIELD RESEARCH ============ -->
+  {data.fieldResearch && (
+    <section style="padding:32px 0; border-top:1px solid var(--rule-strong);">
+      <p class="eyebrow" style="margin-bottom:20px;">Field Research</p>
+      <p style="font-size:17px; line-height:1.7; color:var(--ink2); max-width:65ch;">{data.fieldResearch.body}</p>
+      <a class="case-link" href={`/blog/${data.fieldResearch.postSlug}`}>
+        Read the full field notes →
+      </a>
+    </section>
+  )}
+
   <!-- ============ THE WORK ============ -->
   <section style="padding:32px 0 40px; border-top:1px solid var(--rule-strong);">
     <p class="eyebrow" style="margin-bottom:20px;">The Work</p>
