@@ -2,12 +2,8 @@
 title: AYCE
 label: F&B SaaS · UI/UX Lead
 oneliner: Turning the chaos of kitchen operations into a system so simple, it runs itself.
-summary: >
-  PLACEHOLDER — needs a real pass: AYCE's kitchen operations ran on tangled,
-  software-unfriendly data: menu items, ingredients, prep, and stock all
-  moving at once. Full end-to-end design ownership started with mapping how
-  kitchens actually work before any screen was drawn. The result is a system
-  currently in active piloting with real kitchen teams.
+summary: "AYCE's kitchen software ran on tangled data: menu items, ingredients, prep and stock all moving at once. I owned the design end to end and started by mapping how kitchens actually work, which shifted the goal from adding features to removing decisions staff had to make under pressure. The system is now being piloted with real kitchen teams."
+updatedDate: ''
 tags:
   - SaaS
   - Operations Design
