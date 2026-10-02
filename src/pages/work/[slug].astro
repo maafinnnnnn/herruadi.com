@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 import RedlineLayout from '../../layouts/RedlineLayout.astro';
 import RedlineCTA from '../../components/redline/RedlineCTA.astro';
+import StructuredData from '../../components/StructuredData.astro';
+import { personSchema } from '../../config/person';
+import { isPlaceholderSummary } from '../../lib/content';
 
 export async function getStaticPaths() {
   const projects = await getCollection('work');
@@ -20,6 +23,24 @@ const next = allWork[(currentIndex + 1) % allWork.length];
 
 const galleryPlaceholders = Array.from({ length: data.galleryCount });
 const [galleryW, galleryH] = data.galleryRatio.split('/');
+
+const pageUrl = Astro.url.href;
+const thumbURL = data.thumb ? new URL(data.thumb, Astro.site).toString() : undefined;
+
+const updatedDateFormatted = data.updatedDate
+  ? new Date(data.updatedDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+  : undefined;
+const updatedDateISO = data.updatedDate ? new Date(data.updatedDate).toISOString() : undefined;
+
+const creativeWorkSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: data.title,
+  description: data.oneliner,
+  creator: personSchema,
+  url: pageUrl,
+  ...(thumbURL ? { image: thumbURL } : {}),
+};
 ---
 
 <RedlineLayout
@@ -29,18 +50,32 @@ const [galleryW, galleryH] = data.galleryRatio.split('/');
   image={`/og/work/${project.id}.png`}
   type="article"
 >
+  <StructuredData schema={creativeWorkSchema} />
+
+  <article>
   <!-- ============ CASE HERO ============ -->
   <section class="page-hero">
     <div class="back-crumb">
       <a href="/work">← Work</a>
       <span class="sep">·</span>
       <span class="meta">{data.label}</span>
+      <span class="sep">·</span>
+      <span class="meta">By Herru Adi</span>
+      {updatedDateFormatted && (
+        <>
+          <span class="sep">·</span>
+          <span class="meta">Updated <time datetime={updatedDateISO}>{updatedDateFormatted}</time></span>
+        </>
+      )}
     </div>
     <h1 class="page-title">{data.title}</h1>
     <p class="page-lead">{data.oneliner}</p>
     <p class="tags" style="margin-top:20px;">
       {data.tags.map((tag) => <span>{tag}</span>)}
     </p>
+    {!isPlaceholderSummary(data.summary) && (
+      <p style="font-size:17px; line-height:1.7; color:var(--ink2); max-width:65ch; margin-top:20px;">{data.summary}</p>
+    )}
     {data.liveUrl && (
       <a class="case-link" href={data.liveUrl} target="_blank" rel="noopener noreferrer">
         Visit live site ↗
@@ -134,6 +169,7 @@ const [galleryW, galleryH] = data.galleryRatio.split('/');
       <p>{data.outcome}</p>
     </div>
   </section>
+  </article>
 
   <!-- ============ NEXT PROJECT ============ -->
   <section>

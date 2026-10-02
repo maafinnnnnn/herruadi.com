@@ -4,6 +4,9 @@ import { join } from 'node:path';
 import { getCollection, render } from 'astro:content';
 import RedlineLayout from '../../layouts/RedlineLayout.astro';
 import RedlineCTA from '../../components/redline/RedlineCTA.astro';
+import StructuredData from '../../components/StructuredData.astro';
+import { personSchema } from '../../config/person';
+import { isPlaceholderSummary } from '../../lib/content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -27,12 +30,36 @@ const pubDateFormatted = new Date(post.data.pubDate).toLocaleDateString('en-US',
   day: 'numeric',
   year: 'numeric',
 });
+const pubDateISO = new Date(post.data.pubDate).toISOString();
+
+const updatedDateFormatted = post.data.updatedDate
+  ? new Date(post.data.updatedDate).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    })
+  : undefined;
+const updatedDateISO = post.data.updatedDate ? new Date(post.data.updatedDate).toISOString() : undefined;
 
 const heroExists = Boolean(post.data.heroImage) && existsSync(join(process.cwd(), 'public', post.data.heroImage ?? ''));
 
 const pageUrl = Astro.url.href;
 const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(post.data.title)}`;
 const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pageUrl)}`;
+
+const heroImageURL =
+  heroExists && post.data.heroImage ? new URL(post.data.heroImage, Astro.site).toString() : undefined;
+
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: new Date(post.data.pubDate).toISOString(),
+  author: personSchema,
+  mainEntityOfPage: pageUrl,
+  ...(heroImageURL ? { image: heroImageURL } : {}),
+};
 ---
 
 <RedlineLayout
@@ -42,47 +69,60 @@ const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
   image={`/og/blog/${post.id}.png`}
   type="article"
 >
-  <!-- ============ ARTICLE HERO ============ -->
-  <section class="page-hero">
-    <div class="back-crumb">
-      <a href="/blog">← Blog</a>
-      <span class="sep">·</span>
-      <span class="meta">{post.data.category}</span>
-      <span class="sep">·</span>
-      <span class="meta">{pubDateFormatted}</span>
-    </div>
-    <h1 class="page-title" style="max-width: 22ch;">{post.data.title}</h1>
-    {post.data.tags.length > 0 && (
-      <p class="tags" style="margin-top:20px;">
-        {post.data.tags.map((tag) => <span>#{tag}</span>)}
-      </p>
-    )}
-  </section>
+  <StructuredData schema={blogPostingSchema} />
 
-  <!-- ============ HERO IMAGE ============ -->
-  <div style="padding:32px 0 0;">
-    {heroExists ? (
-      <img
-        class="post-hero-img"
-        src={post.data.heroImage}
-        alt={post.data.heroImageAlt ?? post.data.title}
-        width="1600"
-        height="900"
-      />
-    ) : (
-      <div class="post-hero">
-        <span class="post-hero-cat mono upper">{post.data.category}</span>
-        <span class="post-hero-path mono">{post.data.heroImage ?? `/images/blog/${post.id}/hero.png`}</span>
+  <article>
+    <!-- ============ ARTICLE HERO ============ -->
+    <section class="page-hero">
+      <div class="back-crumb">
+        <a href="/blog">← Blog</a>
+        <span class="sep">·</span>
+        <span class="meta">{post.data.category}</span>
+        <span class="sep">·</span>
+        <span class="meta">By Herru Adi</span>
+        <span class="sep">·</span>
+        <time class="meta" datetime={pubDateISO}>{pubDateFormatted}</time>
+        {updatedDateFormatted && (
+          <>
+            <span class="sep">·</span>
+            <span class="meta">Updated <time datetime={updatedDateISO}>{updatedDateFormatted}</time></span>
+          </>
+        )}
       </div>
-    )}
-  </div>
+      <h1 class="page-title" style="max-width: 22ch;">{post.data.title}</h1>
+      {!isPlaceholderSummary(post.data.summary) && <p class="page-lead">{post.data.summary}</p>}
+      {post.data.tags.length > 0 && (
+        <p class="tags" style="margin-top:20px;">
+          {post.data.tags.map((tag) => <span>#{tag}</span>)}
+        </p>
+      )}
+    </section>
 
-  <!-- ============ ARTICLE BODY ============ -->
-  <div style="padding:44px 0;">
-    <article class="doc-prose">
-      <Content />
-    </article>
-  </div>
+    <!-- ============ HERO IMAGE ============ -->
+    <div style="padding:32px 0 0;">
+      {heroExists ? (
+        <img
+          class="post-hero-img"
+          src={post.data.heroImage}
+          alt={post.data.heroImageAlt ?? post.data.title}
+          width="1600"
+          height="900"
+        />
+      ) : (
+        <div class="post-hero">
+          <span class="post-hero-cat mono upper">{post.data.category}</span>
+          <span class="post-hero-path mono">{post.data.heroImage ?? `/images/blog/${post.id}/hero.png`}</span>
+        </div>
+      )}
+    </div>
+
+    <!-- ============ ARTICLE BODY ============ -->
+    <div style="padding:44px 0;">
+      <div class="doc-prose">
+        <Content />
+      </div>
+    </div>
+  </article>
 
   <!-- ============ SHARE ============ -->
   <div style="padding-bottom:48px; border-top:1px solid var(--line); padding-top:36px;">

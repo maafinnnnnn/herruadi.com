@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/redline.css';
 import '../styles/redaction-run.css';
+import SEO from '../components/SEO.astro';
 import RedlineHeader from '../components/redline/RedlineHeader.astro';
 import RedlineFoot from '../components/redline/RedlineFoot.astro';
 
@@ -24,8 +25,6 @@ const {
 const canonicalURL = Astro.site
   ? new URL(Astro.url.pathname, Astro.site).toString()
   : Astro.url.href;
-
-const ogImageURL = Astro.site ? new URL(image, Astro.site).toString() : image;
 ---
 
 <!doctype html>
@@ -45,27 +44,11 @@ const ogImageURL = Astro.site ? new URL(image, Astro.site).toString() : image;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
-
-    <meta property="og:type" content={type} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="Herru Adi" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content={ogImageURL} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImageURL} />
+    <SEO title={title} description={description} canonicalURL={canonicalURL} image={image} type={type} />
 
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="alternate" type="application/rss+xml" title="Herru Adi — Field Notes" href="/rss.xml" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -1,6 +1,13 @@
 ---
 title: The most expensive design mistake isn't bad UI, but it's building the wrong thing
 description: Why shipping the wrong product costs more than any design bug, and how to spot the warning signs before it's too late.
+summary: >
+  PLACEHOLDER — needs a real pass: Teams often ship beautifully executed
+  products that nobody needs, because design conversations start with "how
+  should this look" instead of "are we building the right thing." This piece
+  argues the real cost isn't bad UI but the opportunity cost of building the
+  wrong product for months. It lays out the questions worth asking before any
+  design work begins.
 pubDate: 2026-09-12
 category: Business x Design
 tags:

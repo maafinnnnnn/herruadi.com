@@ -2,6 +2,12 @@
 title: Hoteely
 label: Property Management System · Product Design Lead
 oneliner: Transforming hotel management chaos into one clean, intuitive screen.
+summary: >
+  PLACEHOLDER — needs a real pass: Hotel management at Glovory was chaotic by
+  nature, with guests, rooms, reservations, and finances tangled across
+  shifts and departments. The brief was simple to say and hard to deliver:
+  make it feel effortless. The outcome was a distilled, minimalist interface
+  now running as the client's day-to-day property management system.
 tags: [Enterprise, Dashboard Design, Middle East]
 featured: false
 order: 2

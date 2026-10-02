@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
+import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { compressImagesInDir } from './scripts/compress-images.mjs';
 
@@ -25,5 +26,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  integrations: [compressImages()]
+  integrations: [compressImages(), sitemap()]
 });

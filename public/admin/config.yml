@@ -23,7 +23,18 @@ collections:
     fields:
       - { name: title, label: Title, widget: string }
       - { name: description, label: Description, widget: text }
+      - name: summary
+        label: Summary
+        widget: text
+        hint: "2-3 sentences for search engines and AI tools: the problem, what you decided to do, the outcome. Shown at the top of the article too."
       - { name: pubDate, label: "Publish Date", widget: datetime, type: date, format: "YYYY-MM-DD" }
+      - name: updatedDate
+        label: "Updated Date"
+        widget: datetime
+        type: date
+        format: "YYYY-MM-DD"
+        required: false
+        hint: "Leave blank unless you've made a real revision since publishing."
       - name: category
         label: Category
         widget: select
@@ -53,6 +64,17 @@ collections:
       - { name: title, label: "Project Name", widget: string }
       - { name: label, label: "Role / Label", widget: string, hint: 'e.g. "F&B SaaS · UI/UX Lead"' }
       - { name: oneliner, label: "One-liner", widget: text }
+      - name: summary
+        label: Summary
+        widget: text
+        hint: "2-3 sentences for search engines and AI tools: the problem, what you decided to do, the outcome. Shown at the top of the case study too."
+      - name: updatedDate
+        label: "Updated Date"
+        widget: datetime
+        type: date
+        format: "YYYY-MM-DD"
+        required: false
+        hint: "Leave blank unless you've made a real revision since publishing."
       - { name: tags, label: Tags, widget: list, default: [] }
       - { name: featured, label: Featured, widget: boolean, default: false }
       - { name: order, label: Order, widget: number, value_type: int, default: 0, hint: "Lower numbers show first in the case log." }

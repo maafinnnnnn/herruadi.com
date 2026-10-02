@@ -2,6 +2,13 @@
 title: Vantagelab
 label: AI Crypto Dashboard · Solo Designer
 oneliner: Making sense of crypto market noise for a first-time designer in the blockchain space who refused to let complexity win.
+summary: >
+  PLACEHOLDER — needs a real pass: Vantagelab needed a crypto analytics
+  dashboard, a first foray into blockchain for both the client and the
+  designer, working solo across UK time zones on dense, fast-moving data.
+  Rather than let the domain's complexity win, the approach was to learn it
+  from scratch and design for clarity first. Vantagelab shipped and is live,
+  designed solo from ideation through launch.
 tags: [AI, Data Visualization, UK Client]
 featured: false
 order: 3

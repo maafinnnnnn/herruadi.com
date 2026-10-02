@@ -1,6 +1,13 @@
 ---
 title: What a kitchen chaos taught me about SaaS product design
 description: Designing AYCE's kitchen operations system taught me something no design course could. A behind-the-scenes look at operational software design.
+summary: >
+  PLACEHOLDER — needs a real pass: AYCE's brief was to make its kitchen
+  management interface "cleaner," but a day embedded in a working kitchen
+  revealed the real issue: the software asked staff to make micro-decisions
+  at the exact moments they had the least bandwidth. The fix reframed the
+  problem from adding capability to removing decisions. That field research
+  became the foundation for AYCE's redesign.
 pubDate: 2026-09-12
 category: Field Notes
 tags:

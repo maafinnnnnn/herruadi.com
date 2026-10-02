@@ -1,6 +1,8 @@
 ---
 import RedlineLayout from '../layouts/RedlineLayout.astro';
 import RedlineCTA from '../components/redline/RedlineCTA.astro';
+import StructuredData from '../components/StructuredData.astro';
+import { personSchema } from '../config/person';
 ---
 
 <RedlineLayout
@@ -8,6 +10,7 @@ import RedlineCTA from '../components/redline/RedlineCTA.astro';
   description="I help startups and growing teams figure out what to build, how to build it, and why it matters. Then I make it real."
   active=""
 >
+  <StructuredData schema={{ '@context': 'https://schema.org', ...personSchema }} />
   <style>
     .hero {
       padding: 64px 0 56px;

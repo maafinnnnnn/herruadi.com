@@ -6,7 +6,9 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    summary: z.string(),
     pubDate: z.date(),
+    updatedDate: z.date().optional(),
     category: z.string(),
     tags: z.array(z.string()),
     heroImage: z.string().optional(),
@@ -20,6 +22,8 @@ const work = defineCollection({
     title: z.string(),
     label: z.string(),
     oneliner: z.string(),
+    summary: z.string(),
+    updatedDate: z.date().optional(),
     tags: z.array(z.string()),
     featured: z.boolean().optional().default(false),
     order: z.number().optional().default(0),

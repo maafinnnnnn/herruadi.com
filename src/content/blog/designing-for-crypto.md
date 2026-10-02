@@ -1,6 +1,14 @@
 ---
 title: Designing for crypto when you know nothing about crypto
 description: What happens when you have to design for a domain you don't understand. A story about learning fast, asking better questions, and not faking expertise.
+summary: >
+  PLACEHOLDER — needs a real pass: Vantagelab needed a crypto analytics
+  dashboard redesigned, but the real challenge was understanding a domain of
+  on-chain data the designer knew nothing about. Instead of starting in
+  Figma, two weeks went into studying trader workflows and asking the basic
+  questions domain experts had stopped asking. The result was an information
+  architecture built around moments of use rather than generic best
+  practices.
 pubDate: 2026-09-12
 category: Field Notes
 tags:
