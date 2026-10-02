@@ -1,15 +1,9 @@
 ---
 title: Design Thinking, Double Diamond, or Design Sprint? A Practical Guide to Choosing the Right Method
 description: Most designers can define Design Thinking, Double Diamond, and Design Sprint. Fewer can say which one a project actually needs. Here's how to decide.
-summary: >
-  PLACEHOLDER — needs a real pass: Most teams can define Design Thinking,
-  Double Diamond, and Design Sprint but struggle to pick the right one for a
-  given project. This piece reframes them as answers to different
-  constraints rather than a hierarchy, with Design Sprint as a time-boxed
-  tactic rather than a replacement for the other two. The result is a
-  decision guide built around the question that actually matters: when to
-  reach for each one.
+summary: 'Most teams can define Design Thinking, Double Diamond, and Design Sprint but struggle to pick the right one for a given project. This piece reframes them as answers to different constraints rather than a hierarchy, with Design Sprint as a time-boxed tactic rather than a replacement for the other two. The result is a decision guide built around the question that actually matters: when to reach for each one.'
 pubDate: 2026-09-14
+updatedDate: ''
 category: Process
 tags:
   - design-process
