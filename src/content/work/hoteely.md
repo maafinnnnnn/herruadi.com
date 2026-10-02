@@ -2,7 +2,7 @@
 title: Hoteely
 label: Property Management System · Product Design Lead
 oneliner: Transforming hotel management chaos into one clean, intuitive screen.
-summary: "Hotel operations at Glovory were chaotic by nature: guests, rooms, reservations and finances tangled across shifts and departments. Instead of putting every PM request on one screen, I kept only the essential actions up front and moved the rest to where they're actually needed, so new staff could work without being overwhelmed while experienced staff still had everything within reach. The result was a calmer, focused interface now running as the client's day-to-day property management system."
+summary: "Hotel operations were chaotic by nature: guests, rooms, reservations and finances tangled across shifts and departments. Instead of putting every PM request on one screen, I kept only the essential actions up front and moved the rest to where they're actually needed, so new staff could work without being overwhelmed while experienced staff still had everything within reach. The result was a calmer, focused interface now running as the client's day-to-day property management system."
 updatedDate: ''
 tags:
   - Enterprise
