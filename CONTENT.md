@@ -10,7 +10,7 @@
 | **Name / Brand** | Herru Adi |
 | **Positioning** | Strategic partner yang kebetulan jago design |
 | **Tone of Voice** | Warm, approachable, premium |
-| **Target Clients** | Startups, corporates, agencies |
+| **Target Clients** | Teams of any size: startups, corporates, agencies, and established organizations |
 | **Core Value** | Hidup harus berguna bagi sesama |
 | **Tagline** | "Great design won't save a broken business. But the right design partner might." |
 
@@ -29,8 +29,8 @@ Great design won't save a broken business.
 But the right design partner might.
 
 Subheadline:
-I'm Herru Adi. I help startups and growing teams figure out
-what to build, how to build it, and why it matters —
+I'm Herru Adi. I help teams figure out
+what to build, how to build it, and why it matters,
 then I make it beautiful.
 
 CTA Button:
