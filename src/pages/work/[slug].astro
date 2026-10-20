@@ -56,7 +56,7 @@ const creativeWorkSchema = {
   <!-- ============ CASE HERO ============ -->
   <section class="page-hero">
     <div class="back-crumb">
-      <a href="/work">← Work</a>
+      <a href="/work/">← Work</a>
       <span class="sep">·</span>
       <span class="meta">{data.label}</span>
       <span class="sep">·</span>
@@ -108,7 +108,7 @@ const creativeWorkSchema = {
     <section style="padding:32px 0; border-top:1px solid var(--rule-strong);">
       <p class="eyebrow" style="margin-bottom:20px;">Field Research</p>
       <p style="font-size:17px; line-height:1.7; color:var(--ink2); max-width:65ch;">{data.fieldResearch.body}</p>
-      <a class="case-link" href={`/blog/${data.fieldResearch.postSlug}`}>
+      <a class="case-link" href={`/blog/${data.fieldResearch.postSlug}/`}>
         Read the full field notes →
       </a>
     </section>
@@ -179,7 +179,7 @@ const creativeWorkSchema = {
         <h2>Keep reading the log.</h2>
       </div>
     </div>
-    <a class="note" href={`/work/${next.id}`}>
+    <a class="note" href={`/work/${next.id}/`}>
       <span class="note-cat">{next.data.label}</span>
       <span class="note-title">{next.data.title}</span>
       <span class="note-arrow">view case →</span>

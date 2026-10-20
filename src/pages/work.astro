@@ -32,7 +32,7 @@ const sorted = allWork.sort((a, b) => a.data.order - b.data.order);
           <p class="tags">
             {project.data.tags.map((tag) => <span>{tag}</span>)}
           </p>
-          <a class="case-link" href={`/work/${project.id}`}>Read the case study →</a>
+          <a class="case-link" href={`/work/${project.id}/`}>Read the case study →</a>
         </div>
         <div class="case-status">
           <span class="status-pill">Shipped</span>

@@ -97,7 +97,7 @@ const blogPostingSchema = {
     <!-- ============ ARTICLE HERO ============ -->
     <section class="page-hero">
       <div class="back-crumb">
-        <a href="/blog">← Blog</a>
+        <a href="/blog/">← Blog</a>
         <span class="sep">·</span>
         <span class="meta">{post.data.category}</span>
         <span class="sep">·</span>
@@ -168,7 +168,7 @@ const blogPostingSchema = {
         </div>
       </div>
       {related.map((rel) => (
-        <a class="note" href={`/blog/${rel.id}`}>
+        <a class="note" href={`/blog/${rel.id}/`}>
           <span class="note-cat">{rel.data.category}</span>
           <span class="note-title">{rel.data.title}</span>
           <span class="note-arrow">read →</span>

@@ -54,7 +54,7 @@ Skip the "which tool is better" debate. Start with the question your team is act
 
 In practice the two work best as a sequence. The journey map finds the moments that hurt. The blueprint digs into the worst of them.
 
-And if you're still not sure which wider method these tools even belong in, I wrote a [practical guide to choosing between Design Thinking, Double Diamond and Design Sprint](/blog/design-thinking-double-diamond-or-design-sprint-a-practical-guide-to-choosing-the-right-method).
+And if you're still not sure which wider method these tools even belong in, I wrote a [practical guide to choosing between Design Thinking, Double Diamond and Design Sprint](/blog/design-thinking-double-diamond-or-design-sprint-a-practical-guide-to-choosing-the-right-method/).
 
 ## What it costs to pick the wrong one
 
