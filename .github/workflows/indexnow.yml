@@ -1,0 +1,47 @@
+name: IndexNow
+
+# Tells Bing and other IndexNow engines about new or changed posts once the deploy is live.
+# Google does not support IndexNow: request indexing there from Search Console.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/content/blog/**'
+      - 'src/content/work/**'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    env:
+      HOST: herruadi.com
+      KEY: 1d1205821be1b9aa1759418d02928278
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect changed URLs
+        run: |
+          BEFORE="${{ github.event.before }}"
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then BEFORE="HEAD~1"; fi
+          git diff --name-only --diff-filter=AM "$BEFORE" "${{ github.sha }}" -- 'src/content/blog/*.md' 'src/content/work/*.md' \
+            | sed -E "s#^src/content/(blog|work)/(.+)\.md\$#https://$HOST/\1/\2/#" > urls.txt
+          echo "URLs to submit:"
+          cat urls.txt
+
+      - name: Wait for the deploy, then submit
+        run: |
+          if [ ! -s urls.txt ]; then echo "Nothing to submit"; exit 0; fi
+          FIRST=$(head -n 1 urls.txt)
+          for i in $(seq 1 30); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$FIRST")
+            if [ "$code" = "200" ]; then break; fi
+            echo "Waiting for $FIRST (got $code), attempt $i"
+            sleep 30
+          done
+          jq -Rn --arg host "$HOST" --arg key "$KEY" --arg loc "https://$HOST/$KEY.txt" \
+            '{host: $host, key: $key, keyLocation: $loc, urlList: [inputs]}' < urls.txt \
+            | curl -sS -X POST "https://api.indexnow.org/indexnow" \
+                -H "Content-Type: application/json; charset=utf-8" \
+                --data @- -w "\nIndexNow HTTP %{http_code}\n"

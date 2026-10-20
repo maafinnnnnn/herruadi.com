@@ -22,11 +22,14 @@ collections:
     format: frontmatter
     fields:
       - { name: title, label: Title, widget: string }
-      - { name: description, label: Description, widget: text }
+      - name: description
+        label: Description
+        widget: text
+        hint: "Meta description for search results. Aim for 150 to 160 characters."
       - name: summary
         label: Summary
         widget: text
-        hint: "2-3 sentences for search engines and AI tools: the problem, what you decided to do, the outcome. Shown at the top of the article too."
+        hint: "Answer-first, 2-3 sentences. The first sentence should directly answer the question the article is about, and every sentence should still make sense if quoted on its own. No hook and no 'In this article' opener. Shown at the top of the article and read by search and AI tools."
       - { name: pubDate, label: "Publish Date", widget: datetime, type: date, format: "YYYY-MM-DD" }
       - name: updatedDate
         label: "Updated Date"
@@ -40,7 +43,11 @@ collections:
         widget: select
         options: ["Business x Design", "Field Notes", "Process"]
         default: "Field Notes"
-      - { name: tags, label: Tags, widget: list, default: [] }
+      - name: tags
+        label: Tags
+        widget: list
+        default: []
+        hint: "3 to 5 tags. Reuse existing tags so related articles link to each other automatically."
       - name: heroImage
         label: "Hero Image"
         widget: image
@@ -50,8 +57,11 @@ collections:
         label: "Hero Image Alt Text"
         widget: string
         required: false
-        hint: "Describe what's actually in the photo, for SEO and screen readers."
-      - { name: body, label: "Article Content", widget: markdown }
+        hint: "Describe what's actually in the photo, for SEO and screen readers. Required whenever a Hero Image is set."
+      - name: body
+        label: "Article Content"
+        widget: markdown
+        hint: "Include at least one H2 phrased as a question people actually ask, with the answer in its first sentence. Alt text on every image. No em dashes. If you revise after publishing, set Updated Date."
 
   - name: work
     label: "Work (Case Studies)"

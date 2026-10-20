@@ -21,9 +21,18 @@ const { Content } = await render(post);
 
 const allPosts = await getCollection('blog');
 const toSlug = (s: string) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+// Rank by shared tags, then same category, then recency, so every post links to
+// three others and older posts pick up links to new ones automatically.
 const related = allPosts
-  .filter((p) => p.id !== post.id && toSlug(p.data.category) === toSlug(post.data.category))
-  .slice(0, 2);
+  .filter((p) => p.id !== post.id)
+  .map((p) => {
+    const shared = p.data.tags.filter((t) => post.data.tags.includes(t)).length;
+    const sameCategory = toSlug(p.data.category) === toSlug(post.data.category) ? 1 : 0;
+    return { p, score: shared * 2 + sameCategory };
+  })
+  .sort((a, b) => b.score - a.score || +new Date(b.p.data.pubDate) - +new Date(a.p.data.pubDate))
+  .slice(0, 3)
+  .map(({ p }) => p);
 
 const pubDateFormatted = new Date(post.data.pubDate).toLocaleDateString('en-US', {
   month: 'long',
@@ -50,15 +59,24 @@ const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
 const heroImageURL =
   heroExists && post.data.heroImage ? new URL(post.data.heroImage, Astro.site).toString() : undefined;
 
+const summaryText = isPlaceholderSummary(post.data.summary) ? undefined : post.data.summary.trim();
+const schemaImageURL = heroImageURL ?? new URL(`/og/blog/${post.id}.png`, Astro.site).toString();
+
 const blogPostingSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   headline: post.data.title,
   description: post.data.description,
-  datePublished: new Date(post.data.pubDate).toISOString(),
+  ...(summaryText ? { abstract: summaryText } : {}),
+  datePublished: pubDateISO,
+  dateModified: updatedDateISO ?? pubDateISO,
+  inLanguage: 'en',
+  articleSection: post.data.category,
+  ...(post.data.tags.length > 0 ? { keywords: post.data.tags.join(', ') } : {}),
   author: personSchema,
+  publisher: personSchema,
   mainEntityOfPage: pageUrl,
-  ...(heroImageURL ? { image: heroImageURL } : {}),
+  image: schemaImageURL,
 };
 ---
 
@@ -68,6 +86,10 @@ const blogPostingSchema = {
   active="blog"
   image={`/og/blog/${post.id}.png`}
   type="article"
+  publishedTime={pubDateISO}
+  modifiedTime={updatedDateISO ?? pubDateISO}
+  section={post.data.category}
+  tags={post.data.tags}
 >
   <StructuredData schema={blogPostingSchema} />
 
@@ -104,7 +126,7 @@ const blogPostingSchema = {
         <img
           class="post-hero-img"
           src={post.data.heroImage}
-          alt={post.data.heroImageAlt ?? post.data.title}
+          alt={post.data.heroImageAlt || post.data.title}
           width="1600"
           height="900"
         />

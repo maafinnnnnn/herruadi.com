@@ -7,9 +7,11 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/check-posts.mjs --warn-only",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:posts": "node scripts/check-posts.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
