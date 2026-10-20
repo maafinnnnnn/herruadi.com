@@ -11,7 +11,7 @@ tags:
   - research
   - vantagelab
 heroImage: /images/uploads/Crypto-hero.png
-heroImageAlt: ''
+heroImageAlt: Candlestick chart on a dark screen with red and green price candles trending downward, overlaid with blue, purple and yellow moving average lines.
 ---
 
 When Vantagelab reached out, I was honest about one thing upfront: I knew very little about crypto.

@@ -25,15 +25,15 @@ That's not a UI failure. The screen was never the cause. Somewhere behind it, tw
 
 This is the gap between two tools that get confused all the time: the **user journey map** and the **service blueprint**. Designers often treat them as two versions of the same thing. They answer different questions, and picking the wrong one is a quiet way to spend a lot of budget on the wrong layer.
 
-## What each one actually shows
+## What is the difference between a journey map and a service blueprint?
 
 **A user journey map** follows a person through an experience from their side. What they do, what they think, how they feel, where they get stuck. It's built from the user's perspective, and its strength is making a team feel the experience instead of just reading about it.
 
-![User journey map of a five-step sign-up flow, from picking a provider to getting a result, with an emotion curve that bottoms out at step four, submit and wait, flagged as the pain point](/images/uploads/02-journey-map.svg)
+![A user journey map showing one person's steps, their feelings along the way, and a pain point right after they submit a request.](/images/uploads/02-journey-map.svg)
 
 **A service blueprint** takes that same journey and adds the organization underneath it. It splits the work into layers: what the customer does, what staff do where the customer can see it (frontstage), what happens where they can't (backstage), and the systems and processes that support all of it. The line between frontstage and backstage is the important one. Most experience problems live right below it.
 
-![Service blueprint of the same sign-up flow, adding frontstage, backstage and support system layers below the journey map, with a red path tracing the step-four pain point down to its cause behind the line of visibility](/images/uploads/03-journey-to-blueprint.svg)
+![The same journey extended into a service blueprint, with layers for customer actions, frontstage, backstage and supporting systems, split by the line of visibility.](/images/uploads/03-journey-to-blueprint.svg)
 
 Here's the simplest way to hold the difference:
 
@@ -54,9 +54,11 @@ Skip the "which tool is better" debate. Start with the question your team is act
 
 In practice the two work best as a sequence. The journey map finds the moments that hurt. The blueprint digs into the worst of them.
 
+And if you're still not sure which wider method these tools even belong in, I wrote a [practical guide to choosing between Design Thinking, Double Diamond and Design Sprint](/blog/design-thinking-double-diamond-or-design-sprint-a-practical-guide-to-choosing-the-right-method).
+
 ## What it costs to pick the wrong one
 
-![Four-step loop: a journey map flags a pain point, the team polishes the screen, the metric barely moves, and the same complaint returns while the root cause stays untouched backstage](/images/uploads/04-wrong-fix-loop.svg)
+![A loop showing a team redesigning the screen, the pain point returning, and the team redesigning again because the real cause sits backstage.](/images/uploads/04-wrong-fix-loop.svg)
 
 Using only a journey map on a problem that lives backstage is the expensive mistake. The map points at the symptom, the team fixes the symptom, and the cause keeps producing it. You can run this loop for months. Each round feels like progress because the screen really did get better, but the metric you care about barely moves.
 
@@ -72,7 +74,7 @@ But a flow that ends in someone else's approval has never been as easy as a good
 
 A journey map would have shown me a pain point right after the document upload and left it there. It took thinking in layers to see what was actually going on: the frontstage was smooth, but the experience was being set backstage, by verification requirements and a partner we didn't control. Polishing the upload screen one more time was never going to change that.
 
-![The same service blueprint colored by ownership: the app screens and early backend steps belong to the team, while the provider's review and decision steps sit with the provider, where the pain point originates](/images/uploads/05-blueprint-ownership.svg)
+![A service blueprint highlighting a backstage handoff between two teams where nobody owns the delay.](/images/uploads/05-blueprint-ownership.svg)
 
 That's when the question changed for me. Not "how do we make this screen better," but "which parts of this experience do we actually own, and what can the screen do about the parts we don't?"
 
