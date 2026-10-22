@@ -302,7 +302,7 @@ export const hireId: HireContent = {
     experience: [
       {
         name: 'AYCE',
-        meta: 'F&B SaaS, Brunei · Product Design Lead',
+        meta: 'F&B SaaS, Brunei · Senior UI/UX Designer',
         body: 'Memegang produk dari ideation sampai pilot. Waktu workflow operator turun 30%. Memperkenalkan MCP di handoff design-to-dev.',
       },
       {

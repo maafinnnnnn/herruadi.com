@@ -1,6 +1,6 @@
 ---
 title: AYCE
-label: F&B SaaS · UI/UX Lead
+label: F&B SaaS · Senior UI/UX Designer
 oneliner: Turning the chaos of kitchen operations into a system so simple, it runs itself.
 summary: "AYCE's kitchen software ran on tangled data: menu items, ingredients, prep and stock all moving at once. I owned the design end to end and started by mapping how kitchens actually work, which shifted the goal from adding features to removing decisions staff had to make under pressure. The system is now being piloted with real kitchen teams."
 updatedDate: ''

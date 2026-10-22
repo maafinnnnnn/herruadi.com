@@ -72,7 +72,7 @@ collections:
     format: frontmatter
     fields:
       - { name: title, label: "Project Name", widget: string }
-      - { name: label, label: "Role / Label", widget: string, hint: 'e.g. "F&B SaaS · UI/UX Lead"' }
+      - { name: label, label: "Role / Label", widget: string, hint: 'e.g. "F&B SaaS · Senior UI/UX Designer"' }
       - { name: oneliner, label: "One-liner", widget: text }
       - name: summary
         label: Summary

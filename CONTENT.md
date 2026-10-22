@@ -63,7 +63,7 @@ Logos (in order of impact):
 
 #### Card 1 — AYCE
 ```
-Label:    F&B SaaS · UI/UX Lead
+Label:    F&B SaaS · Senior UI/UX Designer
 Title:    AYCE
 One-liner: Turning the chaos of kitchen operations into a system
            so simple, it runs itself.
