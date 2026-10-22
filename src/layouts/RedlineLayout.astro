@@ -42,14 +42,20 @@ const canonicalURL = Astro.site
 <!doctype html>
 <html lang={lang}>
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HZGPSPWPF4"></script>
+    <!-- Google tag (gtag.js). Only loaded on the production hostnames, so local
+         dev servers and preview deploys never send hits. gtag() is always
+         defined, so event calls elsewhere stay harmless no-ops when GA4 is off. -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-HZGPSPWPF4');
+      if (location.hostname === 'herruadi.com' || location.hostname === 'www.herruadi.com') {
+        var gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-HZGPSPWPF4';
+        document.head.appendChild(gaScript);
+        gtag('js', new Date());
+        gtag('config', 'G-HZGPSPWPF4');
+      }
     </script>
 
     <meta charset="UTF-8" />
