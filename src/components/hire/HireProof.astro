@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import HireIcon from './HireIcon.astro';
+import { waLink } from '../../config/hire/wa';
+import type { HireContent } from '../../config/hire/types';
+
+interface Props {
+  content: HireContent;
+}
+const { content } = Astro.props;
+const { proof, ui } = content;
+
+// Titles and thumbnails come from the case studies themselves, so the
+// cards stay in sync when a case study is edited in the CMS.
+const works = await getCollection('work');
+const cards = proof.portfolio.map((item) => {
+  if (item.kind === 'external') {
+    return { ...item, thumb: undefined as string | undefined };
+  }
+  const entry = works.find((w) => w.id === item.id);
+  return {
+    kind: 'work' as const,
+    title: entry?.data.title ?? item.id,
+    thumb: entry?.data.thumb,
+    href: `/work/${item.id}/`,
+    descriptor: item.descriptor,
+    ctaId: item.ctaId,
+  };
+});
+---
+
+<section class="h-section" aria-labelledby="hire-proof">
+  <div class="h-head">
+    <p class="h-label">{proof.eyebrow}</p>
+    <h2 id="hire-proof" class="h-h2 reveal">{proof.title}</h2>
+    <p class="h-lead reveal">{proof.lead}</p>
+  </div>
+
+  <dl class="h-stats reveal">
+    {proof.stats.map((s) => (
+      <div class="h-stat">
+        <dt class="h-stat-label">{s.label}</dt>
+        <dd class="h-stat-value">{s.value}</dd>
+      </div>
+    ))}
+  </dl>
+
+  <h3 class="h-h3">{proof.portfolioTitle}</h3>
+  <ul class="h-cards">
+    {cards.map((card) => (
+      <li class:list={['h-card', 'reveal', { 'h-card--ext': card.kind === 'external' }]}>
+        <a href={card.href} target="_blank" rel="noopener noreferrer" data-cta={card.ctaId}>
+          {card.thumb ? (
+            <span class="h-card-thumb">
+              <img src={card.thumb} alt="" width="1440" height="1024" loading="lazy" decoding="async" />
+            </span>
+          ) : (
+            <span class="h-card-thumb h-card-thumb--ext" aria-hidden="true">
+              <span class="h-card-mark">{card.title}</span>
+            </span>
+          )}
+          <span class="h-card-body">
+            <span class="h-card-title">{card.title}</span>
+            <span class="h-card-desc">{card.descriptor}</span>
+          </span>
+          <span class="h-card-arrow" aria-hidden="true"><HireIcon name="external" size={18} /></span>
+          <span class="h-sr">{ui.newTab}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <h3 class="h-h3">{proof.experienceTitle}</h3>
+  <ul class="h-exp">
+    {proof.experience.map((item) => (
+      <li class="h-exp-row reveal">
+        <div class="h-exp-who">
+          <span class="h-exp-name">{item.name}</span>
+          <span class="h-exp-meta mono">{item.meta}</span>
+        </div>
+        <p class="h-exp-body">{item.body}</p>
+      </li>
+    ))}
+  </ul>
+
+  <div class="h-after">
+    <a class="sig-link h-cta" href={waLink(content, 'general')} target="_blank" rel="noopener noreferrer" data-cta="proof-wa">
+      <HireIcon name="whatsapp" size={20} />
+      {proof.cta}
+      <span class="h-sr">{ui.newTab}</span>
+    </a>
+  </div>
+</section>

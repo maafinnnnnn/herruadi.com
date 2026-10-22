@@ -1,0 +1,153 @@
+---
+import HireIcon from './HireIcon.astro';
+import { packageWaLink, waLink } from '../../config/hire/wa';
+import type { HireContent } from '../../config/hire/types';
+
+interface Props {
+  content: HireContent;
+}
+const { content } = Astro.props;
+const { pricing, compare, ui } = content;
+---
+
+<section class="h-section" aria-labelledby="hire-pricing" id="paket">
+  <div class="h-head">
+    <p class="h-label">{pricing.eyebrow}</p>
+    <h2 id="hire-pricing" class="h-h2 reveal">{pricing.title}</h2>
+    {pricing.lead && <p class="h-lead reveal">{pricing.lead}</p>}
+  </div>
+
+  <ul class="h-pkgs">
+    {pricing.packages.map((pkg) => (
+      <li class:list={['h-pkg', 'reveal', { 'is-popular': pkg.popular }]}>
+        {pkg.popular && <span class="h-pkg-flag">{ui.popular}</span>}
+        <h3 class="h-pkg-name">{pkg.name}</h3>
+        <p class="h-pkg-price">
+          <span class="h-pkg-from mono">{ui.from}</span>
+          <span class="h-pkg-amount">{pkg.priceLabel}</span>
+          <span class="h-pkg-unit">{ui.perMonth}</span>
+        </p>
+        <p class="h-pkg-hours mono">{pkg.hours}</p>
+        <p class="h-pkg-for">{pkg.forWhom}</p>
+        <a
+          class:list={['h-btn', pkg.popular ? 'h-btn--acc' : 'h-btn--ink']}
+          href={packageWaLink(content, pkg)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta={`pkg-${pkg.id}`}
+        >
+          {ui.choosePackage}
+          <span class="h-sr"> {pkg.name} {ui.newTab}</span>
+        </a>
+        <p class="h-pkg-incl-label mono">{ui.includes}</p>
+        <ul class="h-checks">
+          {pkg.includes.map((point) => (
+            <li>
+              <HireIcon name="check" size={18} />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+
+  <div class="h-common reveal">
+    <p class="h-common-title mono">{pricing.commonTitle}</p>
+    <ul class="h-checks h-checks--cols">
+      {pricing.common.map((point) => (
+        <li>
+          <HireIcon name="check" size={18} />
+          <span>{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="h-banner reveal">
+    <div class="h-banner-col">
+      <h3>{pricing.freelance.title}</h3>
+      <p>{pricing.freelance.body}</p>
+      <a class="h-btn h-btn--ghost" href={waLink(content, 'freelance')} target="_blank" rel="noopener noreferrer" data-cta="freelance">
+        {pricing.freelance.cta}
+        <HireIcon name="arrow" size={16} />
+        <span class="h-sr">{ui.newTab}</span>
+      </a>
+    </div>
+    <div class="h-banner-col">
+      <h3>{pricing.custom.title}</h3>
+      <p>{pricing.custom.body}</p>
+      <a class="h-btn h-btn--ghost" href={waLink(content, 'custom')} target="_blank" rel="noopener noreferrer" data-cta="custom">
+        {pricing.custom.cta}
+        <HireIcon name="arrow" size={16} />
+        <span class="h-sr">{ui.newTab}</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="h-compare" data-compare data-label-show={ui.compareShow} data-label-hide={ui.compareHide}>
+    <button
+      type="button"
+      class="h-btn h-btn--ghost h-compare-toggle"
+      aria-expanded="false"
+      aria-controls="h-compare-panel"
+      data-compare-toggle
+      data-cta="compare-toggle"
+    >
+      <span data-compare-label>{ui.compareShow}</span>
+      <HireIcon name="plus" size={16} />
+    </button>
+
+    <div class="h-compare-panel" id="h-compare-panel" data-compare-panel>
+      <div class="h-compare-inner">
+        <h3 class="h-compare-title">{compare.title}</h3>
+
+        <div class="h-compare-table-wrap">
+          <table class="h-table h-compare-table">
+            <caption class="h-sr">{compare.title}</caption>
+            <thead>
+              <tr>
+                <td></td>
+                {pricing.packages.map((pkg) => (
+                  <th scope="col" class:list={{ 'is-popular': pkg.popular }}>{pkg.name}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {compare.rows.map((row) => (
+                <tr>
+                  <th scope="row">{row.label}</th>
+                  {row.values.map((v, i) => (
+                    <td class:list={{ 'is-popular': pricing.packages[i]?.popular }}>{v}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="h-compare-cards">
+          {pricing.packages.map((pkg, i) => (
+            <article class:list={['h-compare-card', { 'is-popular': pkg.popular }]}>
+              <h4>{pkg.name}</h4>
+              <dl>
+                {compare.rows.map((row) => (
+                  <div>
+                    <dt class="mono">{row.label}</dt>
+                    <dd>{row.values[i]}</dd>
+                  </div>
+                ))}
+              </dl>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="h-notes">
+    {pricing.notes.map((note) => (
+      <li>{note}</li>
+    ))}
+  </ul>
+</section>

@@ -1,0 +1,25 @@
+---
+import type { HireContent } from '../../config/hire/types';
+
+interface Props {
+  content: HireContent;
+}
+const { process } = Astro.props.content;
+---
+
+<section class="h-section" aria-labelledby="hire-process">
+  <div class="h-head">
+    <p class="h-label">{process.eyebrow}</p>
+    <h2 id="hire-process" class="h-h2 reveal">{process.title}</h2>
+    {process.lead && <p class="h-lead reveal">{process.lead}</p>}
+  </div>
+  <ol class="h-steps">
+    {process.steps.map((step, i) => (
+      <li class="h-step reveal">
+        <span class="h-step-no mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <h3>{step.title}</h3>
+        <p>{step.body}</p>
+      </li>
+    ))}
+  </ol>
+</section>

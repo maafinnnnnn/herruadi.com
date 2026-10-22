@@ -9,8 +9,10 @@ import RedlineFoot from '../components/redline/RedlineFoot.astro';
 interface Props {
   title?: string;
   description?: string;
-  active?: 'work' | 'about' | 'blog' | 'contact' | '';
+  active?: 'work' | 'about' | 'blog' | 'hire' | 'contact' | '';
   image?: string;
+  lang?: string;
+  locale?: string;
   type?: 'website' | 'article';
   publishedTime?: string;
   modifiedTime?: string;
@@ -23,6 +25,8 @@ const {
   description = "I help teams figure out what to build, how to build it, and why it matters. Then I make it real.",
   active = '',
   image = '/og/index.png',
+  lang = 'en',
+  locale = 'en_US',
   type = 'website',
   publishedTime,
   modifiedTime,
@@ -36,7 +40,7 @@ const canonicalURL = Astro.site
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HZGPSPWPF4"></script>
@@ -57,6 +61,7 @@ const canonicalURL = Astro.site
       description={description}
       canonicalURL={canonicalURL}
       image={image}
+      locale={locale}
       type={type}
       publishedTime={publishedTime}
       modifiedTime={modifiedTime}
@@ -86,6 +91,7 @@ const canonicalURL = Astro.site
         } catch (_) {}
       })();
     </script>
+    <slot name="head" />
     <script is:inline>
       (function () {
         try {

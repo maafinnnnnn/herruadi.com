@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../../assets/hire/abi-portrait.jpg';
+import type { HireContent } from '../../config/hire/types';
+
+interface Props {
+  content: HireContent;
+}
+const { audience } = Astro.props.content;
+---
+
+<section class="h-section" aria-labelledby="hire-audience">
+  <div class="h-audience">
+    <figure class="h-portrait reveal">
+      <Image
+        src={portrait}
+        alt={audience.photoAlt}
+        widths={[360, 540, 720]}
+        sizes="(max-width: 860px) 100vw, 380px"
+        loading="lazy"
+        decoding="async"
+        class="h-portrait-img"
+      />
+      <figcaption class="h-portrait-cap">
+        <span class="h-portrait-name">{audience.captionName}</span>
+        <span class="h-portrait-role mono">{audience.captionRole}</span>
+      </figcaption>
+    </figure>
+
+    <div class="h-audience-body">
+      <p class="h-label">{audience.eyebrow}</p>
+      <h2 id="hire-audience" class="h-h2 reveal">{audience.title}</h2>
+      {audience.lead && <p class="h-lead reveal">{audience.lead}</p>}
+      <ol class="h-pains">
+        {audience.items.map((item, i) => (
+          <li class="h-pain reveal">
+            <span class="h-pain-no mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

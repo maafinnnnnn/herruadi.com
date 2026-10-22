@@ -25,6 +25,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- [About](${base}/about/): Who I am and how I work`,
     `- [Work](${base}/work/): Case studies`,
     `- [Blog](${base}/blog/): Articles on product design, service design and strategy`,
+    `- [Hire](${base}/hire/): Hire Herru Adi directly as a dedicated product designer, monthly packages (page is in Indonesian)`,
     `- [Contact](${base}/contact/): How to start a conversation`,
     '',
     '## Articles',

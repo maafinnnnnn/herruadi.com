@@ -1,0 +1,47 @@
+---
+import HireIcon from './HireIcon.astro';
+import { waLink } from '../../config/hire/wa';
+import type { HireContent } from '../../config/hire/types';
+
+interface Props {
+  content: HireContent;
+}
+const { content } = Astro.props;
+const { versus, ui } = content;
+---
+
+<section class="h-section" aria-labelledby="hire-versus">
+  <div class="h-head">
+    <p class="h-label">{versus.eyebrow}</p>
+    <h2 id="hire-versus" class="h-h2 reveal">{versus.title}</h2>
+    {versus.lead && <p class="h-lead reveal">{versus.lead}</p>}
+  </div>
+
+  <table class="h-table h-versus reveal">
+    <caption class="h-sr">{versus.title}</caption>
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="col">{versus.outsourcingHeading}</th>
+        <th scope="col" class="is-direct">{versus.directHeading}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {versus.rows.map((row) => (
+        <tr>
+          <th scope="row">{row.label}</th>
+          <td data-label={versus.outsourcingHeading}>{row.outsourcing}</td>
+          <td data-label={versus.directHeading} class="is-direct">{row.direct}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <div class="h-after">
+    <a class="sig-link h-cta" href={waLink(content, 'general')} target="_blank" rel="noopener noreferrer" data-cta="versus-wa">
+      <HireIcon name="whatsapp" size={20} />
+      {versus.cta}
+      <span class="h-sr">{ui.newTab}</span>
+    </a>
+  </div>
+</section>

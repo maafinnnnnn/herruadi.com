@@ -1,0 +1,26 @@
+---
+import HireIcon from './HireIcon.astro';
+import { waLink } from '../../config/hire/wa';
+import type { HireContent } from '../../config/hire/types';
+
+interface Props {
+  content: HireContent;
+}
+const { content } = Astro.props;
+---
+
+<a
+  class="h-sticky"
+  href={waLink(content, 'general')}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-cta="sticky-wa"
+  data-sticky
+  data-visible="false"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <HireIcon name="whatsapp" size={20} />
+  {content.ui.stickyWhatsapp}
+  <span class="h-sr">{content.ui.newTab}</span>
+</a>

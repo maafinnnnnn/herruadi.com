@@ -1,0 +1,1358 @@
+/* ============================================================
+   /hire landing page
+   Built on the Signal tokens in redline.css. Only the hero is
+   expressive (oversized display word + cutout); everything else
+   stays in the base system: Archivo, Martian Mono, one accent.
+   ============================================================ */
+
+.hire {
+  --h-gap: clamp(56px, 8vw, 96px);
+  --icon-check-ink: var(--bg);
+}
+
+.h-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.h-icon {
+  flex-shrink: 0;
+}
+
+/* ---------- shared type ---------- */
+.h-label,
+.h-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+.h-label::before,
+.h-eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--acc);
+  flex-shrink: 0;
+}
+.h-h2 {
+  font-family: var(--sans);
+  font-stretch: 68%;
+  font-weight: 850;
+  font-size: clamp(2rem, 4.5vw, 3.35rem);
+  line-height: 0.96;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  margin-top: 16px;
+  max-width: 24ch;
+}
+.h-h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink3);
+  margin: 56px 0 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-strong);
+}
+.h-lead {
+  font-size: clamp(1.05rem, 1.7vw, 1.22rem);
+  line-height: 1.5;
+  color: var(--ink2);
+  max-width: 56ch;
+  margin-top: 18px;
+}
+.h-section {
+  padding: var(--h-gap) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.h-head {
+  margin-bottom: 44px;
+}
+.h-after {
+  margin-top: 40px;
+}
+
+/* ---------- buttons ---------- */
+.h-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+.h-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--ink);
+}
+.h-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.h-btn--ink {
+  background: var(--ink);
+  color: var(--bg);
+}
+.h-btn--ink:hover {
+  color: var(--bg);
+}
+.h-btn--acc {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #0f1211;
+}
+.h-btn--acc:hover {
+  color: #0f1211;
+  box-shadow: 0 5px 0 var(--panel-ink);
+}
+.h-btn--ghost {
+  background: transparent;
+  color: var(--ink);
+}
+.h-btn--ghost:hover {
+  color: var(--ink);
+  background: var(--chrome-hover);
+}
+.h-cta {
+  text-align: left;
+}
+.h-textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px 2px;
+  border-bottom: 1.5px solid var(--ink);
+}
+.h-textlink:hover {
+  color: var(--acc-ink);
+  border-color: var(--acc-ink);
+}
+
+/* ---------- reveal (only when JS is on) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hire-js .hire .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms ease, transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .hire-js .hire .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+  .hire-js .h-pkgs .reveal:nth-child(2) { transition-delay: 70ms; }
+  .hire-js .h-pkgs .reveal:nth-child(3) { transition-delay: 140ms; }
+  .hire-js .h-pkgs .reveal:nth-child(4) { transition-delay: 210ms; }
+}
+
+/* ============================================================
+   1. HERO
+   ============================================================ */
+.h-hero {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 0 0;
+  border-bottom: 2px solid var(--rule-strong);
+}
+.h-stage {
+  order: -1;
+  container-type: inline-size;
+  padding: 12px 0 8px;
+}
+/* Two-line display type. Font size is derived from the longer line's width
+   in em (--h-fit) so it fills the column; the page script re-measures once
+   the web font has loaded. */
+.h-display {
+  --h-size: calc(98cqw / var(--h-fit, 5.6));
+  display: flex;
+  flex-direction: column;
+  font-family: var(--sans);
+  font-stretch: 62%;
+  font-weight: 850;
+  font-size: var(--h-size);
+  line-height: 0.86;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  user-select: none;
+}
+.h-display-line--acc {
+  color: var(--acc);
+}
+.h-hero-copy {
+  padding: 28px 0 36px;
+  max-width: 880px;
+}
+.h-hook {
+  font-family: var(--sans);
+  font-stretch: 78%;
+  font-weight: 800;
+  font-size: clamp(1.75rem, 3.7vw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  margin-top: 16px;
+  max-width: 24ch;
+}
+.h-sub {
+  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+  line-height: 1.5;
+  color: var(--ink2);
+  max-width: 54ch;
+  margin-top: 18px;
+}
+.h-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 26px;
+  margin-top: 20px;
+}
+.h-proof {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 20px;
+}
+.h-model {
+  font-size: 13.5px;
+  color: var(--ink3);
+  margin-top: 6px;
+}
+
+/* Desktop: keep the primary CTA above the fold at 1280x800. Mobile (<=720px)
+   keeps the sizes above. */
+@media (min-width: 721px) {
+  .h-stage {
+    padding: 8px 0 4px;
+  }
+  .h-display {
+    --h-size: min(calc(98cqw / var(--h-fit, 5.6)), 136px);
+  }
+  .h-hero-copy {
+    padding: 22px 0 28px;
+  }
+  .h-hook {
+    font-size: clamp(2rem, 3.3vw, 2.6rem);
+    margin-top: 12px;
+    max-width: none;
+  }
+  .h-sub {
+    margin-top: 14px;
+  }
+  .h-proof {
+    margin-top: 16px;
+  }
+  .h-actions {
+    margin-top: 16px;
+  }
+}
+
+/* keyword strip */
+.h-marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--rule-strong);
+  padding: 15px 0;
+}
+.h-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: h-marquee 34s linear infinite;
+}
+.h-marquee:hover .h-marquee-track,
+.h-marquee:focus-within .h-marquee-track {
+  animation-play-state: paused;
+}
+.h-marquee-list,
+.h-marquee-static {
+  display: flex;
+  flex-shrink: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.h-marquee-list li,
+.h-marquee-static li {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink2);
+}
+.h-marquee-list li::after,
+.h-marquee-static li::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin: 0 26px;
+  background: var(--acc);
+  transform: rotate(45deg);
+}
+.h-marquee-static {
+  display: none;
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+@keyframes h-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .h-marquee-track {
+    display: none;
+  }
+  .h-marquee-static {
+    display: flex;
+  }
+}
+
+/* ============================================================
+   2. AUDIENCE
+   ============================================================ */
+.h-audience {
+  display: grid;
+  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 72px);
+  align-items: start;
+}
+.h-portrait {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg2);
+}
+.h-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.h-portrait-cap {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid var(--chrome-line);
+  border-radius: 4px;
+  background: var(--chrome);
+}
+.h-portrait-name {
+  font-family: var(--sans);
+  font-stretch: 70%;
+  font-weight: 800;
+  font-size: 15px;
+}
+.h-portrait-role {
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--chrome-ink2);
+}
+.h-pains {
+  list-style: none;
+  margin: 36px 0 0;
+  padding: 0;
+}
+.h-pain {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 8px;
+  padding: 22px 0;
+  border-top: 1px solid var(--rule);
+}
+.h-pain:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+.h-pain-no {
+  font-size: 12px;
+  color: var(--acc-ink);
+  padding-top: 5px;
+}
+.h-pain h3 {
+  font-family: var(--sans);
+  font-stretch: 85%;
+  font-weight: 750;
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+.h-pain p {
+  margin-top: 6px;
+  color: var(--ink2);
+  max-width: 50ch;
+}
+
+/* ============================================================
+   3. PRICING
+   ============================================================ */
+.h-pkgs {
+  list-style: none;
+  margin: 0;
+  padding: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.h-pkg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 22px 24px;
+  background: var(--bg2);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+}
+.h-pkg.is-popular {
+  margin: -16px 0;
+  padding-top: 42px;
+  padding-bottom: 40px;
+  background: var(--panel);
+  color: var(--panel-ink);
+  border-color: var(--panel);
+  --icon-check-ink: #0f1211;
+}
+:root.dark .h-pkg.is-popular {
+  border-color: var(--acc);
+}
+.h-pkg-flag {
+  position: absolute;
+  top: 14px;
+  left: 22px;
+  padding: 5px 9px;
+  border-radius: 4px;
+  background: var(--acc);
+  color: #0f1211;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.h-pkg-name {
+  font-family: var(--sans);
+  font-stretch: 78%;
+  font-weight: 800;
+  font-size: 1.45rem;
+  line-height: 1.1;
+}
+.h-pkg-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
+  margin-top: 18px;
+}
+.h-pkg-from {
+  flex-basis: 100%;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+.h-pkg.is-popular .h-pkg-from,
+.h-pkg.is-popular .h-pkg-hours,
+.h-pkg.is-popular .h-pkg-incl-label {
+  color: color-mix(in oklab, var(--panel-ink) 70%, transparent);
+}
+.h-pkg-amount {
+  font-family: var(--sans);
+  font-stretch: 66%;
+  font-weight: 850;
+  font-size: clamp(2.6rem, 4.4vw, 3.3rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+.h-pkg-unit {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink3);
+}
+.h-pkg.is-popular .h-pkg-unit {
+  color: color-mix(in oklab, var(--panel-ink) 70%, transparent);
+}
+.h-pkg-hours {
+  margin-top: 10px;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink3);
+}
+.h-pkg-for {
+  margin: 14px 0 22px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink2);
+  min-height: 4.5em; /* three lines, so the four buttons line up on desktop */
+}
+.h-pkg.is-popular .h-pkg-for {
+  color: color-mix(in oklab, var(--panel-ink) 85%, transparent);
+}
+.h-pkg .h-btn {
+  align-self: stretch;
+  margin-top: 0;
+}
+.h-pkg-incl-label {
+  margin: 24px 0 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink3);
+}
+.h-pkg.is-popular .h-pkg-incl-label {
+  border-top-color: color-mix(in oklab, var(--panel-ink) 22%, transparent);
+}
+.h-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.h-checks li {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+.h-checks .h-icon {
+  margin-top: 1px;
+  color: var(--ink);
+}
+.h-pkg.is-popular .h-checks .h-icon {
+  color: var(--acc);
+}
+
+/* notes under the packages */
+.h-notes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 36px 0 0;
+  padding: 0;
+}
+.h-notes li {
+  padding-left: 16px;
+  border-left: 2px solid var(--acc);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink2);
+  max-width: 78ch;
+}
+
+/* freelance + custom banner */
+.h-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 24px;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.h-banner-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 30px 30px 32px;
+}
+.h-banner-col + .h-banner-col {
+  border-left: 1.5px solid var(--ink);
+}
+.h-banner h3 {
+  font-family: var(--sans);
+  font-stretch: 75%;
+  font-weight: 800;
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+.h-banner p {
+  color: var(--ink2);
+  max-width: 42ch;
+  margin-bottom: 10px;
+}
+
+/* compare (collapsed by default) */
+.h-compare {
+  margin-top: 28px;
+}
+.h-compare-toggle[aria-expanded='true'] .h-plus-v {
+  opacity: 0;
+}
+.h-compare-toggle .h-icon {
+  transition: transform 250ms ease;
+}
+.h-compare-toggle[aria-expanded='true'] .h-icon {
+  transform: rotate(180deg);
+}
+.h-compare-panel {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+.h-compare-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+.hire-js .h-compare-panel {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 350ms ease, visibility 0s linear 350ms;
+}
+.hire-js .h-compare-panel[data-open='true'] {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 350ms ease, visibility 0s;
+}
+.h-compare-title {
+  font-family: var(--sans);
+  font-stretch: 75%;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 32px 0 18px;
+}
+.h-compare-cards {
+  display: none;
+}
+.h-common {
+  margin-top: 32px;
+  padding: 22px 24px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--bg2);
+}
+.h-checks--cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 40px;
+}
+@media (max-width: 720px) {
+  .h-checks--cols {
+    grid-template-columns: 1fr;
+  }
+}
+.h-common-title {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  margin-bottom: 14px;
+}
+
+/* tables (compare + versus) */
+.h-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.h-table th,
+.h-table td {
+  padding: 15px 18px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.45;
+}
+.h-table thead th {
+  font-family: var(--sans);
+  font-stretch: 80%;
+  font-weight: 800;
+  font-size: 1.05rem;
+  border-bottom: 2px solid var(--rule-strong);
+}
+.h-table tbody th {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  width: 20%;
+}
+.h-compare-table th.is-popular,
+.h-compare-table td.is-popular {
+  background: color-mix(in oklab, var(--acc) 11%, transparent);
+}
+.h-compare-table thead th.is-popular {
+  box-shadow: inset 0 3px 0 var(--acc);
+}
+
+/* ============================================================
+   4. VERSUS
+   ============================================================ */
+.h-versus tbody th {
+  width: 24%;
+}
+.h-versus thead th,
+.h-versus tbody td {
+  width: 38%;
+}
+.h-versus td {
+  color: var(--ink2);
+}
+.h-versus .is-direct {
+  background: color-mix(in oklab, var(--acc) 11%, transparent);
+  color: var(--ink);
+  font-weight: 500;
+}
+.h-versus thead th.is-direct {
+  box-shadow: inset 0 3px 0 var(--acc);
+}
+
+/* ============================================================
+   5. PROOF
+   ============================================================ */
+.h-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-top: 2px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule);
+}
+.h-stat {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  padding: 26px 0 28px;
+}
+.h-stat + .h-stat {
+  padding-left: clamp(18px, 4vw, 48px);
+  border-left: 1px solid var(--rule);
+}
+.h-stat-value {
+  margin: 0;
+  font-family: var(--sans);
+  font-stretch: 62%;
+  font-weight: 850;
+  font-size: clamp(3.4rem, 9vw, 6.4rem);
+  line-height: 0.85;
+}
+.h-stat-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  max-width: 30ch;
+}
+
+.h-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.h-card a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg2);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+.h-card a:hover {
+  transform: translateY(-3px);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.h-card-thumb {
+  display: block;
+  aspect-ratio: 1440 / 1024;
+  overflow: hidden;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+}
+.h-card-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.h-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 44px 18px 18px;
+}
+.h-card-title {
+  font-family: var(--sans);
+  font-stretch: 80%;
+  font-weight: 800;
+  font-size: 1.2rem;
+  line-height: 1.15;
+}
+.h-card-desc {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.4;
+}
+.h-card-arrow {
+  position: absolute;
+  right: 16px;
+  bottom: 18px;
+  color: var(--ink);
+}
+.h-card--ext a {
+  background: var(--panel);
+  color: var(--panel-ink);
+  border-color: var(--panel);
+}
+.h-card--ext a:hover {
+  color: var(--panel-ink);
+  border-color: var(--acc);
+}
+.h-card--ext .h-card-desc {
+  color: color-mix(in oklab, var(--panel-ink) 75%, transparent);
+}
+.h-card--ext .h-card-arrow {
+  color: var(--panel-ink);
+}
+.h-card-thumb--ext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-bottom-color: color-mix(in oklab, var(--panel-ink) 22%, transparent);
+}
+.h-card-mark {
+  font-family: var(--sans);
+  font-stretch: 62%;
+  font-weight: 850;
+  font-size: clamp(3rem, 6vw, 4.4rem);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+
+.h-exp {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.h-exp-row {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 8px clamp(20px, 5vw, 56px);
+  padding: 20px 0;
+  border-top: 1px solid var(--rule);
+}
+.h-exp-row:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+.h-exp-who {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.h-exp-name {
+  font-family: var(--sans);
+  font-stretch: 85%;
+  font-weight: 750;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+.h-exp-meta {
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  line-height: 1.5;
+}
+.h-exp-body {
+  color: var(--ink2);
+  max-width: 60ch;
+}
+
+/* ============================================================
+   6. PROCESS
+   ============================================================ */
+.h-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 22px;
+  counter-reset: step;
+}
+.h-step {
+  padding-top: 16px;
+  border-top: 2px solid var(--rule-strong);
+}
+.h-step-no {
+  display: block;
+  font-size: 12px;
+  color: var(--acc-ink);
+  margin-bottom: 14px;
+}
+.h-step h3 {
+  font-family: var(--sans);
+  font-stretch: 85%;
+  font-weight: 750;
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+.h-step p {
+  margin-top: 8px;
+  font-size: 14.5px;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   7. FAQ
+   ============================================================ */
+.h-faq {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-areas:
+    'head acc'
+    'card acc';
+  grid-template-rows: auto 1fr;
+  gap: 28px clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+.h-faq-head {
+  grid-area: head;
+}
+.h-acc {
+  grid-area: acc;
+}
+.h-faq-card {
+  grid-area: card;
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 26px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--bg2);
+}
+.h-faq-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 22%;
+  border: 2px solid var(--ink);
+}
+.h-faq-card h3 {
+  font-family: var(--sans);
+  font-stretch: 75%;
+  font-weight: 800;
+  font-size: 1.7rem;
+  line-height: 1.05;
+  margin-top: 6px;
+}
+.h-faq-card p {
+  color: var(--ink2);
+  max-width: 36ch;
+  margin-bottom: 10px;
+}
+.h-faq-card .h-cta {
+  align-self: stretch;
+  justify-content: center;
+}
+
+.h-acc-item {
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--bg2);
+  margin-bottom: 10px;
+  transition: border-color 180ms ease;
+}
+.h-acc-item[data-open='true'] {
+  border-color: var(--ink);
+}
+.h-acc-q {
+  margin: 0;
+  font: inherit;
+}
+.h-acc-q button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  background: none;
+  border: 0;
+  border-radius: 12px;
+  color: var(--ink);
+  text-align: left;
+  font-family: var(--sans);
+  font-weight: 650;
+  font-size: 1.04rem;
+  line-height: 1.35;
+  cursor: pointer;
+}
+.h-acc-q button:hover {
+  color: var(--acc-ink);
+}
+.h-acc-q .h-icon {
+  transition: transform 250ms ease;
+}
+.h-acc-q button[aria-expanded='true'] .h-icon {
+  transform: rotate(45deg);
+}
+.h-acc-panel {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+.h-acc-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+.h-acc-inner p {
+  padding: 0 20px 20px;
+  color: var(--ink2);
+  line-height: 1.65;
+  max-width: 62ch;
+}
+.hire-js .h-acc-panel {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 300ms ease, visibility 0s linear 300ms;
+}
+.hire-js .h-acc-item[data-open='true'] .h-acc-panel {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 300ms ease, visibility 0s;
+}
+
+/* ============================================================
+   8. CLOSING CTA
+   ============================================================ */
+.h-closing {
+  margin: var(--h-gap) 0;
+}
+.h-closing-inner {
+  padding: clamp(36px, 6vw, 64px) clamp(24px, 5vw, 56px);
+  border-radius: 16px;
+  background: var(--panel);
+  color: var(--panel-ink);
+}
+.h-closing-title {
+  font-family: var(--sans);
+  font-stretch: 66%;
+  font-weight: 850;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.h-closing-lead {
+  margin-top: 18px;
+  font-size: 1.1rem;
+  color: color-mix(in oklab, var(--panel-ink) 78%, transparent);
+  max-width: 48ch;
+}
+.h-closing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 14px;
+  margin-top: 32px;
+}
+.h-btn--lg {
+  min-height: 56px;
+  padding: 0 24px;
+  font-size: 17px;
+}
+.h-closing .h-btn--ghost {
+  color: var(--panel-ink);
+  border-color: var(--panel-ink);
+}
+.h-closing .h-btn--ghost:hover {
+  color: var(--panel-ink);
+  background: color-mix(in oklab, var(--panel-ink) 12%, transparent);
+  box-shadow: 0 5px 0 var(--panel-ink);
+}
+.h-closing .sig-link:hover {
+  box-shadow: 0 6px 0 var(--panel-ink);
+}
+/* ============================================================
+   STICKY WHATSAPP (mobile only)
+   ============================================================ */
+.h-sticky {
+  display: none;
+}
+@media (max-width: 720px) {
+  .h-sticky {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 52px;
+    border-radius: 8px;
+    background: var(--acc);
+    color: #0f1211;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 6px 0 var(--ink);
+    transform: translateY(160%);
+    visibility: hidden;
+    transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 260ms;
+  }
+  .h-sticky:hover {
+    color: #0f1211;
+  }
+  .h-sticky[data-visible='true'] {
+    transform: none;
+    visibility: visible;
+    transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s;
+  }
+}
+@media (max-width: 720px) and (prefers-reduced-motion: reduce) {
+  .h-sticky,
+  .h-sticky[data-visible='true'] {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .h-pkg-for {
+    min-height: 0;
+  }
+  .h-pkgs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0;
+    gap: 16px;
+  }
+  .h-pkg.is-popular {
+    margin: 0;
+    padding-top: 42px;
+    padding-bottom: 24px;
+  }
+  .h-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .h-steps {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .h-step {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    column-gap: 8px;
+    padding: 20px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .h-step:first-child {
+    border-top: 2px solid var(--rule-strong);
+  }
+  .h-step-no {
+    grid-row: 1 / span 2;
+    margin: 3px 0 0;
+  }
+  .h-step p {
+    grid-column: 2;
+  }
+}
+@media (max-width: 860px) {
+  .h-audience {
+    grid-template-columns: 1fr;
+  }
+  .h-portrait {
+    max-width: 380px;
+  }
+  .h-faq {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'head'
+      'acc'
+      'card';
+  }
+  .h-faq-card {
+    position: static;
+  }
+  .h-banner {
+    grid-template-columns: 1fr;
+  }
+  .h-banner-col + .h-banner-col {
+    border-left: 0;
+    border-top: 1.5px solid var(--ink);
+  }
+  .h-exp-row {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  /* compare: one card per package instead of a wide table */
+  .h-compare-table-wrap {
+    display: none;
+  }
+  .h-compare-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .h-compare-card {
+    padding: 18px 18px 8px;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: var(--bg2);
+  }
+  .h-compare-card.is-popular {
+    border-color: var(--acc);
+    border-width: 2px;
+  }
+  .h-compare-card h4 {
+    margin: 0 0 8px;
+    font-family: var(--sans);
+    font-stretch: 78%;
+    font-weight: 800;
+    font-size: 1.25rem;
+  }
+  .h-compare-card dl {
+    margin: 0;
+  }
+  .h-compare-card dl > div {
+    padding: 11px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .h-compare-card dt {
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+  .h-compare-card dd {
+    margin: 4px 0 0;
+    font-size: 15px;
+  }
+
+  /* versus: one card per row */
+  .h-versus,
+  .h-versus tbody,
+  .h-versus tr,
+  .h-versus th,
+  .h-versus td {
+    display: block;
+    width: auto !important;
+  }
+  .h-versus thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .h-versus tr {
+    margin-bottom: 12px;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--bg2);
+  }
+  .h-versus tbody th {
+    padding: 14px 16px 6px;
+    border: 0;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 750;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .h-versus td {
+    padding: 10px 16px 14px;
+    border: 0;
+  }
+  .h-versus td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    font-weight: 500;
+  }
+  .h-versus td.is-direct {
+    border-top: 1px solid var(--rule);
+  }
+}
+@media (max-width: 720px) {
+  .h-hero {
+    padding-top: 18px;
+  }
+  .h-hero-copy {
+    padding: 22px 0 26px;
+  }
+  .h-pkgs {
+    grid-template-columns: 1fr;
+  }
+  .h-stat-value {
+    font-size: clamp(3rem, 16vw, 4.6rem);
+  }
+}
+@media (max-width: 520px) {
+  .h-cards {
+    grid-template-columns: 1fr;
+  }
+  .h-pain {
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+  .h-closing-actions {
+    flex-direction: column;
+  }
+  .h-closing .h-cta,
+  .h-closing .h-btn--lg {
+    justify-content: center;
+  }
+}

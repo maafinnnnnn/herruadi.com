@@ -1,0 +1,175 @@
+---
+import RedlineLayout from '../../layouts/RedlineLayout.astro';
+import StructuredData from '../StructuredData.astro';
+import HireHero from './HireHero.astro';
+import HireAudience from './HireAudience.astro';
+import HirePricing from './HirePricing.astro';
+import HireVersus from './HireVersus.astro';
+import HireProof from './HireProof.astro';
+import HireProcess from './HireProcess.astro';
+import HireFaq from './HireFaq.astro';
+import HireClosing from './HireClosing.astro';
+import HireSticky from './HireSticky.astro';
+import { hireSchemas } from '../../config/hire/schema';
+import type { HireContent } from '../../config/hire/types';
+import '../../styles/hire.css';
+
+interface Props {
+  content: HireContent;
+  ogImage: string;
+}
+const { content, ogImage } = Astro.props;
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<RedlineLayout
+  title={content.meta.title}
+  description={content.meta.description}
+  active="hire"
+  image={ogImage}
+  lang={content.lang}
+  locale={content.ogLocale}
+>
+  <script is:inline slot="head">document.documentElement.classList.add('hire-js');</script>
+  <StructuredData schema={hireSchemas(content, pageUrl)} />
+
+  <div class="hire" data-hire>
+    <HireHero content={content} />
+    <HireAudience content={content} />
+    <HirePricing content={content} />
+    <HireVersus content={content} />
+    <HireProof content={content} />
+    <HireProcess content={content} />
+    <HireFaq content={content} />
+    <HireClosing content={content} />
+  </div>
+  <HireSticky content={content} />
+</RedlineLayout>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  type Gtag = (command: string, name: string, params?: Record<string, unknown>) => void;
+  const track = (name: string, params: Record<string, unknown>) => {
+    try {
+      (window as unknown as { gtag?: Gtag }).gtag?.('event', name, params);
+    } catch (_) {}
+  };
+
+  // CTA clicks: every button carries data-cta="<id>".
+  document.addEventListener('click', (event) => {
+    const el = (event.target as Element | null)?.closest<HTMLElement>('[data-cta]');
+    if (!el || el.hasAttribute('data-compare-toggle')) return;
+    track('hire_cta_click', {
+      cta_id: el.dataset.cta,
+      link_url: (el as HTMLAnchorElement).href || undefined,
+    });
+  });
+
+  // Compare table: collapsed until asked for.
+  document.querySelectorAll<HTMLElement>('[data-compare]').forEach((root) => {
+    const toggle = root.querySelector<HTMLButtonElement>('[data-compare-toggle]');
+    const panel = root.querySelector<HTMLElement>('[data-compare-panel]');
+    const label = root.querySelector<HTMLElement>('[data-compare-label]');
+    if (!toggle || !panel || !label) return;
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.dataset.open = String(open);
+      label.textContent = open ? root.dataset.labelHide ?? '' : root.dataset.labelShow ?? '';
+      track('hire_compare_toggle', { cta_id: 'compare-toggle', state: open ? 'open' : 'closed' });
+    });
+  });
+
+  // FAQ accordion: one open at a time, answers stay in the DOM.
+  document.querySelectorAll<HTMLElement>('[data-accordion]').forEach((acc) => {
+    const items = Array.from(acc.querySelectorAll<HTMLElement>('[data-acc-item]'));
+    const setOpen = (item: HTMLElement, open: boolean) => {
+      item.dataset.open = String(open);
+      item.querySelector('[data-acc-trigger]')?.setAttribute('aria-expanded', String(open));
+    };
+    items.forEach((item) => {
+      item.querySelector('[data-acc-trigger]')?.addEventListener('click', () => {
+        const willOpen = item.dataset.open !== 'true';
+        items.forEach((other) => setOpen(other, other === item ? willOpen : false));
+      });
+    });
+  });
+
+  // Reveal on scroll. Content stays visible without JS or with reduced motion.
+  const revealEls = Array.from(document.querySelectorAll<HTMLElement>('.hire .reveal'));
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
+    );
+    revealEls.forEach((el) => io.observe(el));
+  }
+
+  // Sticky WhatsApp (mobile only, hidden by CSS on larger screens). It shows
+  // once the hero CTA has scrolled away and hides whenever another WhatsApp
+  // button, the closing CTA or the footer is on screen, so it never sits on
+  // top of a button.
+  const sticky = document.querySelector<HTMLElement>('[data-sticky]');
+  const heroCta = document.getElementById('hero-cta');
+  if (sticky && heroCta && 'IntersectionObserver' in window) {
+    let pastHero = false;
+    const blockers = new Set<Element>();
+    const apply = () => {
+      const show = pastHero && blockers.size === 0;
+      sticky.dataset.visible = String(show);
+      sticky.setAttribute('aria-hidden', String(!show));
+      sticky.tabIndex = show ? 0 : -1;
+    };
+    new IntersectionObserver(([entry]) => {
+      pastHero = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+      apply();
+    }).observe(heroCta);
+    const blockIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) blockers.add(entry.target);
+        else blockers.delete(entry.target);
+      });
+      apply();
+    });
+    document
+      .querySelectorAll('a[data-cta][href^="https://wa.me/"]:not([data-sticky]), [data-hide-sticky], footer')
+      .forEach((el) => blockIo.observe(el));
+  }
+
+  // Display type: size the longer line to the column once the font is ready.
+  // The server-rendered --h-fit value is the fallback until then.
+  const display = document.querySelector<HTMLElement>('[data-fit-display]');
+  if (display) {
+    // Dev only: /hire/?hero=2 previews the second display option.
+    if (import.meta.env.DEV && display.dataset.variants) {
+      const pick = Number(new URLSearchParams(location.search).get('hero')) - 1;
+      const variants = JSON.parse(display.dataset.variants) as { lines: [string, string]; fit: number }[];
+      if (Number.isInteger(pick) && variants[pick]) {
+        const [first, second] = Array.from(display.children);
+        first.textContent = variants[pick].lines[0];
+        second.textContent = variants[pick].lines[1];
+        display.style.setProperty('--h-fit', String(variants[pick].fit));
+      }
+    }
+    const fit = () => {
+      const probe = display.cloneNode(true) as HTMLElement;
+      probe.removeAttribute('data-fit-display');
+      probe.style.cssText = 'position:absolute;visibility:hidden;font-size:100px;width:max-content;';
+      display.parentElement?.appendChild(probe);
+      const widest = Math.max(...Array.from(probe.children).map((el) => el.getBoundingClientRect().width));
+      probe.remove();
+      if (widest > 0) display.style.setProperty('--h-fit', String(widest / 100));
+    };
+    (document.fonts?.ready ?? Promise.resolve()).then(fit);
+  }
+</script>

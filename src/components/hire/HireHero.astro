@@ -1,0 +1,74 @@
+---
+import HireIcon from './HireIcon.astro';
+import { waLink } from '../../config/hire/wa';
+import type { HireContent } from '../../config/hire/types';
+
+interface Props {
+  content: HireContent;
+}
+const { content } = Astro.props;
+const { hero, ui } = content;
+const keywords = hero.keywords;
+
+const { variants, active } = hero.display;
+const variant = variants[active] ?? variants[0];
+---
+
+<section class="h-hero" aria-labelledby="hire-h1">
+  <div class="h-hero-copy">
+    <p class="h-eyebrow">{hero.eyebrow}</p>
+    <h1 id="hire-h1" class="h-hook">{hero.headline}</h1>
+    <p class="h-sub">{hero.sub}</p>
+    <p class="h-proof mono">{hero.proof}</p>
+    <div class="h-actions">
+      <a
+        class="sig-link h-cta"
+        id="hero-cta"
+        href={waLink(content, 'general')}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cta="hero-wa"
+      >
+        <HireIcon name="whatsapp" size={20} />
+        {hero.primaryCta}
+        <span class="h-sr">{ui.newTab}</span>
+      </a>
+      <a class="h-textlink" href="/work/" target="_blank" rel="noopener noreferrer" data-cta="hero-portfolio">
+        {hero.secondaryCta}
+        <HireIcon name="external" size={15} />
+        <span class="h-sr">{ui.newTab}</span>
+      </a>
+    </div>
+    <p class="h-model">{hero.modelNote}</p>
+  </div>
+
+  <div class="h-stage">
+    <div
+      class="h-display"
+      aria-hidden="true"
+      data-fit-display
+      data-variants={import.meta.env.DEV ? JSON.stringify(variants) : undefined}
+      style={`--h-fit: ${variant.fit}`}
+    >
+      <span class="h-display-line">{variant.lines[0]}</span>
+      <span class="h-display-line h-display-line--acc">{variant.lines[1]}</span>
+    </div>
+  </div>
+
+  <div class="h-marquee" aria-label={keywords.join(', ')} role="group">
+    <div class="h-marquee-track" aria-hidden="true">
+      {[0, 1].map(() => (
+        <ul class="h-marquee-list">
+          {keywords.map((k) => (
+            <li>{k}</li>
+          ))}
+        </ul>
+      ))}
+    </div>
+    <ul class="h-marquee-static">
+      {keywords.map((k) => (
+        <li>{k}</li>
+      ))}
+    </ul>
+  </div>
+</section>

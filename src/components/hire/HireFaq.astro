@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../../assets/hire/abi-portrait.jpg';
+import HireIcon from './HireIcon.astro';
+import { waLink } from '../../config/hire/wa';
+import type { HireContent } from '../../config/hire/types';
+
+interface Props {
+  content: HireContent;
+}
+const { content } = Astro.props;
+const { faq, ui } = content;
+---
+
+<section class="h-section" aria-labelledby="hire-faq">
+  <div class="h-faq">
+    <div class="h-faq-head">
+      <p class="h-label">{faq.eyebrow}</p>
+      <h2 id="hire-faq" class="h-h2 reveal">{faq.title}</h2>
+    </div>
+
+    <div class="h-acc" data-accordion>
+      {faq.items.map((item, i) => (
+        <div class="h-acc-item" data-acc-item data-open={i === 0 ? 'true' : 'false'}>
+          <h3 class="h-acc-q">
+            <button
+              type="button"
+              id={`faq-q-${i}`}
+              aria-expanded={i === 0 ? 'true' : 'false'}
+              aria-controls={`faq-a-${i}`}
+              data-acc-trigger
+            >
+              <span>{item.question}</span>
+              <HireIcon name="plus" size={20} />
+            </button>
+          </h3>
+          <div class="h-acc-panel" id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`}>
+            <div class="h-acc-inner">
+              <p>{item.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <aside class="h-faq-card" aria-label={faq.cardTitle}>
+      <Image
+        src={portrait}
+        alt=""
+        width={96}
+        height={96}
+        densities={[1, 2]}
+        loading="lazy"
+        decoding="async"
+        class="h-faq-avatar"
+      />
+      <h3>{faq.cardTitle}</h3>
+      <p>{faq.cardBody}</p>
+      <a class="sig-link h-cta" href={waLink(content, 'general')} target="_blank" rel="noopener noreferrer" data-cta="faq-wa">
+        <HireIcon name="whatsapp" size={20} />
+        {faq.cardCta}
+        <span class="h-sr">{ui.newTab}</span>
+      </a>
+    </aside>
+  </div>
+</section>

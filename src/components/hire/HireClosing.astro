@@ -1,0 +1,33 @@
+---
+import HireIcon from './HireIcon.astro';
+import { waLink } from '../../config/hire/wa';
+import type { HireContent } from '../../config/hire/types';
+
+interface Props {
+  content: HireContent;
+}
+const { content } = Astro.props;
+const { closing, contact, ui } = content;
+---
+
+<section class="h-closing" id="hire-closing" aria-labelledby="hire-closing-title" data-hide-sticky>
+  <div class="h-closing-inner">
+    <h2 id="hire-closing-title" class="h-closing-title">{closing.title}</h2>
+    <p class="h-closing-lead">{closing.lead}</p>
+    <div class="h-closing-actions">
+      <a class="sig-link h-cta" href={waLink(content, 'general')} target="_blank" rel="noopener noreferrer" data-cta="closing-wa">
+        <HireIcon name="whatsapp" size={20} />
+        {closing.primaryCta}
+        <span class="h-sr">{ui.newTab}</span>
+      </a>
+      <a
+        class="h-btn h-btn--ghost h-btn--lg"
+        href={`mailto:${contact.email}`}
+        aria-label={`${closing.secondaryCta}: ${contact.email}`}
+        data-cta="closing-email"
+      >
+        {closing.secondaryCta}
+      </a>
+    </div>
+  </div>
+</section>
