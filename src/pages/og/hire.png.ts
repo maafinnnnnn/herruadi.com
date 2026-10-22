@@ -1,78 +1,80 @@
 import { hireId } from '../../config/hire/id';
-import { OG, readImageDataUri, ogDomain, ogAccentBar, ogEyebrow, getOgFonts, renderOgPng } from '../../lib/og-template';
+import { OG, ogDomain, ogAccentBar, getOgFonts, renderOgPng } from '../../lib/og-template';
 
 export const prerender = true;
 
+// Type-only card (no photo) so the title stays large enough to read at
+// LinkedIn / WhatsApp thumbnail sizes. The second title line uses the same
+// treatment as the homepage hero highlight: accent block, dark text.
+const TITLE_SIZE = 156;
+
 export async function GET() {
-  const photo = readImageDataUri('/images/about.jpg');
   const fonts = await getOgFonts();
+  const [first, second] = hireId.og.title;
+  // Break the subtitle before its last segment so the line never wraps mid-phrase.
+  const parts = hireId.og.subtitle.split(' · ');
+  const subtitleLines = [parts.slice(0, -1).join(' · '), parts[parts.length - 1]];
+
+  const titleLine = (text: string, color: string) => ({
+    type: 'span',
+    props: {
+      style: {
+        fontFamily: OG.display,
+        fontWeight: 900,
+        fontSize: TITLE_SIZE,
+        lineHeight: 0.98,
+        letterSpacing: -2,
+        textTransform: 'uppercase',
+        color,
+        whiteSpace: 'nowrap',
+      },
+      children: text,
+    },
+  });
 
   const tree = {
     type: 'div',
     props: {
       style: {
         display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
         width: '1200px',
         height: '630px',
         background: OG.paper,
         position: 'relative',
+        padding: '44px 72px 56px',
       },
       children: [
-        // Photo panel
         {
           type: 'div',
           props: {
-            style: {
-              display: 'flex',
-              width: 440,
-              height: '100%',
-              borderRight: `2px solid ${OG.line}`,
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: OG.paperDeep,
-              overflow: 'hidden',
-            },
-            children: photo
-              ? { type: 'img', props: { src: photo, width: 440, height: 630, style: { objectFit: 'cover' } } }
-              : {
-                  type: 'span',
-                  props: {
-                    style: { fontFamily: OG.display, fontWeight: 900, fontSize: 208, color: OG.ink },
-                    children: 'HA',
-                  },
+            style: { display: 'flex', flexDirection: 'column', alignItems: 'flex-start' },
+            children: [
+              titleLine(first, OG.ink),
+              {
+                type: 'div',
+                props: {
+                  style: { display: 'flex', background: OG.redline, padding: '0 22px', marginTop: 6 },
+                  children: titleLine(second, OG.paper),
                 },
+              },
+            ],
           },
         },
-        // Text panel
         {
           type: 'div',
           props: {
-            style: {
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              flex: 1,
-              padding: '0 64px',
-              gap: 28,
-            },
+            style: { display: 'flex', flexDirection: 'column', gap: 18 },
             children: [
-              ogEyebrow(hireId.og.eyebrow, 34),
               {
-                type: 'span',
+                type: 'div',
                 props: {
-                  style: { fontFamily: OG.display, fontWeight: 900, fontSize: 99, color: OG.ink, lineHeight: 1 },
-                  children: 'Herru Adi',
+                  style: { display: 'flex', flexDirection: 'column', fontFamily: OG.body, fontSize: 40, lineHeight: 1.25, color: OG.ink },
+                  children: subtitleLines.map((line) => ({ type: 'span', props: { children: line } })),
                 },
               },
-              {
-                type: 'span',
-                props: {
-                  style: { fontFamily: OG.body, fontSize: 60, color: OG.inkSoft, lineHeight: 1.3, maxWidth: 620 },
-                  children: hireId.og.headline,
-                },
-              },
-              { type: 'div', props: { style: { height: 8 } } },
-              ogDomain(),
+              ogDomain(hireId.og.domain),
             ],
           },
         },

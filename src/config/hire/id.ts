@@ -1,3 +1,4 @@
+import dribbbleThumb from '../../assets/hire/dribbble-thumb.png';
 import type { HireContent } from './types';
 
 // Indonesian copy for /hire. Entries tagged DRAFT were written by Claude
@@ -15,8 +16,9 @@ export const hireId: HireContent = {
       'Product designer (UI/UX) 9+ tahun pengalaman, bisa direkrut langsung per bulan. Tanpa margin outsourcing, tanpa beban BPJS dan THR. Remote, hybrid, onsite.',
   },
   og: {
-    eyebrow: 'Product Designer (UI/UX)',
-    headline: 'Rekrut desainer langsung. Tanpa outsourcing.',
+    title: ['Rekrut designer.', 'Tanpa ribet.'],
+    subtitle: 'Product Designer (UI/UX) · 9+ tahun · Tanpa margin outsourcing',
+    domain: 'herruadi.com/hire',
   },
 
   contact: {
@@ -51,7 +53,7 @@ export const hireId: HireContent = {
   hero: {
     eyebrow: 'Product Designer (UI/UX) Dedicated · Bandung',
     word: 'Designer',
-    headline: 'Bayar tarif mid-level, dapat pengalaman 9+ tahun. Tanpa margin outsourcing, tanpa beban BPJS dan THR.',
+    headline: 'Pengalaman 9+ tahun dengan tarif mid-level. Tanpa margin outsourcing, tanpa beban BPJS dan THR.',
     sub: 'Saya product designer (UI/UX) dengan 9+ tahun pengalaman yang bisa kamu rekrut langsung per bulan, tanpa outsourcing.',
     primaryCta: 'Chat di WhatsApp',
     secondaryCta: 'Lihat portfolio',
@@ -66,18 +68,9 @@ export const hireId: HireContent = {
       'AI Prototyping',
       'UX Research',
     ],
-    // Options for the big display type. Switch with `active`, or preview one
-    // locally with /hire/?hero=1, ?hero=2 or ?hero=3 (dev server only).
-    // `fit` is the width of the longer line in em; the page re-measures it
-    // once the font loads, so it only matters as a fallback.
-    display: {
-      variants: [
-        { lines: ['DESIGNER', 'TANPA PERANTARA.'], fit: 6.97 },
-        { lines: ['9+ TAHUN.', 'TARIF MID-LEVEL.'], fit: 6.15 },
-        { lines: ['DESIGNER', 'TANPA OUTSOURCING.'], fit: 7.89 },
-      ],
-      active: 0,
-    },
+    // Locked. `fit` is the width of the longer line in em; the page
+    // re-measures it once the font loads, so it only matters as a fallback.
+    display: { lines: ['REKRUT DESIGNER.', 'TANPA RIBET.'], fit: 6.8 },
   },
 
   // DRAFT: section title, lead, and the 3 item bodies
@@ -99,7 +92,7 @@ export const hireId: HireContent = {
       },
     ],
     photoAlt: 'Herru Adi, product designer (UI/UX) berbasis di Bandung',
-    captionName: 'Herru Adi (Abi)',
+    captionName: 'Herru Adi',
     captionRole: 'Product Designer (UI/UX) · Bandung',
   },
 
@@ -301,6 +294,8 @@ export const hireId: HireContent = {
         descriptor: 'Lihat shot lainnya di Dribbble',
         href: 'https://dribbble.com/herruadi',
         ctaId: 'portfolio-dribbble',
+        thumb: dribbbleThumb,
+        thumbAlt: 'Shot Dribbble bertuliskan "Your data is complex. Your UI doesn\'t have to be."',
       },
     ],
     experienceTitle: 'Daftar pengalaman',

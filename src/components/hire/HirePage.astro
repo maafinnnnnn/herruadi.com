@@ -150,17 +150,6 @@ const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
   // The server-rendered --h-fit value is the fallback until then.
   const display = document.querySelector<HTMLElement>('[data-fit-display]');
   if (display) {
-    // Dev only: /hire/?hero=2 previews the second display option.
-    if (import.meta.env.DEV && display.dataset.variants) {
-      const pick = Number(new URLSearchParams(location.search).get('hero')) - 1;
-      const variants = JSON.parse(display.dataset.variants) as { lines: [string, string]; fit: number }[];
-      if (Number.isInteger(pick) && variants[pick]) {
-        const [first, second] = Array.from(display.children);
-        first.textContent = variants[pick].lines[0];
-        second.textContent = variants[pick].lines[1];
-        display.style.setProperty('--h-fit', String(variants[pick].fit));
-      }
-    }
     const fit = () => {
       const probe = display.cloneNode(true) as HTMLElement;
       probe.removeAttribute('data-fit-display');

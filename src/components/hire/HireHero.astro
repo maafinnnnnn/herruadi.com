@@ -10,14 +10,15 @@ const { content } = Astro.props;
 const { hero, ui } = content;
 const keywords = hero.keywords;
 
-const { variants, active } = hero.display;
-const variant = variants[active] ?? variants[0];
+const { display } = hero;
+// Keep "mid-level" on one line instead of breaking at its hyphen.
+const headlineParts = hero.headline.split(/(mid-level)/);
 ---
 
 <section class="h-hero" aria-labelledby="hire-h1">
   <div class="h-hero-copy">
     <p class="h-eyebrow">{hero.eyebrow}</p>
-    <h1 id="hire-h1" class="h-hook">{hero.headline}</h1>
+    <h1 id="hire-h1" class="h-hook">{headlineParts.map((part) => (part === 'mid-level' ? <span class="h-nb">{part}</span> : part))}</h1>
     <p class="h-sub">{hero.sub}</p>
     <p class="h-proof mono">{hero.proof}</p>
     <div class="h-actions">
@@ -43,15 +44,9 @@ const variant = variants[active] ?? variants[0];
   </div>
 
   <div class="h-stage">
-    <div
-      class="h-display"
-      aria-hidden="true"
-      data-fit-display
-      data-variants={import.meta.env.DEV ? JSON.stringify(variants) : undefined}
-      style={`--h-fit: ${variant.fit}`}
-    >
-      <span class="h-display-line">{variant.lines[0]}</span>
-      <span class="h-display-line h-display-line--acc">{variant.lines[1]}</span>
+    <div class="h-display" aria-hidden="true" data-fit-display style={`--h-fit: ${display.fit}`}>
+      <span class="h-display-line">{display.lines[0]}</span>
+      <span class="h-display-line"><span class="rr-hl">{display.lines[1]}</span></span>
     </div>
   </div>
 

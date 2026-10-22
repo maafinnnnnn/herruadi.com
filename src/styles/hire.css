@@ -194,15 +194,12 @@
   font-stretch: 62%;
   font-weight: 850;
   font-size: var(--h-size);
-  line-height: 0.86;
-  letter-spacing: -0.01em;
+  line-height: 0.88; /* same as the homepage verdict */
+  letter-spacing: -0.015em;
   text-transform: uppercase;
   white-space: nowrap;
   color: var(--ink);
   user-select: none;
-}
-.h-display-line--acc {
-  color: var(--acc);
 }
 .h-hero-copy {
   padding: 28px 0 36px;
@@ -217,6 +214,9 @@
   letter-spacing: -0.012em;
   margin-top: 16px;
   max-width: 24ch;
+}
+.h-nb {
+  white-space: nowrap;
 }
 .h-sub {
   font-size: clamp(1.02rem, 1.6vw, 1.2rem);
@@ -834,38 +834,6 @@
   bottom: 18px;
   color: var(--ink);
 }
-.h-card--ext a {
-  background: var(--panel);
-  color: var(--panel-ink);
-  border-color: var(--panel);
-}
-.h-card--ext a:hover {
-  color: var(--panel-ink);
-  border-color: var(--acc);
-}
-.h-card--ext .h-card-desc {
-  color: color-mix(in oklab, var(--panel-ink) 75%, transparent);
-}
-.h-card--ext .h-card-arrow {
-  color: var(--panel-ink);
-}
-.h-card-thumb--ext {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border-bottom-color: color-mix(in oklab, var(--panel-ink) 22%, transparent);
-}
-.h-card-mark {
-  font-family: var(--sans);
-  font-stretch: 62%;
-  font-weight: 850;
-  font-size: clamp(3rem, 6vw, 4.4rem);
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--acc);
-}
-
 .h-exp {
   list-style: none;
   margin: 0;

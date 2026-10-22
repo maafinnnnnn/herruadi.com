@@ -1,3 +1,5 @@
+import type { ImageMetadata } from 'astro';
+
 // Shape of the /hire landing page content. The Indonesian page (id.ts)
 // fills it in; /hire/global can ship an `en.ts` with the same shape and
 // reuse every component untouched.
@@ -47,6 +49,8 @@ export interface HirePortfolioExternal {
   descriptor: string;
   href: string;
   ctaId: string;
+  thumb: ImageMetadata;
+  thumbAlt: string;
 }
 
 export interface HireExperience {
@@ -55,7 +59,7 @@ export interface HireExperience {
   body: string;
 }
 
-export interface HireDisplayVariant {
+export interface HireDisplay {
   lines: [string, string];
   /** Width of the longer line in em at the display weight/width. Fallback for the
    *  runtime fit (the script re-measures once fonts load), so edit it if you change the text. */
@@ -68,7 +72,12 @@ export interface HireContent {
   ogLocale: string;
   roleLabel: string;
   meta: { title: string; description: string };
-  og: { eyebrow: string; headline: string };
+  og: {
+    /** Two lines; the second gets the highlight block. */
+    title: [string, string];
+    subtitle: string;
+    domain: string;
+  };
 
   contact: { email: string; whatsappNumber: string; location: string };
 
@@ -104,12 +113,9 @@ export interface HireContent {
     proof: string;
     modelNote: string;
     keywords: string[];
-    /** Big decorative type above the H1. Two lines; the second takes the accent color. */
-    display: {
-      variants: HireDisplayVariant[];
-      /** Index into `variants` shown on the page. */
-      active: number;
-    };
+    /** Big decorative type above the H1. Two lines; the second gets the
+     *  homepage highlight (.rr-hl): accent block, dark text. */
+    display: HireDisplay;
   };
 
   audience: {

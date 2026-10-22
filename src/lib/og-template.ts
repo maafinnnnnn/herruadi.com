@@ -69,7 +69,7 @@ export function ogAvatarRow(photoDataUri: string | null) {
   };
 }
 
-export function ogDomain() {
+export function ogDomain(text = 'herruadi.com') {
   return {
     type: 'span',
     props: {
@@ -81,7 +81,7 @@ export function ogDomain() {
         // inkSoft clears AA comfortably (~7.4:1) while staying muted.
         color: OG.inkSoft,
       },
-      children: 'herruadi.com',
+      children: text,
     },
   };
 }
